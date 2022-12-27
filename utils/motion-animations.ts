@@ -1,3 +1,24 @@
+export const headerSidebar = {
+    open: (height = 600) => ({
+        clipPath: `circle(${height * 2 + 200}px at 90% 2%)`,
+        transition: {
+            type: 'spring',
+            stiffness: 20,
+            restDelta: 2,
+        },
+    }),
+    closed: {
+        clipPath: 'circle(40px at 90% 5%)',
+        transition: {
+            delay: 0.5,
+            type: 'spring',
+            stiffness: 400,
+            damping: 40,
+        },
+    },
+};
+
+
 export const list = {
     visible: (i = 1) => ({
         opacity: 1,

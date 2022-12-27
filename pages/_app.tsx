@@ -3,6 +3,7 @@ import { ThemeProvider, DefaultTheme } from 'styled-components';
 import GlobalStyle from '../components/GlobalStyles';
 import localFont from '@next/font/local';
 import styled from 'styled-components';
+import Header from '../components/menus/header/header';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -15,7 +16,7 @@ const KoskoRegular = localFont({
     display: 'swap',
 });
 
-const LightTheme: DefaultTheme = {
+const light: DefaultTheme = {
     colors: {
         background: 'rgba(255, 255, 255, 1)',
         title: 'rgba(0, 0, 0, 1)',
@@ -38,7 +39,7 @@ const LightTheme: DefaultTheme = {
     },
 };
 
-const DarkTheme: DefaultTheme = {
+const dark: DefaultTheme = {
     colors: {
         background: 'rgba(0, 0, 0, 1)',
         title: 'rgba(255, 255, 255, 1)',
@@ -71,15 +72,28 @@ const Main = styled.main({
     position: 'relative',
     overflow: 'hidden',
 });
+const Wrapper = styled.div({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100%',
+    position: 'relative',
+    overflow: 'hidden',
+});
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
-            <ThemeProvider theme={LightTheme}>
-                <Main className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
+            <ThemeProvider theme={light}>
+                <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
                     <GlobalStyle />
-                    <Component {...pageProps} />
-                </Main>
+                    <Header />
+                    <Main>
+                        <Component {...pageProps} />
+                    </Main>
+                </Wrapper>
             </ThemeProvider>
         </>
     );
