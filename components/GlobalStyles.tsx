@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         font: inherit;
-        cursor: url(/_next/static/media/cursor.8e9df930.svg), auto !important;
+        cursor: url(/cursor.svg), auto !important;
     }
 
     /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */

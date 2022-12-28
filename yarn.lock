@@ -388,6 +388,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@pbe/react-yandex-maps@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@pbe/react-yandex-maps/-/react-yandex-maps-1.2.2.tgz#bc0b2c4d88eb8dc0a45e5f9206897ed2bc9cb05a"
+  integrity sha512-2XT6XQ5MsrvDQWWy8whPRm/2wDbTdtABUERlTTU9IAJAvN2feJqNegKwbaEBIjrx1QcFlgsFAaBMN3DDp7SEBw==
+  dependencies:
+    "@types/yandex-maps" "2.1.28"
+
 "@pkgr/utils@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@pkgr/utils/-/utils-2.3.1.tgz#0a9b06ffddee364d6642b3cd562ca76f55b34a03"
@@ -464,6 +471,11 @@
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
     csstype "^3.0.2"
+
+"@types/yandex-maps@2.1.28":
+  version "2.1.28"
+  resolved "https://registry.yarnpkg.com/@types/yandex-maps/-/yandex-maps-2.1.28.tgz#1a1bfc633188504acc03f8c0998f65470db7f795"
+  integrity sha512-thMdTP38GxFhdYrgEv0p8i4k2NgI8uVkjijHU97HbMQZ+83bBLJODVbdGnQxHO0+EhwQIusuLVJux782FTT5yw==
 
 "@typescript-eslint/parser@^5.42.0":
   version "5.47.1"
@@ -1887,7 +1899,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1918,6 +1930,13 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-social-icons@^5.15.0:
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/react-social-icons/-/react-social-icons-5.15.0.tgz#6b815aab9eff210e1f6e8a4ca420684aa72c154a"
+  integrity sha512-khfDgUiUwEBe34T6br2+mkXQg3hLVDdviVjexxZoVCsogMgxTy/m8+KlX/j6Wa7P2BPxgZ7yZ2jXw3X06pUUFQ==
+  dependencies:
+    prop-types "^15.7.2"
 
 react@^18.2.0:
   version "18.2.0"

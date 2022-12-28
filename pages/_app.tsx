@@ -4,6 +4,7 @@ import GlobalStyle from '../components/GlobalStyles';
 import localFont from '@next/font/local';
 import styled from 'styled-components';
 import Header from '../components/menus/header/header';
+import Footer from '../components/menus/footer/footer';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -77,7 +78,7 @@ const Wrapper = styled.div({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    minHeight: '100vh',
     width: '100%',
     position: 'relative',
     overflow: 'hidden',
@@ -93,6 +94,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Main>
                         <Component {...pageProps} />
                     </Main>
+                    <Footer />
                 </Wrapper>
             </ThemeProvider>
         </>

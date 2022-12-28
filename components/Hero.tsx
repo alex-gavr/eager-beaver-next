@@ -20,7 +20,7 @@ const MainContent = styled(motion.div)({
     marginLeft: '2rem',
 });
 
-const Columns = styled(motion.div)({
+const Columns = styled(motion.div)((props) =>({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -29,7 +29,7 @@ const Columns = styled(motion.div)({
     width: '95%',
     ' & > h1': {
         lineHeight: 1.2,
-        color: 'var(--clr-primary-700)',
+        color: props.theme.colors.textYellowDark,
         textShadow: '2px 2px 5px black',
     },
     ' & > p': {
@@ -38,7 +38,7 @@ const Columns = styled(motion.div)({
         letterSpacing: '0.08rem',
         textShadow: '2px 2px 5px black',
     },
-});
+}));
 const ButtonContainer = styled(motion.div)({
     display: 'flex',
     flexFlow: 'column',
@@ -53,7 +53,7 @@ const Wrapper = styled(motion.section)({
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
     width: '100vw',
-    height: '100vh',
+    minHeight: '100vh',
     '@media only screen and (max-width: 500px)': {
         gridTemplateColumns: '1fr',
         height: '100vh',
