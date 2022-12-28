@@ -1,15 +1,11 @@
 import { FC } from 'react';
-import hero from '../images/hero/heroCropped.webp';
-import heroMobile from '../images/hero/mobileHero.webp';
-// import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
+import hero from '../../images/hero/heroCropped.webp';
+import heroMobile from '../../images/hero/mobileHero.webp';
 import { AnimatePresence, motion } from 'framer-motion';
-import { list, toRight, toDown, toLeft, popUp } from '../utils/motion-animations';
+import { list, toRight, toDown, toLeft, popUp } from '../../utils/motion-animations';
 import styled from 'styled-components';
-import { useWindowSize } from '../utils/use-window-size';
 import Image from 'next/image';
-import Link from 'next/link';
-import ActionButtons from './buttons/action-buttons-page-end/ActionButtons';
-
+import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
 
 const MainContent = styled(motion.div)({
     width: '100%',
@@ -21,7 +17,7 @@ const MainContent = styled(motion.div)({
     marginLeft: '2rem',
 });
 
-const Columns = styled(motion.div)((props) =>({
+const Columns = styled(motion.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -89,25 +85,24 @@ const BackgroundImage = styled(Image)({
     right: 0,
 });
 
-interface IProps  {
-    device: any;
+interface IProps {
+    isMobileOnly: boolean;
 }
-const Hero: FC<IProps> = ({device}): JSX.Element => {
-    const { width } = useWindowSize();
+const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
+    
     const name = 'Alexander';
 
     return (
         <AnimatePresence>
             <Wrapper>
-                {device === 'desktop' && <BackgroundImage src={hero} alt='' priority />}
-                {device === 'mobile' && <BackgroundImage src={heroMobile} alt='' priority />}
+                {isMobileOnly && <BackgroundImage src={heroMobile} alt='' priority />}
+                {!isMobileOnly && <BackgroundImage src={hero} alt='' priority />}
                 <MainContent variants={list} animate='visible' initial='hidden'>
                     <Columns>
                         <motion.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
                             {name && `Привет, ${name}`}
                         </motion.p>
                         <motion.h1 variants={toRight}>Eager Beaver Language School</motion.h1>
-                        
                         <motion.p variants={toLeft}>
                             детская языковая школа инклюзивного вида обучения <br /> сделай свой первый шаг к изучению английского языка
                         </motion.p>
@@ -117,11 +112,8 @@ const Hero: FC<IProps> = ({device}): JSX.Element => {
                     </Columns>
                 </MainContent>
             </Wrapper>
-            
         </AnimatePresence>
     );
 };
 
 export default Hero;
-
-

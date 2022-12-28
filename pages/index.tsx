@@ -1,7 +1,10 @@
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
-import Hero from '../components/Hero';
+import Hero from '../components/home/Hero';
+import {getSelectorsByUserAgent} from 'react-device-detect';
+import TeachProcess from '../components/home/teach-process/teach-process';
 
-export default function Home({ device }: any) {
+export default function Home({ isMobileOnly }: any) {
     
     return (
         <>
@@ -11,17 +14,17 @@ export default function Home({ device }: any) {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <Hero device={device} />
+            <Hero isMobileOnly={isMobileOnly} />
+            <TeachProcess />
         </>
     );
 }
-export async function getServerSideProps(context: any) {
-    const UA = context.req.headers['user-agent'];
-    const isMobile = Boolean(UA.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i));
+export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
+    const userAgent = req.headers['user-agent'] || '';
+    const { isMobileOnly } = getSelectorsByUserAgent(userAgent);
+    
 
     return {
-        props: {
-            device: isMobile ? 'mobile' : 'desktop',
-        },
+        props: { isMobileOnly },
     };
 }

@@ -68,7 +68,7 @@ const Main = styled.main({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    minHeight: '100vh',
     width: '100%',
     position: 'relative',
     overflow: 'hidden',
