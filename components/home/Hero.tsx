@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, use, useEffect, useState } from 'react';
 import hero from '../../images/hero/heroCropped.webp';
 import heroMobile from '../../images/hero/mobileHero.webp';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -6,6 +6,7 @@ import { list, toRight, toDown, toLeft, popUp } from '../../utils/motion-animati
 import styled from 'styled-components';
 import Image from 'next/image';
 import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
+import Cookies from 'js-cookie';
 
 const MainContent = styled(motion.div)({
     width: '100%',
@@ -89,8 +90,15 @@ interface IProps {
     isMobileOnly: boolean;
 }
 const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
+    const [name, setName] = useState<string | undefined>('');
+
+    useEffect(()=>{
+        const cookie = Cookies.get('name');
+        if (cookie) {
+            setName(cookie);
+        }
+    },[])
     
-    const name = 'Alexander';
 
     return (
         <AnimatePresence>

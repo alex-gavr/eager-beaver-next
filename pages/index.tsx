@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero';
 import {getSelectorsByUserAgent} from 'react-device-detect';
 import TeachProcess from '../components/home/teach-process/teach-process';
 import Events from '../components/thematic-events/events';
+import FreeClass from '../components/home/free-class/free-class';
 
 export default function Home({ isMobileOnly, isTablet, isDesktop }: any) {
     
@@ -18,6 +19,7 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: any) {
             <Hero isMobileOnly={isMobileOnly} />
             <TeachProcess />
             <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
+            <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
         </>
     );
 }

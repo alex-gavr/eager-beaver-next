@@ -6,7 +6,9 @@ import styled from 'styled-components';
 import Header from '../components/menus/header/header';
 import Footer from '../components/menus/footer/footer';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
+import { Provider } from 'react-redux';
+import { store } from '../services/store';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -90,16 +92,18 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
             <ThemeProvider theme={light}>
-                <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
-                    <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
-                        <GlobalStyle />
-                        <Header />
-                        <Main>
-                            <Component {...pageProps} />
-                        </Main>
-                        <Footer />
-                    </Wrapper>
-                </SkeletonTheme>
+                <Provider store={store}>
+                    <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
+                        <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
+                            <GlobalStyle />
+                            <Header />
+                            <Main>
+                                <Component {...pageProps} />
+                            </Main>
+                            <Footer />
+                        </Wrapper>
+                    </SkeletonTheme>
+                </Provider>
             </ThemeProvider>
         </>
     );

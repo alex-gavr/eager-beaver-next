@@ -31,14 +31,16 @@ const SecondaryButton = styled(PrimaryButton)((props) => ({
 
 const EmptyPrimaryButton = styled(PrimaryButton)((props) => ({
     backgroundColor: 'transparent',
-    backdropFilter: 'blur(3px) saturate(220%)',
+    backdropFilter: 'blur(4px) saturate(220%)',
     border: `2px solid ${props.theme.colors.textYellowLight}`,
+    
 }));
 const EmptySecondaryButton = styled(SecondaryButton)((props) => ({
     backgroundColor: 'transparent',
-    backdropFilter: 'blur(3px) saturate(220%)',
+    backdropFilter: 'blur(4px) saturate(220%)',
     border: `2px solid ${props.theme.colors.textGreenLight}`,
 }));
+
 
 export interface ICustomButton {
     typeHTML: 'button' | 'submit' | 'reset';
@@ -65,7 +67,6 @@ const transition = {
 };
 
 export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, disabled, textColor, padding, fontFamily, fontSize, animate, isInputFocused }) => {
-
     return (
         <>
             {type === 'primary' && (
