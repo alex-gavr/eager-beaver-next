@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useWindowSize } from '../utils/use-window-size';
 import Image from 'next/image';
 import Link from 'next/link';
+import ActionButtons from './buttons/action-buttons-page-end/ActionButtons';
 
 
 const MainContent = styled(motion.div)({
@@ -111,8 +112,7 @@ const Hero: FC<IProps> = ({device}): JSX.Element => {
                             детская языковая школа инклюзивного вида обучения <br /> сделай свой первый шаг к изучению английского языка
                         </motion.p>
                         <ButtonContainer variants={popUp}>
-                            <Link href='/teachers'>go to teachers</Link>
-                            {/* <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} /> */}
+                            <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
                         </ButtonContainer>
                     </Columns>
                 </MainContent>
