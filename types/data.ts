@@ -103,3 +103,9 @@ export interface ILink {
     name: string;
     to: string;
 }
+
+export interface IDeviceType {
+    isMobileOnly: boolean;
+    isTablet: boolean; 
+    isDesktop: boolean;
+}

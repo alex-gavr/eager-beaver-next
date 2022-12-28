@@ -3,8 +3,9 @@ import Head from 'next/head';
 import Hero from '../components/home/Hero';
 import {getSelectorsByUserAgent} from 'react-device-detect';
 import TeachProcess from '../components/home/teach-process/teach-process';
+import Events from '../components/thematic-events/events';
 
-export default function Home({ isMobileOnly }: any) {
+export default function Home({ isMobileOnly, isTablet, isDesktop }: any) {
     
     return (
         <>
@@ -16,15 +17,15 @@ export default function Home({ isMobileOnly }: any) {
             </Head>
             <Hero isMobileOnly={isMobileOnly} />
             <TeachProcess />
+            <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
         </>
     );
 }
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly } = getSelectorsByUserAgent(userAgent);
-    
+    const { isMobileOnly, isTablet, isDesktop  } = getSelectorsByUserAgent(userAgent);
 
     return {
-        props: { isMobileOnly },
+        props: { isMobileOnly, isTablet, isDesktop },
     };
 }

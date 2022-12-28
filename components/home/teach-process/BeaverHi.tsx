@@ -498,7 +498,7 @@ export const BeaverHi = () => {
                 x={668.547}
                 y={382.147}
                 style={{
-                    fontFamily: 'var(--ff-primary-bold)',
+                    fontFamily: 'var(--ff-heading)',
                     fontSize: '154.814px',
                     fill: '#ffc20a',
                 }}

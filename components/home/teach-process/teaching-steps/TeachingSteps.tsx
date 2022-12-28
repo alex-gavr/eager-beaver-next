@@ -1,12 +1,10 @@
 // import styles from './teaching-steps.module.css';
 import { motion } from 'framer-motion';
 import { Button } from '../../../buttons/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useWindowSize } from '../../../../utils/use-window-size';
 import styled, { useTheme } from 'styled-components';
 // import ym from 'react-yandex-metrika';
-
-
 
 const Wrapper = styled.div({
     display: 'flex',
@@ -43,7 +41,7 @@ const TheStepContainer = styled(motion.div)((props) => ({
     boxShadow: '1px 1px 10px 5px rgba(0, 0, 0, 0.2)',
     ' & > p': {
         textTransform: 'lowercase',
-    }
+    },
 }));
 
 const TheStepHead = styled.div((props) => ({
@@ -62,25 +60,21 @@ const TheStepHead = styled.div((props) => ({
         '@media only screen and (min-width: 50em)': {
             fontSize: props.theme.fontSize.subSubHeading,
             padding: '0rem 1rem',
-        }
+        },
     },
     '& > p': {
         fontSize: '0.8rem',
         '@media only screen and (min-width: 50em)': {
             fontSize: '1rem',
-        }
-    }
-}))
-
-
+        },
+    },
+}));
 
 const TeachingSteps = () => {
-    const theme = useTheme()
-    const {width} = useWindowSize();
+    const theme = useTheme();
+    const { width } = useWindowSize();
     const [step, setStep] = useState<number>(1);
     const [buttonText, setButtonText] = useState('так, и что дальше?');
-
-    
 
     const handleClick = () => {
         if (step === 1) {
@@ -148,74 +142,86 @@ const TeachingSteps = () => {
 
     const handleChangeStep = (step: number) => {
         setStep(step);
-    }
-
+    };
 
     return (
         <Wrapper>
-            <StepsContainer style={
-                width < 400 ? 
-                {
-                
-                    height: 
-                    step === 1 ? `${heightMobile}px` : 
-                    step === 2 ? `${heightMobile + transform*1.2}px` : 
-                    step === 3 ? `${heightMobile + transform * 1.4}px` :
-                    step === 4 ? `${heightMobile + transform * 2.7}px` :
-                    `${heightMobile + transform * 5.1}px`
-                }:
-                width < 800 ?
-                {
-                    height: 
-                    step === 1 ? `${heightTablet}px` : 
-                    step === 2 ? `${heightTablet + transform*1.2}px` : 
-                    step === 3 ? `${heightTablet + transform * 1.7}px` :
-                    step === 4 ? `${heightTablet + transform * 3}px` :
-                    `${heightTablet + transform * 4.8}px`
-                }:
-                {
-                    height: 
-                    step === 1 ? `${heightDesktop}px` : 
-                    step === 2 ? `${heightDesktop + transform*1.2}px` : 
-                    step === 3 ? `${heightDesktop + transform * 1.7}px` :
-                    step === 4 ? `${heightDesktop + transform * 3}px` :
-                    `${heightDesktop + transform * 5}px`
-                }
-        }>
+            <StepsContainer
+                style={
+                    width < 400
+                        ? {
+                              height:
+                                  step === 1
+                                      ? `${heightMobile}px`
+                                      : step === 2
+                                      ? `${heightMobile + transform * 1.2}px`
+                                      : step === 3
+                                      ? `${heightMobile + transform * 1.4}px`
+                                      : step === 4
+                                      ? `${heightMobile + transform * 2.7}px`
+                                      : `${heightMobile + transform * 5.1}px`,
+                          }
+                        : width < 800
+                        ? {
+                              height:
+                                  step === 1
+                                      ? `${heightTablet}px`
+                                      : step === 2
+                                      ? `${heightTablet + transform * 1.2}px`
+                                      : step === 3
+                                      ? `${heightTablet + transform * 1.7}px`
+                                      : step === 4
+                                      ? `${heightTablet + transform * 3}px`
+                                      : `${heightTablet + transform * 5}px`,
+                          }
+                        : {
+                              height:
+                                  step === 1
+                                      ? `${heightDesktop}px`
+                                      : step === 2
+                                      ? `${heightDesktop + transform * 1.2}px`
+                                      : step === 3
+                                      ? `${heightDesktop + transform * 1.7}px`
+                                      : step === 4
+                                      ? `${heightDesktop + transform * 3}px`
+                                      : `${heightDesktop + transform * 5}px`,
+                          }
+                }>
                 {data.map((data, index) => {
                     return (
-                        <TheStepContainer key={index} 
-                        onClick={() => handleChangeStep(data.step)}
-                        style={{
-                            backgroundColor: 
-                            buttonText === 'Ждем Вас ❤️' ?  theme.colors.textGreenLight : 
-                            step === index+1 ? theme.colors.textGreenLight : 
-                            theme.colors.textYellowDark
-                        }}
-                        
-                        animate={
-                            step > index ? 
-                            {
-                                scale: (index+50)*0.018,
-                                opacity: 1,
-                                zIndex: index+1,
-                                y: index*transform,
-                                z: index*2*transform,
-                        }:{
-                            opacity: 0,
-                            zIndex: 0-index,
-                            scale: 0.5
-                        }}
-                    
-                        transition={{
-                            duration: 0.5,
-                            ease: 'easeInOut',
-                        }}
-                        
-                        >
+                        <TheStepContainer
+                            key={index}
+                            onClick={() => handleChangeStep(data.step)}
+                            style={{
+                                backgroundColor:
+                                    buttonText === 'Ждем Вас ❤️'
+                                        ? theme.colors.textGreenLight
+                                        : step === index + 1
+                                        ? theme.colors.textGreenLight
+                                        : theme.colors.textYellowDark,
+                            }}
+                            animate={
+                                step > index
+                                    ? {
+                                          scale: (index + 50) * 0.018,
+                                          opacity: 1,
+                                          zIndex: index + 1,
+                                          y: index * transform,
+                                          z: index * 2 * transform,
+                                      }
+                                    : {
+                                          opacity: 0,
+                                          zIndex: 0 - index,
+                                          scale: 0.5,
+                                      }
+                            }
+                            transition={{
+                                duration: 0.5,
+                                ease: 'easeInOut',
+                            }}>
                             <TheStepHead>
                                 <h2>Шаг {index + 1}</h2>
-                                <p>{ step === 5 ? data.title : step === index + 1 ? null : data.title}</p>
+                                <p>{step === 5 ? data.title : step === index + 1 ? null : data.title}</p>
                             </TheStepHead>
                             <p>{data.description}</p>
                         </TheStepContainer>
