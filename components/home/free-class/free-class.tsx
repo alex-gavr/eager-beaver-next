@@ -16,6 +16,7 @@ const Wrapper = styled(motion.div)((props) => ({
     gap: '2rem',
     position: 'relative',
     marginTop: '2rem',
+    marginBottom: '2rem',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
     },

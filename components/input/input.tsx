@@ -72,7 +72,7 @@ const InputInnerContainer = styled.div<any>((props) => ({
         [StyledPlaceholder]: {
             top: 0,
             border: `2px solid ${props.theme.colors.primaryDark}`,
-            backgroundColor: 'white',
+            backgroundColor: props.theme.colors.background,
             padding: '0.2rem',
             transform: 'translateY(-20px)',
             color: props.theme.colors.secondaryDark,
@@ -81,7 +81,7 @@ const InputInnerContainer = styled.div<any>((props) => ({
     [StyledPlaceholder]: props.value && {
         top: 0,
         border: `2px solid ${props.theme.colors.primaryDark}`,
-        backgroundColor: 'white',
+        backgroundColor: props.theme.colors.background,
         padding: '0.2rem',
         transform: 'translateY(-20px)',
         color: props.theme.colors.secondaryDark,

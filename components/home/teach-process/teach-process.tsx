@@ -25,6 +25,7 @@ const StyledSection = styled(motion.section)(props => ({
         padding: '2rem',
     },
     '& > h1': {
+        zIndex: 2,
         color: props.theme.colors.title
     }
 }));

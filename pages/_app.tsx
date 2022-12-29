@@ -36,7 +36,7 @@ const light: DefaultTheme = {
         error: 'rgb(204, 0, 0)',
         white: 'rgb(255, 255, 255)',
         black: 'rgb(0, 0, 0)',
-        componentBackground: 'rgba(200,200,200)',
+        componentBackground: 'rgba(255,255,255)',
         eventsGradient: 'linear-gradient(180deg, #FFC009 0%, #EED07A 100%)',
         mobileMenu: 'radial-gradient(circle, rgba(248,236,155,1) 0%, rgba(255,225,121,1) 100%)'
     },
