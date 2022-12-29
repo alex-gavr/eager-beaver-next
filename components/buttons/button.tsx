@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeConsumer } from 'styled-components';
 
 const PrimaryButton = styled(motion.button)((props) => ({
     border: '2px solid transparent',
     borderRadius: '1.85rem',
     color: props.theme.colors.paragraph,
-    backgroundColor: props.theme.colors.textYellowDark,
+    backgroundColor: props.theme.colors.primaryDark,
     boxShadow: '0px 0.7em 1em rgba(0,0,0,0.25)',
     padding: '1em 2em',
     textDecoration: 'none',
@@ -15,7 +15,8 @@ const PrimaryButton = styled(motion.button)((props) => ({
     textTransform: 'lowercase',
     fontFamily: 'var(--ff-heading)',
     '&:hover, &:focus-visible': {
-        backgroundColor: props.theme.colors.textGreenLight,
+        backgroundColor: props.theme.colors.secondaryLight,
+        transition: 'all 0.3s ease-in-out',
     },
     '&:disabled': {
         pointerEvents: 'none',
@@ -23,22 +24,22 @@ const PrimaryButton = styled(motion.button)((props) => ({
 }));
 
 const SecondaryButton = styled(PrimaryButton)((props) => ({
-    backgroundColor: props.theme.colors.textGreenDark,
+    backgroundColor: props.theme.colors.secondaryDark,
     '&:hover, &:focus-visible': {
-        backgroundColor: props.theme.colors.textYellowDark,
+        backgroundColor: props.theme.colors.primaryDark,
     },
 }));
 
 const EmptyPrimaryButton = styled(PrimaryButton)((props) => ({
     backgroundColor: 'transparent',
     backdropFilter: 'blur(4px) saturate(220%)',
-    border: `2px solid ${props.theme.colors.textYellowLight}`,
+    border: `2px solid ${props.theme.colors.primaryLight}`,
     
 }));
 const EmptySecondaryButton = styled(SecondaryButton)((props) => ({
     backgroundColor: 'transparent',
     backdropFilter: 'blur(4px) saturate(220%)',
-    border: `2px solid ${props.theme.colors.textGreenLight}`,
+    border: `2px solid ${props.theme.colors.primaryLight}`,
 }));
 
 

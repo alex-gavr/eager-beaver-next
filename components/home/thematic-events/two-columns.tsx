@@ -1,14 +1,14 @@
-import { useWindowSize } from '../../utils/use-window-size';
+import { useWindowSize } from '../../../utils/use-window-size';
 import { FC, useRef } from 'react';
-import { ImageWithSkeleton } from '../image-with-skeleton/img-with-skeleton';
+import { ImageWithSkeleton } from '../../image-with-skeleton/img-with-skeleton';
 import { AnimatePresence, motion } from 'framer-motion';
 import Carousel from 'react-multi-carousel-18';
 import 'react-multi-carousel-18/lib/styles.css';
 import { IEventsData } from './thematic-events-data';
-import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
-import { LeftArrow, RightArrow } from '../custom-arrows/CustomArrows';
+import { usePreventVerticalScroll } from '../../../utils/usePreventVerticalScroll';
+import { LeftArrow, RightArrow } from '../../custom-arrows/CustomArrows';
 import styled from 'styled-components';
-import { IDeviceType } from '../../types/data';
+import { IDeviceType } from '../../../types/data';
 
 const EvenColumns = styled(motion.div)({
     display: 'grid',
@@ -57,7 +57,7 @@ const TextContainer = styled(motion.div)<any>(({order}) => ({
     },
 }));
 const SubHeading = styled(motion.h2)((props) => ({
-    backgroundColor: props.theme.colors.textYellowDark,
+    backgroundColor: props.theme.colors.primaryDark,
     padding: '0.5rem 1rem',
     borderRadius: '1.5rem',
     color: props.theme.colors.title,

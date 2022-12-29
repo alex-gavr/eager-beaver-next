@@ -1,44 +1,44 @@
-import halloween from '../../images/thematicEvents/halloween/optimized/1.webp';
-import halloween2 from '../../images/thematicEvents/halloween/optimized/2.webp';
-import halloween3 from '../../images/thematicEvents/halloween/optimized/3.webp';
-import halloween4 from '../../images/thematicEvents/halloween/optimized/4.webp';
-import halloween5 from '../../images/thematicEvents/halloween/optimized/5.webp';
-import halloween6 from '../../images/thematicEvents/halloween/optimized/6.webp';
-import halloween7 from '../../images/thematicEvents/halloween/optimized/7.webp';
-import halloween8 from '../../images/thematicEvents/halloween/optimized/8.webp';
-import halloween9 from '../../images/thematicEvents/halloween/optimized/9.webp';
-import halloween10 from '../../images/thematicEvents/halloween/optimized/10.webp';
-import halloween11 from '../../images/thematicEvents/halloween/optimized/11.webp';
-import halloween12 from '../../images/thematicEvents/halloween/optimized/12.webp';
+import halloween from '../../../images/thematicEvents/halloween/optimized/1.webp';
+import halloween2 from '../../../images/thematicEvents/halloween/optimized/2.webp';
+import halloween3 from '../../../images/thematicEvents/halloween/optimized/3.webp';
+import halloween4 from '../../../images/thematicEvents/halloween/optimized/4.webp';
+import halloween5 from '../../../images/thematicEvents/halloween/optimized/5.webp';
+import halloween6 from '../../../images/thematicEvents/halloween/optimized/6.webp';
+import halloween7 from '../../../images/thematicEvents/halloween/optimized/7.webp';
+import halloween8 from '../../../images/thematicEvents/halloween/optimized/8.webp';
+import halloween9 from '../../../images/thematicEvents/halloween/optimized/9.webp';
+import halloween10 from '../../../images/thematicEvents/halloween/optimized/10.webp';
+import halloween11 from '../../../images/thematicEvents/halloween/optimized/11.webp';
+import halloween12 from '../../../images/thematicEvents/halloween/optimized/12.webp';
 
-import easter from '../../images/thematicEvents/easter/optimized/1.webp';
-import easter2 from '../../images/thematicEvents/easter/optimized/2.webp';
-import easter3 from '../../images/thematicEvents/easter/optimized/3.webp';
-import easter4 from '../../images/thematicEvents/easter/optimized/4.webp';
-import easter5 from '../../images/thematicEvents/easter/optimized/5.webp';
-import easter6 from '../../images/thematicEvents/easter/optimized/6.webp';
-import easter7 from '../../images/thematicEvents/easter/optimized/7.webp';
-
-
-
-import sailor from '../../images/thematicEvents/sailor/optimized/1.webp';
-import sailor2 from '../../images/thematicEvents/sailor/optimized/2.webp';
-import sailor3 from '../../images/thematicEvents/sailor/optimized/3.webp';
-import sailor4 from '../../images/thematicEvents/sailor/optimized/4.webp';
-import sailor5 from '../../images/thematicEvents/sailor/optimized/5.webp';
-import sailor6 from '../../images/thematicEvents/sailor/optimized/6.webp';
-import sailor7 from '../../images/thematicEvents/sailor/optimized/7.webp';
-import sailor8 from '../../images/thematicEvents/sailor/optimized/8.webp';
-import sailor9 from '../../images/thematicEvents/sailor/optimized/9.webp';
-import sailor10 from '../../images/thematicEvents/sailor/optimized/10.webp';
+import easter from '../../../images/thematicEvents/easter/optimized/1.webp';
+import easter2 from '../../../images/thematicEvents/easter/optimized/2.webp';
+import easter3 from '../../../images/thematicEvents/easter/optimized/3.webp';
+import easter4 from '../../../images/thematicEvents/easter/optimized/4.webp';
+import easter5 from '../../../images/thematicEvents/easter/optimized/5.webp';
+import easter6 from '../../../images/thematicEvents/easter/optimized/6.webp';
+import easter7 from '../../../images/thematicEvents/easter/optimized/7.webp';
 
 
 
-import christmas from '../../images/thematicEvents/christmas/optimized/1.webp';
-import christmas2 from '../../images/thematicEvents/christmas/optimized/2.webp';
-import christmas3 from '../../images/thematicEvents/christmas/optimized/3.webp';
-import christmas4 from '../../images/thematicEvents/christmas/optimized/4.webp';
-import christmas5 from '../../images/thematicEvents/christmas/optimized/5.webp';
+import sailor from '../../../images/thematicEvents/sailor/optimized/1.webp';
+import sailor2 from '../../../images/thematicEvents/sailor/optimized/2.webp';
+import sailor3 from '../../../images/thematicEvents/sailor/optimized/3.webp';
+import sailor4 from '../../../images/thematicEvents/sailor/optimized/4.webp';
+import sailor5 from '../../../images/thematicEvents/sailor/optimized/5.webp';
+import sailor6 from '../../../images/thematicEvents/sailor/optimized/6.webp';
+import sailor7 from '../../../images/thematicEvents/sailor/optimized/7.webp';
+import sailor8 from '../../../images/thematicEvents/sailor/optimized/8.webp';
+import sailor9 from '../../../images/thematicEvents/sailor/optimized/9.webp';
+import sailor10 from '../../../images/thematicEvents/sailor/optimized/10.webp';
+
+
+
+import christmas from '../../../images/thematicEvents/christmas/optimized/1.webp';
+import christmas2 from '../../../images/thematicEvents/christmas/optimized/2.webp';
+import christmas3 from '../../../images/thematicEvents/christmas/optimized/3.webp';
+import christmas4 from '../../../images/thematicEvents/christmas/optimized/4.webp';
+import christmas5 from '../../../images/thematicEvents/christmas/optimized/5.webp';
 
 
 

@@ -40,13 +40,13 @@ const StyledInput = styled.input((props) => ({
         outline: 'none',
     },
     '&:-webkit-autofill': {
-        boxShadow: `0 0 0 30px ${props.theme.colors.textYellowLight} inset !important`,
+        boxShadow: `0 0 0 30px ${props.theme.colors.primaryLight} inset !important`,
     },
     '&:-webkit-autofill:hover': {
-        boxShadow: `0 0 0 30px ${props.theme.colors.textYellowLight} inset !important`,
+        boxShadow: `0 0 0 30px ${props.theme.colors.primaryLight} inset !important`,
     },
     '&:-webkit-autofill:focus': {
-        boxShadow: `0 0 0 30px r${props.theme.colors.textYellowLight}ed inset !important`,
+        boxShadow: `0 0 0 30px r${props.theme.colors.primaryLight}ed inset !important`,
     },
 }));
 const InputInnerContainer = styled.div<any>((props) => ({
@@ -55,7 +55,7 @@ const InputInnerContainer = styled.div<any>((props) => ({
     justifyContent: 'space-between',
     boxSizing: 'border-box',
     backgroundColor: props.theme.colors.background,
-    border: `2px solid ${props.theme.colors.textYellowDark}`,
+    border: `2px solid ${props.theme.colors.primaryDark}`,
     borderRadius: '1rem',
     transition: '0.3s',
     position: 'relative',
@@ -67,25 +67,25 @@ const InputInnerContainer = styled.div<any>((props) => ({
     '&:hover, &:focus-within, &active': {
         // width: '90%',
         paddingInline: '1rem',
-        boxShadow: `0 0 0 2px ${props.theme.colors.textYellowDark} inset`,
+        boxShadow: `0 0 0 2px ${props.theme.colors.primaryDark} inset`,
     },
     '&:focus-within, &:hover': {
         [StyledPlaceholder]: {
             top: 0,
-            border: `2px solid ${props.theme.colors.textYellowDark}`,
+            border: `2px solid ${props.theme.colors.primaryDark}`,
             backgroundColor: 'white',
             padding: '0.2rem',
             transform: 'translateY(-20px)',
-            color: props.theme.colors.textGreenDark,
+            color: props.theme.colors.secondaryDark,
         },
     },
     [StyledPlaceholder]: props.value && {
         top: 0,
-        border: `2px solid ${props.theme.colors.textYellowDark}`,
+        border: `2px solid ${props.theme.colors.primaryDark}`,
         backgroundColor: 'white',
         padding: '0.2rem',
         transform: 'translateY(-20px)',
-        color: props.theme.colors.textGreenDark,
+        color: props.theme.colors.secondaryDark,
     },
 }));
 

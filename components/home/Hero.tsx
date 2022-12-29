@@ -27,7 +27,7 @@ const Columns = styled(motion.div)((props) => ({
     width: '95%',
     ' & > h1': {
         lineHeight: 1.2,
-        color: props.theme.colors.textYellowDark,
+        color: props.theme.colors.primaryDark,
         textShadow: '2px 2px 5px black',
     },
     ' & > p': {

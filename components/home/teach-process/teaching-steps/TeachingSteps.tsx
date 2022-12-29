@@ -34,7 +34,7 @@ const TheStepContainer = styled(motion.div)((props) => ({
     width: '100%',
     minWidth: '300px',
     height: 'fit-content',
-    backgroundColor: props.theme.colors.textGreenLight,
+    backgroundColor: props.theme.colors.secondaryLight,
     padding: '1rem',
     borderRadius: '2rem',
     gap: '0.5rem',
@@ -53,7 +53,7 @@ const TheStepHead = styled.div((props) => ({
     '& > h2': {
         fontSize: props.theme.fontSize.subHeading,
         color: props.theme.colors.title,
-        backgroundColor: props.theme.colors.textYellowMedium,
+        backgroundColor: props.theme.colors.primaryMedium,
         padding: '0.2rem 1rem',
         borderRadius: '2rem',
         textTransform: 'uppercase',
@@ -195,10 +195,10 @@ const TeachingSteps = () => {
                             style={{
                                 backgroundColor:
                                     buttonText === 'Ждем Вас ❤️'
-                                        ? theme.colors.textGreenLight
+                                        ? theme.colors.secondaryLight
                                         : step === index + 1
-                                        ? theme.colors.textGreenLight
-                                        : theme.colors.textYellowDark,
+                                        ? theme.colors.secondaryLight
+                                        : theme.colors.primaryDark,
                             }}
                             animate={
                                 step > index

@@ -43,14 +43,14 @@ const NavigationButton = styled(Link)((props) => ({
     padding: '1rem',
     letterSpacing: '0.03rem',
     '&:hover': {
-        color: props.theme.colors.textYellowLight,
-        backgroundColor: props.theme.colors.textGreenDark,
+        color: props.theme.colors.primaryLight,
+        backgroundColor: props.theme.colors.secondaryDark,
         borderRadius: '2rem',
     }
 }));
 
 const IconContainer = styled(motion.div)((props) => ({
-    backgroundColor: props.theme.colors.textYellowLight,
+    backgroundColor: props.theme.colors.primaryLight,
     borderRadius: '50%',
     padding: '1.4rem 1.3rem 1.2rem 1.4rem',
     display: 'flex',

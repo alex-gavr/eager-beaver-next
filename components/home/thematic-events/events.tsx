@@ -2,10 +2,10 @@ import { TwoColumns } from './two-columns';
 import { FC } from 'react';
 import { eventsData } from './thematic-events-data';
 import { AnimatePresence, motion } from 'framer-motion';
-import { list, toUp } from '../../utils/motion-animations';
-import AnimatedTextWords from '../AnimatedTextWords/AnimatedTextWords';
+import { list, toUp } from '../../../utils/motion-animations';
+import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
-import { IDeviceType } from '../../types/data';
+import { IDeviceType } from '../../../types/data';
 
 const Wrapper = styled.section({
     display: 'flex',

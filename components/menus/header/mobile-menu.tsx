@@ -28,7 +28,7 @@ const Background = styled(motion.div)((props) => ({
     bottom: 0,
     height: '100vh',
     width: '100%',
-    backgroundColor: props.theme.colors.textYellowLight,
+    backgroundColor: props.theme.colors.primaryLight,
     zIndex: 9,
 }));
 const MobileNavigationContainer = styled(motion.div)({
@@ -47,7 +47,7 @@ const MobileNavigation = styled(motion.div)((props) => ({
     justifyContent: 'center',
     gap: '3rem',
     '& > li': {
-        backgroundColor: props.theme.colors.textGreenDark,
+        backgroundColor: props.theme.colors.secondaryDark,
         borderRadius: '2rem',
         width: 'auto',
         textAlign: 'center',

@@ -24,7 +24,7 @@ export const ImageWithSkeleton = ({ src, alt, visibleByDefault, className }: IPr
                     }}
                 />
             )}
-            <Image src={src}  alt={alt} className={className} onLoad={() => setIsLoading(false)} />
+            <Image src={src}  alt={alt} className={className} onLoadingComplete={() => setIsLoading(false)} />
         </>
     );
 };

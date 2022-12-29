@@ -45,7 +45,7 @@ const Background = styled.span((props) => ({
     width: '200vw',
     borderRadius: '50%',
     top: 0,
-    backgroundColor: props.theme.colors.textYellowLight,
+    backgroundColor: props.theme.colors.primaryLight,
 }));
 interface ICloudContainerProps {
     top?: string | number | undefined;

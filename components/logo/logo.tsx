@@ -15,7 +15,7 @@ const Row = styled.div((props) =>({
         width: '70px',
     },
     ' & > p': {
-        color: props.theme.colors.textYellowDark,
+        color: props.theme.colors.primaryDark,
         fontFamily: 'var(--ff-heading)',
         fontSize: '1.25rem',
     },

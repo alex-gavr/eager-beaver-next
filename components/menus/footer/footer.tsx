@@ -33,7 +33,7 @@ const SocialMediaContainer = styled(motion.div)((props) => ({
         placeSelf: 'flex-end',
     },
     '& > p': {
-        color: props.theme.colors.textGreenLight,
+        color: props.theme.colors.secondaryLight,
     },
 }));
 const IconsContainer = styled(motion.div)({
@@ -151,8 +151,8 @@ const StyledLink = styled(Link)((props) =>({
     fontSize: props.theme.fontSize.footer,
     letterSpacing: '0.2rem',
     '&:hover': {
-        color: props.theme.colors.textYellowLight,
-        backgroundColor: props.theme.colors.textGreenDark,
+        color: props.theme.colors.primaryLight,
+        backgroundColor: props.theme.colors.secondaryDark,
         borderRadius: '2rem'
     }
 }));
@@ -164,7 +164,7 @@ const CreditsContainer = styled(motion.div)((props) => ({
     padding: '1rem',
     gap: '1rem',
     width: '100vw',
-    backgroundColor: props.theme.colors.textGreenDark,
+    backgroundColor: props.theme.colors.secondaryDark,
     '& p': {
         letterSpacing: '0.1rem',
         textTransform: 'capitalize',
