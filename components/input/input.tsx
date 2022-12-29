@@ -62,10 +62,9 @@ const InputInnerContainer = styled.div<any>((props) => ({
     boxShadow: '2px 2px 20px 5px rgba(0, 0, 0, 0.2)',
     fontFamily: 'var(--ff-heading)',
     minHeight: '64px',
-    width: props.size === 'extraSmall' ? '250px' : props.size === 'small' ? '320px' : '500px',
+    width: 'clamp(16.875rem, 12.8205rem + 19.6581vw, 31.25rem);',
     paddingInline: '1rem',
     '&:hover, &:focus-within, &active': {
-        // width: '90%',
         paddingInline: '1rem',
         boxShadow: `0 0 0 2px ${props.theme.colors.primaryDark} inset`,
     },
@@ -104,7 +103,6 @@ export interface TInputInterface extends Omit<React.HTMLProps<HTMLInputElement>,
     disabled?: boolean;
     icon?: keyof TICons;
     errorText?: string;
-    size?: 'default' | 'small' | 'extraSmall';
     extraClass?: string;
     onChange(e: React.ChangeEvent<HTMLInputElement>): void;
     onIconClick?(e: React.MouseEvent<HTMLDivElement>): void;
@@ -128,7 +126,7 @@ function useCombinedRefs<T = HTMLElement>(...refs: Array<React.MutableRefObject<
 
 export const Input = React.forwardRef<HTMLInputElement, TInputInterface>(
     (
-        { type, placeholder, onChange, icon, onIconClick, success, error, value, errorText, disabled, onBlur, onFocus, size = 'default', extraClass = '', name },
+        { type, placeholder, onChange, icon, onIconClick, success, error, value, errorText, disabled, onBlur, onFocus, extraClass = '', name },
         forwardedRef
     ) => {
         const [focus, setFocus] = useState(false);
@@ -191,7 +189,7 @@ export const Input = React.forwardRef<HTMLInputElement, TInputInterface>(
 
         return (
             <InputContainer>
-                <InputInnerContainer onClick={onWrapperClick} size={size} value={value}>
+                <InputInnerContainer onClick={onWrapperClick} value={value}>
                     <StyledPlaceholder htmlFor={type}>{placeholder}</StyledPlaceholder>
                     <StyledInput
                         onFocus={handleInputFocus}

@@ -34,7 +34,6 @@ const EmptyPrimaryButton = styled(PrimaryButton)((props) => ({
     backgroundColor: 'transparent',
     backdropFilter: 'blur(4px) saturate(220%)',
     border: `2px solid ${props.theme.colors.primaryLight}`,
-    
 }));
 const EmptySecondaryButton = styled(SecondaryButton)((props) => ({
     backgroundColor: 'transparent',

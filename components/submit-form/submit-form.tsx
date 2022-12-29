@@ -55,7 +55,7 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
     const { submitSuccess, error, loading } = useAppSelector((state) => state.telegram);
     const name = Cookies.get('name');
 
-    // const { width } = useWindowSize();
+    const { width } = useWindowSize();
 
     const [values, setValues] = useState({
         name: '',
@@ -126,7 +126,6 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
             placeholder: 'Имя',
             error: false,
             errorText: 'Ошибка',
-            size: isMobileOnly ? 'extraSmall' : isTablet ? 'small' : 'default',
             icon: 'ProfileIcon',
             onChange: handleChange,
             onFocus: handleChangeFocusStatus,
@@ -140,7 +139,6 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
             placeholder: phonePlaceholderText,
             error: phoneError,
             errorText: 'Пожалуйста, введите корректный телефон',
-            size: isMobileOnly ? 'extraSmall' : isTablet ? 'small' : 'default',
             icon: 'InfoIcon',
             onChange: handleChange,
             onFocus: handlePhoneValidationAndPlaceholderNameChange,
@@ -172,7 +170,6 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
                         type={input.type}
                         placeholder={input.placeholder}
                         icon={input.icon}
-                        size={input.size}
                         error={input.error}
                         errorText={input.errorText}
                         onChange={input.onChange}
