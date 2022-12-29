@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { CloudContainer } from '../../CloudsContainer';
 
-const StyledSection = styled(motion.section)({
+const StyledSection = styled(motion.section)(props => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -24,7 +24,10 @@ const StyledSection = styled(motion.section)({
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
     },
-});
+    '& > h1': {
+        color: props.theme.colors.title
+    }
+}));
 const EvenColumns = styled(motion.div)({
     zIndex: 100,
     display: 'grid',
@@ -53,19 +56,15 @@ const TeachProcess: FC = (): JSX.Element => {
     return (
         <AnimatePresence>
             <StyledSection variants={list} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
-                <AnimatedTextWords title={true} text='Как проходит обучение' textAnimation='fromBottomLeft' />
+                <h1>
+                    <AnimatedTextWords title={true} text='Как проходит обучение' textAnimation='fromBottomLeft' />
+                </h1>
                 <EvenColumns variants={opacity}>
                     <TeachingSteps />
                     <BeaverHi />
                 </EvenColumns>
                 <Background />
-                <CloudContainer
-                    top={'10%'}
-                    left={0}
-                    variants={toRight}
-                    whileInView='visible'
-                    initial='hidden'
-                    viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
+                <CloudContainer top={'10%'} left={0} variants={toRight} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
                     <Image src={cloud} alt='' />
                 </CloudContainer>
                 <CloudContainer
@@ -75,10 +74,7 @@ const TeachProcess: FC = (): JSX.Element => {
                     whileInView='visible'
                     initial='hidden'
                     viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
-                    <Image
-                        src={cloud}
-                        alt='cloud2'
-                    />
+                    <Image src={cloud} alt='cloud2' />
                 </CloudContainer>
             </StyledSection>
         </AnimatePresence>

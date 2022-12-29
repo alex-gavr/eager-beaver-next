@@ -10,7 +10,7 @@ import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
 import { LeftArrow, RightArrow } from '../../components/custom-arrows/CustomArrows';
 import { useWindowSize } from '../../utils/use-window-size';
 import PageAnimation from '../../components/page-animation/PageAnimation';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
@@ -104,7 +104,7 @@ const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JS
     // const dispatch = useAppDispatch();
     const ref = useRef(null);
     const slider = usePreventVerticalScroll(ref);
-
+    
     // useEffect(() => {
     //     dispatch(fetchReviews());
     // }, [dispatch]);

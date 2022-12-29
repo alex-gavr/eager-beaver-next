@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const Toggle = styled.button({
+const Toggle = styled.button((props) => ({
     outline: 'none',
     border: 'none',
     cursor: 'inherit',
@@ -10,11 +10,14 @@ const Toggle = styled.button({
     height: '100%',
     background: 'transparent',
     transform: 'translate(1px, 1px)',
-    '& > svg': {
+    '& > svg ': {
         width: '30px',
         height: '30px',
     },
-});
+    '& > svg > path': {
+        stroke: props.theme.colors.title,
+    },
+}));
 
 const Path = (props: any) => <motion.path fill='transparent' strokeWidth='3' stroke='hsl(0, 0%, 18%)' strokeLinecap='round' {...props} />;
 

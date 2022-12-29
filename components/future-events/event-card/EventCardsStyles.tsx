@@ -9,7 +9,7 @@ export const StyledCard = styled(motion.div)((props) => ({
     justifyContent: 'center',
     alignItems: 'center',
     gap: '2rem',
-    backgroundColor: props.theme.colors.background,
+    backgroundColor: props.theme.colors.componentBackground,
     padding: '0.5rem 1rem 1rem 1.5rem',
     borderRadius: '3rem',
     boxShadow: `1px 1px 10px 1px ${props.theme.colors.black}`,
@@ -107,6 +107,7 @@ export const InnerContainer = styled(motion.div)((props) => ({
     gap: '2rem',
     letterSpacing: '0.05rem',
     textTransform: 'lowercase',
+    color: props.theme.colors.paragraph,
 }));
 export const InnerContainerDetails = styled(motion.div)((props) => ({
     display: 'flex',

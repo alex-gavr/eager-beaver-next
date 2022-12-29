@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-const StyledCard = styled(motion.div)({
+const StyledCard = styled(motion.div)(props => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
@@ -16,7 +16,10 @@ const StyledCard = styled(motion.div)({
     '& p': {
         textTransform: 'lowercase',
     },
-});
+    '& h2': {
+        color: props.theme.colors.title
+    }
+}));
 const ContainerForImgAndDashes = styled.div({
     position: 'relative',
 });
@@ -82,6 +85,7 @@ const StyledReviewText = styled(motion.p)<IStyledReviewText>`
     -webkit-line-clamp: ${(props) => (props.$showFullText ? 'initial' : '4')};
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: ${(props) => props.theme.colors.paragraph};
 `;
 
 interface IProps {

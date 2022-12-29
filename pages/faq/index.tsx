@@ -17,7 +17,6 @@ const Wrapper = styled(motion.section)({
     width: '95%',
     padding: '2rem 0',
     gap: '3rem',
-    fontFamily: 'var(--ff-primary-bold)',
     position: 'relative',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
@@ -26,14 +25,14 @@ const Wrapper = styled(motion.section)({
 });
 
 const StyledHeading = styled.h1((props) => ({
-    color: props.theme.colors.title,
+    color: props.theme.colors.black,
     zIndex: 2,
     fontSize: 'clamp(2.4rem, 1.9487rem + 2.1880vw, 4rem)',
 }));
 
 const Accent = styled.span((props) => ({
     backgroundColor: props.theme.colors.primaryDark,
-    color: props.theme.colors.title,
+    color: props.theme.colors.black,
     padding: '0.5rem 1rem',
     borderRadius: '2rem',
 }));

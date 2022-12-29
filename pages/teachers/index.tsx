@@ -26,15 +26,16 @@ const StyledWrapper = styled(motion.section)({
     },
 });
 
-const StyledHeading = styled.h1({
-    color: 'var(--clr-primary-700)',
+const StyledHeading = styled.h1((props) => ({
+    color: props.theme.colors.title,
     textAlign: 'center',
-});
+}));
 
 const Accent = styled.span((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
     borderRadius: '1rem',
     padding: '0.2rem 0.5rem',
+    color: props.theme.colors.title,
 }));
 
 const StyledTeachersContainer = styled.div({
@@ -82,7 +83,6 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
 };
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
 

@@ -32,18 +32,19 @@ const DesktopNavigation = styled(motion.ul)((props) => ({
     '& > li': {
         color: props.theme.colors.paragraph,
         fontSize: props.theme.fontSize.header,
+        fontFamily: 'var(--ff-heading)'
     },
     '& > li > a': {
         display: 'block',
         width: '100%',
         height: '100%',
-    }
+    },
 }));
 const NavigationButton = styled(Link)((props) => ({
     padding: '1rem',
     letterSpacing: '0.03rem',
     '&:hover': {
-        color: props.theme.colors.primaryLight,
+        color: props.theme.colors.title,
         backgroundColor: props.theme.colors.secondaryDark,
         borderRadius: '2rem',
     }

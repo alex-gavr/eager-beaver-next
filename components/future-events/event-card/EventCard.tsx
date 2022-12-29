@@ -169,7 +169,6 @@ const EventCard = ({ title, description, age, participants, total_spots, price, 
                                 <Button
                                     type='emptyPrimary'
                                     typeHTML='button'
-                                    textColor='black'
                                     padding='0.5rem 0.9rem'
                                     fontFamily='var(--ff-body)'
                                     onClick={() => handleClick(title, age, participants, dateFull, page_id)}

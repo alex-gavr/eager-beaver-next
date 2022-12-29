@@ -5,7 +5,7 @@ import styled, { ThemeConsumer } from 'styled-components';
 const PrimaryButton = styled(motion.button)((props) => ({
     border: '2px solid transparent',
     borderRadius: '1.85rem',
-    color: props.theme.colors.paragraph,
+    color: props.theme.colors.black,
     backgroundColor: props.theme.colors.primaryDark,
     boxShadow: '0px 0.7em 1em rgba(0,0,0,0.25)',
     padding: '1em 2em',
@@ -31,14 +31,16 @@ const SecondaryButton = styled(PrimaryButton)((props) => ({
 }));
 
 const EmptyPrimaryButton = styled(PrimaryButton)((props) => ({
+    color: props.theme.colors.paragraph,
     backgroundColor: 'transparent',
     backdropFilter: 'blur(4px) saturate(220%)',
-    border: `2px solid ${props.theme.colors.primaryLight}`,
+    border: `2px solid ${props.theme.colors.primaryMedium}`,
 }));
 const EmptySecondaryButton = styled(SecondaryButton)((props) => ({
+    color: props.theme.colors.paragraph,
     backgroundColor: 'transparent',
     backdropFilter: 'blur(4px) saturate(220%)',
-    border: `2px solid ${props.theme.colors.primaryLight}`,
+    border: `2px solid ${props.theme.colors.secondaryLight}`,
 }));
 
 

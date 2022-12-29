@@ -43,17 +43,18 @@ const ImageContainer = styled.div({
     },
 });
 
-const TextContainer = styled(motion.div)<any>(({order}) => ({
+const TextContainer = styled(motion.div)<any>((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     gap: '2rem',
     textTransform: 'lowercase',
-    order: order,
+    order: props.order,
     '& > p': {
         textAlign: 'center',
         letterSpacing: '0.06rem',
+        color: props.theme.colors.paragraph
     },
 }));
 const SubHeading = styled(motion.h2)((props) => ({

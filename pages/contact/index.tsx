@@ -37,6 +37,7 @@ const Wrapper = styled.section((props) => ({
     alignItems: 'center',
     padding: '2rem 0.5rem',
     gap: '5rem',
+    minHeight: '550px',
     position: 'relative',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
@@ -63,12 +64,14 @@ const IconsContainer = styled.div({
     zIndex: 2,
 });
 
-const SubHeading = styled.h2({
+const SubHeading = styled.h2(props => ({
     zIndex: 2,
-});
-const Paragraph = styled.p({
+    color: props.theme.colors.title
+}));
+const Paragraph = styled.p(props => ({
     zIndex: 2,
-});
+    color: props.theme.colors.paragraph
+}));
 
 const Contact: FC = (): JSX.Element => {
     return (

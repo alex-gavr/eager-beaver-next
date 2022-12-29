@@ -36,6 +36,9 @@ const light: DefaultTheme = {
         error: 'rgb(204, 0, 0)',
         white: 'rgb(255, 255, 255)',
         black: 'rgb(0, 0, 0)',
+        componentBackground: 'rgba(200,200,200)',
+        eventsGradient: 'linear-gradient(180deg, #FFC009 0%, #EED07A 100%)',
+        mobileMenu: 'radial-gradient(circle, rgba(248,236,155,1) 0%, rgba(255,225,121,1) 100%)'
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -53,7 +56,7 @@ const dark: DefaultTheme = {
         background: 'rgba(0, 0, 0, 1)',
         title: 'rgba(255, 255, 255, 1)',
         paragraph: 'rgba(255, 255, 255, 0.7)',
-        primaryLight: 'rgb(248, 236, 155)',
+        primaryLight: 'rgba(255, 255, 255, 0.1)',
         primaryMedium: 'rgb(255, 225, 31)',
         primaryDark: 'rgb(255, 194, 10)',
         secondaryLight: 'rgb(205, 240, 183)',
@@ -61,6 +64,9 @@ const dark: DefaultTheme = {
         error: 'rgb(204, 0, 0)',
         white: 'rgb(255, 255, 255)',
         black: 'rgb(0, 0, 0)',
+        componentBackground: 'rgba(45,45,45)',
+        eventsGradient: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
+        mobileMenu: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)'
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -87,14 +93,14 @@ const Wrapper = styled.div({
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
-            <ThemeProvider theme={light}>
+            <ThemeProvider theme={dark}>
                 <Provider store={store}>
                     <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
                         <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
                             <GlobalStyle />
                             <Header />
                             {/* This div is makes animation show in footer, but not in header */}
-                            <div style={{ position: 'relative' }}>
+                            <div style={{ position: 'relative', width: '100%' }}>
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>

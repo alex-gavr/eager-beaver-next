@@ -35,7 +35,7 @@ const ImageContainer = styled.div((props) =>({
     overflow: 'hidden',
     position: 'relative',
 }));
-const TextContainer = styled.div({
+const TextContainer = styled.div((props) =>({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -43,14 +43,16 @@ const TextContainer = styled.div({
     width: '100%',
     overflow: 'hidden',
     '& > h2': {
-        textAlign: 'center'
+        textAlign: 'center',
+        color: props.theme.colors.title,
     },
     '& > p': {
         textAlign: 'center',
         letterSpacing: '0.06rem',
         padding: '0 1rem',
+        color: props.theme.colors.paragraph,
     }
-});
+}));
 
 const TeacherPhoto = styled(Image)({
     width: '100%',

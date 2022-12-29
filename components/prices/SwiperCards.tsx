@@ -39,7 +39,7 @@ const StyledCard = styled.div((props) =>({
     gap: '2rem',
     borderRadius: '2rem',
     boxShadow: '5px 5px 20px rgba(0, 0, 0, 0.25), -5px -5px 20px rgba(0, 0, 0, 0.15)',
-    backgroundColor: props.theme.colors.background,
+    backgroundColor: props.theme.colors.componentBackground,
     width: 270,
     height: 'auto',
     '@media only screen and (min-width: 50em)': {
@@ -90,7 +90,7 @@ const StyledDescription = styled.ul({
     width: '90%'
 });
 
-const ContainerForBulletPoint = styled.div({
+const ContainerForBulletPoint = styled.div(props =>({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -100,8 +100,11 @@ const ContainerForBulletPoint = styled.div({
     '& > img': {
         width: '20px',
         height: '20px',
+    },
+    '& > li': {
+        color: props.theme.colors.paragraph
     }
-})
+}))
 
 const SwiperCards = ({ pricesAdjustedArray }: any) => {
     return (

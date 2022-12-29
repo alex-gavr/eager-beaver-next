@@ -30,13 +30,13 @@ const Wrapper = styled(motion.div)((props) => ({
         fontSize: 'clamp(2.5rem, 2.0189rem + 2.2642vw, 4rem)',
     },
 }));
-const YellowBG = styled.span({
+const YellowBG = styled.span((props) => ({
     position: 'absolute',
     top: 0,
     width: '100vw',
     height: '100%',
-    background: 'linear-gradient(180deg, #FFC009 0%, #EED07A 100%)',
-});
+    background: props.theme.colors.eventsGradient
+}));
 
 const EventsContainer = styled(motion.div)((props) => ({
     display: 'flex',

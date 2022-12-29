@@ -52,7 +52,7 @@ const TheStepHead = styled.div((props) => ({
     width: '100%',
     '& > h2': {
         fontSize: props.theme.fontSize.subHeading,
-        color: props.theme.colors.title,
+        color: props.theme.colors.black,
         backgroundColor: props.theme.colors.primaryMedium,
         padding: '0.2rem 1rem',
         borderRadius: '2rem',

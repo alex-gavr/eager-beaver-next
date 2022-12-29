@@ -40,7 +40,7 @@ const ActionButtons = ({ primaryButtonStyle, secondaryButtonStyle, showBackButto
                 Пробное занятие бесплатно
             </Button>
             {showBackButton && (
-                <Button type={secondaryButtonStyle} typeHTML='button' disabled={false} onClick={() => router.back()} textColor='black'>
+                <Button type={secondaryButtonStyle} typeHTML='button' disabled={false} onClick={() => router.back()}>
                     Назад
                 </Button>
             )}

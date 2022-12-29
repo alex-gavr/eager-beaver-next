@@ -28,7 +28,7 @@ const Background = styled(motion.div)((props) => ({
     bottom: 0,
     height: '100vh',
     width: '100%',
-    backgroundColor: props.theme.colors.primaryLight,
+    background: props.theme.colors.mobileMenu,
     zIndex: 9,
 }));
 const MobileNavigationContainer = styled(motion.div)({

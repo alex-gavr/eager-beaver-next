@@ -151,7 +151,7 @@ const StyledLink = styled(Link)((props) =>({
     fontSize: props.theme.fontSize.footer,
     letterSpacing: '0.2rem',
     '&:hover': {
-        color: props.theme.colors.primaryLight,
+        color: props.theme.colors.title,
         backgroundColor: props.theme.colors.secondaryDark,
         borderRadius: '2rem'
     }

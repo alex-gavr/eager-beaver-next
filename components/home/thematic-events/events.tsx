@@ -22,28 +22,33 @@ const Wrapper = styled.section({
         padding: '2rem',
     },
 });
-const WelcomeTextContainer = styled(motion.div)({
+const WelcomeTextContainer = styled(motion.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: '95%',
     gap: '1rem',
+    '& > h1': {
+        color: props.theme.colors.title
+    },
     '& > p': {
+        color: props.theme.colors.paragraph,
         textAlign: 'center',
         letterSpacing: '0.06rem',
         padding: '0 1rem',
         textTransform: 'lowercase',
     },
-});
+}));
 
-
-const Events: FC<IDeviceType> = ({isMobileOnly, isTablet, isDesktop}): JSX.Element => {
+const Events: FC<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }): JSX.Element => {
     return (
         <AnimatePresence>
             <Wrapper>
                 <WelcomeTextContainer variants={list} whileInView='visible' initial='hidden'>
-                    <AnimatedTextWords title={true} text='Тематические мероприятия' textAnimation='fromTopRight' />
+                    <h1>
+                        <AnimatedTextWords title={true} text='Тематические мероприятия' textAnimation='fromTopRight' />
+                    </h1>
                     <motion.p variants={toUp} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
                         Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом.
                         Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы. Проведение таких мероприятий для нас является
