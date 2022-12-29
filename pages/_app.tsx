@@ -9,6 +9,8 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
 import { store } from '../services/store';
+import { AnimatePresence } from 'framer-motion';
+import PageAnimation from '../components/page-animation/PageAnimation';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -71,16 +73,6 @@ const dark: DefaultTheme = {
     },
 };
 
-const Main = styled.main({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '100vh',
-    width: '100%',
-    position: 'relative',
-    overflow: 'hidden',
-});
 const Wrapper = styled.div({
     display: 'flex',
     flexDirection: 'column',
@@ -92,7 +84,7 @@ const Wrapper = styled.div({
     overflow: 'hidden',
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <ThemeProvider theme={light}>
@@ -101,10 +93,13 @@ export default function App({ Component, pageProps }: AppProps) {
                         <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
                             <GlobalStyle />
                             <Header />
-                            <Main>
-                                <Component {...pageProps} />
-                            </Main>
-                            <Footer />
+                            {/* This div is makes animation show in footer, but not in header */}
+                            <div style={{ position: 'relative' }}>
+                                <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
+                                    <Component {...pageProps} key={router.asPath} />
+                                </AnimatePresence>
+                                <Footer />
+                            </div>
                         </Wrapper>
                     </SkeletonTheme>
                 </Provider>

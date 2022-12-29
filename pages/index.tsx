@@ -1,14 +1,20 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Hero from '../components/home/Hero';
-import {getSelectorsByUserAgent} from 'react-device-detect';
+import { getSelectorsByUserAgent } from 'react-device-detect';
 import TeachProcess from '../components/home/teach-process/teach-process';
 import Events from '../components/home/thematic-events/events';
 import FreeClass from '../components/home/free-class/free-class';
 import { IDeviceType } from '../types/data';
+// import PageAnimation from '../components/page-animation/PageAnimation';
+import { StyledMain } from '../components/StyledMain';
+import dynamic from 'next/dynamic';
+
+const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'), {
+    ssr: false,
+});
 
 export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType) {
-    
     return (
         <>
             <Head>
@@ -17,16 +23,19 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType)
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <Hero isMobileOnly={isMobileOnly} />
-            <TeachProcess />
-            <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
-            <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
+            <StyledMain>
+                <Hero isMobileOnly={isMobileOnly} />
+                <TeachProcess />
+                <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
+                <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
+                <PageAnimation />
+            </StyledMain>
         </>
     );
 }
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly, isTablet, isDesktop  } = getSelectorsByUserAgent(userAgent);
+    const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
 
     return {
         props: { isMobileOnly, isTablet, isDesktop },
