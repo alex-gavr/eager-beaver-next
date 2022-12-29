@@ -82,8 +82,7 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
 };
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
+
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
 

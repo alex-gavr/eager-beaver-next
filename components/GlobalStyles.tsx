@@ -107,12 +107,12 @@ const GlobalStyle = createGlobalStyle`
         width: 0.4em;
     }
     body::-webkit-scrollbar-track {
-        background: var(--clr-accent-600);
+        background: ${props => props.theme.colors.secondaryDark};
         border-radius: 10px;
     }
 
     body::-webkit-scrollbar-thumb {
-        background: var(--clr-primary-200);
+        background: ${props => props.theme.colors.primaryLight};
         border-radius: 1.5rem;
     }
     body::-webkit-scrollbar-thumb:hover {
