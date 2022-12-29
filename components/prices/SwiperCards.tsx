@@ -52,7 +52,7 @@ const NameContainer = styled.div((props) =>({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: props.color === 'yellow' ? props.theme.colors.secondaryDark : props.theme.colors.primaryDark,
+    backgroundColor: props.color === 'yellow' ? props.theme.colors.primaryDark : props.theme.colors.secondaryDark,
     width: '90%',
     padding: '1rem',
     borderRadius: '1rem',
@@ -74,7 +74,7 @@ const FlexContainer = styled.div((props) => ({
     },
     '& > p': {
         fontSize: props.theme.fontSize.subHeading,
-        color: props.color === 'yellow' ? props.theme.colors.primaryDark : props.theme.colors.secondaryDark,
+        color: props.color === 'yellow' ? props.theme.colors.secondaryDark: props.theme.colors.primaryDark,
     },
     '@media only screen and (min-width: 50em)': {
         gap: '0.7rem'

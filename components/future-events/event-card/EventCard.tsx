@@ -14,6 +14,7 @@ import { setDetails } from '../../../services/futureEventSignUpData';
 import { resetEnrolledToFutureEvent } from '../../../services/telegramSlice';
 import Image from 'next/image';
 import {
+    FlexColumnCenter,
     InnerContainer,
     InnerContainerDetails,
     MonthAndTimeContainer,
@@ -146,38 +147,40 @@ const EventCard = ({ title, description, age, participants, total_spots, price, 
                     {start}
                 </Moment>
             </MonthAndTimeContainer>
-            <TitleAndAgeContainer>
-                <h2>{title}</h2>
-                {open ? null : <p>{age}</p>}
-            </TitleAndAgeContainer>
-            <AnimatePresence initial={false} mode={'wait'}>
-                {open ? (
-                    <InnerContainer variants={toggleHeight} initial={toggleHeight.hidden} animate={toggleHeight.visible}>
-                        <p>{description}</p>
-                        <InnerContainerDetails>
-                            <p> Возраст - {age}</p>
-                            <p>Продолжительность - {duration}</p>
-                            <p> Количество мест - {total_spots}</p>
-                            <p>
-                                Стоимость - <span>{price}</span>
-                            </p>
-                        </InnerContainerDetails>
-                        <SpaceBetween>
-                            <p> Еще свободно {spotsLeft} мест </p>
-                            <Button
-                                type='emptyPrimary'
-                                typeHTML='button'
-                                textColor='black'
-                                padding='0.5rem 0.9rem'
-                                fontFamily='var(--ff-body)'
-                                onClick={() => handleClick(title, age, participants, dateFull, page_id)}
-                                disabled={enrolled || spotsLeft === 0}>
-                                {buttonLoading ? <PreloaderSmall /> : enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
-                            </Button>
-                        </SpaceBetween>
-                    </InnerContainer>
-                ) : null}
-            </AnimatePresence>
+            <FlexColumnCenter>
+                <TitleAndAgeContainer>
+                    <h2>{title}</h2>
+                    {open ? null : <p>{age}</p>}
+                </TitleAndAgeContainer>
+                <AnimatePresence initial={false} mode={'wait'}>
+                    {open ? (
+                        <InnerContainer variants={toggleHeight} initial={toggleHeight.hidden} animate={toggleHeight.visible} exit={toggleHeight.exit}>
+                            <p>{description}</p>
+                            <InnerContainerDetails>
+                                <p> Возраст - {age}</p>
+                                <p>Продолжительность - {duration}</p>
+                                <p> Количество мест - {total_spots}</p>
+                                <p>
+                                    Стоимость - <span>{price}</span>
+                                </p>
+                            </InnerContainerDetails>
+                            <SpaceBetween>
+                                <p> Еще свободно {spotsLeft} мест </p>
+                                <Button
+                                    type='emptyPrimary'
+                                    typeHTML='button'
+                                    textColor='black'
+                                    padding='0.5rem 0.9rem'
+                                    fontFamily='var(--ff-body)'
+                                    onClick={() => handleClick(title, age, participants, dateFull, page_id)}
+                                    disabled={enrolled || spotsLeft === 0}>
+                                    {buttonLoading ? <PreloaderSmall /> : enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
+                                </Button>
+                            </SpaceBetween>
+                        </InnerContainer>
+                    ) : null}
+                </AnimatePresence>
+            </FlexColumnCenter>
             <TogglerContainer onClick={() => setOpen((prev) => !prev)}>
                 <Image
                     src={downArrow}

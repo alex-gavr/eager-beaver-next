@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: var(--ff-body);
     }
     span {
-        font-family: var(--ff-body);
+        font-family: var(--ff-heading);
     }
 
     header,

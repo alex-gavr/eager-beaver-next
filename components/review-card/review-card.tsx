@@ -118,8 +118,8 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
     }, [ref, isImgLoaded]);
 
     return (
-        <AnimatePresence>
-            <StyledCard>
+        <AnimatePresence mode='wait' initial={false}>
+            <StyledCard >
                 <ContainerForImgAndDashes>
                     {isImgLoaded && <Dashed />}
                     <ImageContainer>

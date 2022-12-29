@@ -18,7 +18,6 @@ export const headerSidebar = {
     },
 };
 
-
 export const list = {
     visible: (i = 1) => ({
         opacity: 1,
@@ -26,7 +25,7 @@ export const list = {
             duration: 0.3,
             when: 'beforeChildren',
             staggerChildren: 0.3 * i,
-            ease: "easeInOut",
+            ease: 'easeInOut',
         },
     }),
     hidden: {
@@ -134,7 +133,7 @@ export const toLeft = {
         x: 0,
         transition: {
             duration: 1,
-            ease: "easeInOut"
+            ease: 'easeInOut',
         },
     },
     hidden: {
@@ -152,7 +151,7 @@ export const popUp = {
         scale: 1,
         transition: {
             duration: 1.5,
-            ease: "easeOut",
+            ease: 'easeOut',
             type: 'spring',
             damping: 8,
         },
@@ -205,6 +204,7 @@ export const toggleHeight = {
     visible: {
         height: 'auto',
         opacity: 1,
+        marginTop: '2rem',
         transition: {
             height: {
                 duration: 0.4,
@@ -219,6 +219,22 @@ export const toggleHeight = {
         height: 0,
         opacity: 0,
     },
+    exit: {
+        marginTop: 0,
+        height: 0,
+        opacity: 0,
+        transition: {
+            height: {
+                duration: 0.4,
+            },
+            opacity: {
+                duration: 0.15,
+            },
+            marginTop: {
+                duration: 0.25,
+            },
+        },
+    },
 };
 
 export const pageAnimation = {
@@ -228,7 +244,7 @@ export const pageAnimation = {
     transition: { duration: 1, ease: 'easeInOut' },
 };
 
-// TEXT ANIMATIONS 
+// TEXT ANIMATIONS
 
 export const textFromTop = {
     hidden: {

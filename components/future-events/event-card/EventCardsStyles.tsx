@@ -25,6 +25,12 @@ export const StyledCard = styled(motion.div)((props) => ({
         width: '95%',
     },
 }));
+export const FlexColumnCenter = styled(motion.div)({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+})
 
 export const StyledDateNumber = styled(motion.span)((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
