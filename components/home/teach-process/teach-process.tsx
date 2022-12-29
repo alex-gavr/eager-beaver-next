@@ -8,6 +8,7 @@ import { list, opacity, toLeft, toRight } from '../../../utils/motion-animations
 import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { CloudContainer } from '../../CloudsContainer';
 
 const StyledSection = styled(motion.section)({
     display: 'flex',
@@ -46,30 +47,6 @@ const Background = styled.span((props) => ({
     borderRadius: '50%',
     top: 0,
     backgroundColor: props.theme.colors.primaryLight,
-}));
-interface ICloudContainerProps {
-    top?: string | number | undefined;
-    left?: string | number | undefined;
-    right?: string | number | undefined;
-    bottom?: string | number | undefined;
-}
-const CloudContainer = styled(motion.div)<ICloudContainerProps>(({ top, left, right, bottom }) => ({
-    display: 'none',
-    zIndex: '99',
-    position: 'absolute',
-    top: top && top,
-    left: left && left,
-    bottom: bottom && bottom,
-    right: right && right,
-    height: '200px',
-    width: '200px',
-    '& > img': {
-        width: '100%',
-        height: '100%',
-    },
-    '@media only screen and (min-width: 50em)': {
-        display: 'block',
-    }
 }));
 
 const TeachProcess: FC = (): JSX.Element => {

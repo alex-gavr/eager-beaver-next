@@ -91,6 +91,12 @@ const GlobalStyle = createGlobalStyle`
         font-family: var(--ff-body);
         font-size: ${({ theme }) => theme.fontSize.body};
     }
+    time {
+        font-family: var(--ff-body);
+    }
+    span {
+        font-family: var(--ff-body);
+    }
 
     header,
     main {
