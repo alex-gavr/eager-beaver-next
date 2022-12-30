@@ -88,6 +88,7 @@ const MobileMenu: FC<IProps> = ({ header, isOpen, toggle }): JSX.Element => {
     useEffect(() => {
         if (isOpen) {
             blockScroll();
+            document.querySelector('body')?.scrollTo(0, 0);
         } else {
             allowScroll();
         }

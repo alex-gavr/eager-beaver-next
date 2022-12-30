@@ -7,6 +7,10 @@ import { StyledMain } from '../../components/StyledMain';
 import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import SidePopUp from '../../components/prices/side-popup/SidePopUp';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import { onCloseModal } from '../../services/modalSlice';
+import Modal from '../../components/modal/modal';
+import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 
 const Wrapper = styled.section((props) => ({
     display: 'flex',
@@ -63,6 +67,14 @@ interface IProps {
     isMobileOnly: boolean;
 }
 const Pricing = ({ prices, isMobileOnly }: IProps) => {
+    const dispatch = useAppDispatch();
+    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
+
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+    };
+
+
     const pricesAdjustedArray: IPricesAdjustedArray[] =
         prices &&
         prices.map((price: IPrices) => {
@@ -103,6 +115,11 @@ const Pricing = ({ prices, isMobileOnly }: IProps) => {
             </Wrapper>
             {!isMobileOnly && <SidePopUp />}
             <PageAnimation />
+            {isModalOpen && formFromModal && (
+                <Modal onClose={handleCloseModal} showX={true}>
+                    <FormPopUp futureEvents={false} />
+                </Modal>
+            )}
         </StyledMain>
     );
 };

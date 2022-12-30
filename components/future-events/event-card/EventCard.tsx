@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { addParticipant } from '../../../services/futureEventsSlice';
 import { useAppDispatch, useAppSelector } from '../../../services/hook';
 import { Button } from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
@@ -9,8 +8,8 @@ import Moment from 'react-moment';
 import 'moment/locale/ru';
 import moment from 'moment';
 import downArrow from '../../../images/icons/downArrow.svg';
-import { onOpenModal } from '../../../services/modalSlice';
-import { setDetails } from '../../../services/futureEventSignUpData';
+import { onOpenModal, onOpenModalFormFutureEvents } from '../../../services/modalSlice';
+import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
 import { resetEnrolledToFutureEvent } from '../../../services/telegramSlice';
 import Image from 'next/image';
 import {
@@ -37,8 +36,10 @@ interface IProps {
     page_id: string;
 }
 
-const EventCard = ({ title, description, age, participants, total_spots, price, start, end, page_id }: IProps) => {
-    const { longLoading } = useAppSelector((state) => state.futureEvents);
+const EventCard = ({ title, description, age, participants: participantsData, total_spots, price, start, end, page_id }: IProps) => {
+    const [participants, setParticipants] = useState<number>(participantsData);
+    const { shouldChangeMember } = useAppSelector((state) => state.futureEventDetails);
+
     const { enrolledToFutureEvent } = useAppSelector((state) => state.telegram);
     const [enrolled, setEnrolled] = useState(false);
     const [buttonLoading, setButtonLoading] = useState(false);
@@ -106,35 +107,65 @@ const EventCard = ({ title, description, age, participants, total_spots, price, 
 
     const [open, setOpen] = useState(false);
 
-    const handleClick = (title: string, age: string, participants: number, dateFull: string, page_id: string) => {
+    // const handleClick = (title: string, age: string, participants: number, dateFull: string, page_id: string) => {
+    //     const values = {
+    //         title,
+    //         age,
+    //         dateFull,
+    //     };
+    //     dispatch(setDetails(values));
+    //     dispatch(onOpenModal());
+    //     dispatch(resetEnrolledToFutureEvent());
+    //     const members = participants + 1;
+    //     setEnrolledDataOptions({
+    //         page_id: page_id,
+    //         members: members,
+    //     });
+    // };
+    const handleClick = async (title: string, age: string, dateFull: string) => {
         const values = {
             title,
             age,
             dateFull,
         };
+        dispatch(onOpenModalFormFutureEvents());
         dispatch(setDetails(values));
-        dispatch(onOpenModal());
-        dispatch(resetEnrolledToFutureEvent());
+    };
+
+    const handleParticipantsChange = async () => {
         const members = participants + 1;
-        setEnrolledDataOptions({
-            page_id: page_id,
-            members: members,
-        });
+        const data = {
+            members,
+            page_id,
+        };
+        const JSONdata = JSON.stringify(data);
+        const endpoint = '/api/update-events-members';
+        const options = {
+            // The method is POST because we are sending data.
+            method: 'POST',
+            // Tell the server we're sending JSON.
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Body of the request is the JSON data we created above.
+            body: JSONdata,
+        };
+
+        // Send the form data to our forms API on Vercel and get a response.
+        const response = await fetch(endpoint, options);
+
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
+        const result = await response.json();
+        setParticipants(result.newMembers);
+        dispatch(resetMemberCountChange());
     };
 
     useEffect(() => {
-        if (enrolledToFutureEvent && !enrolled && enrolledDataOptions.members > 0) {
-            setButtonLoading(true);
-            setEnrolled(true);
-            dispatch(addParticipant(enrolledDataOptions));
+        if (shouldChangeMember) {
+            handleParticipantsChange();
         }
-    }, [enrolledToFutureEvent, enrolled, enrolledDataOptions]);
-
-    useEffect(() => {
-        if (!longLoading) {
-            setButtonLoading(false);
-        }
-    }, [longLoading]);
+    }, [shouldChangeMember]);
 
     return (
         <StyledCard>
@@ -168,10 +199,11 @@ const EventCard = ({ title, description, age, participants, total_spots, price, 
                                 <p> Еще свободно {spotsLeft} мест </p>
                                 <Button
                                     type='emptyPrimary'
-                                    typeHTML='button'
+                                    typeHTML='submit'
                                     padding='0.5rem 0.9rem'
                                     fontFamily='var(--ff-body)'
-                                    onClick={() => handleClick(title, age, participants, dateFull, page_id)}
+                                    // onClick={() => handleClick(title, age, participants, dateFull, page_id)}
+                                    onClick={() => handleClick(title, age, dateFull)}
                                     disabled={enrolled || spotsLeft === 0}>
                                     {buttonLoading ? <PreloaderSmall /> : enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
                                 </Button>

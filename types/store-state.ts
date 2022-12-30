@@ -42,7 +42,10 @@ export interface ITelegram extends LoadingAndError {
 }
 
 export interface IModalState {
-    isOpen: boolean;
+    isModalOpen: boolean;
+    submitSuccess: boolean | null;
+    formFromModal: boolean;
+    formFutureEvents: boolean,
 }
 
 export interface IUserState extends LoadingAndError {
@@ -55,6 +58,7 @@ export interface IFutureEventDetailsState {
         age: string;
         dateFull: string;
     } | null;
+    shouldChangeMember: boolean;
 }
 export interface IFooterState{
     footerVisible: boolean;

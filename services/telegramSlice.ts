@@ -12,11 +12,9 @@ const initialState: ITelegram = {
     error: false,
 };
 
-const { REACT_APP_TELEGRAM_BOT_TOKEN, REACT_APP_TELEGRAM_GAVR_ID, REACT_APP_TELEGRAM_LERA_ID } = process.env;
-
-const id = REACT_APP_TELEGRAM_BOT_TOKEN;
-const chatIDLera = REACT_APP_TELEGRAM_LERA_ID;
-const chatIDGavr = REACT_APP_TELEGRAM_GAVR_ID;
+const id = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+const chatIDLera = process.env.NEXT_PUBLIC_TELEGRAM_LERA_ID;
+const chatIDGavr = process.env.NEXT_PUBLIC_TELEGRAM_GAVR_ID;
 
 // FormPopUp FreeClass
 export const submitFormDataToTelegram = createAsyncThunk<any, any>('telegram/telegramSubmit', async (formData) => {
@@ -28,7 +26,7 @@ export const submitFormDataToTelegram = createAsyncThunk<any, any>('telegram/tel
 Номер Телефона: 8${tel}%0A
 Свяжемся с ними? 😌
 `;
-    const url = `https://api.telegram.org/bot${id}/sendMessage?chat_id=${chatIDLera}&text=${message}`;
+    const url = `https://api.telegram.org/bot${id}/sendMessage?chat_id=${chatIDGavr}&text=${message}`;
     return await axios.get(url);
 });
 // FormPopUp FutureEvent
@@ -42,7 +40,7 @@ ${name} хочет привести ребенка на ${event} 🎉%0A
 Телефон для связи с ними: 8${tel}%0A
 Напиши им 😉
 `;
-    const url = `https://api.telegram.org/bot${id}/sendMessage?chat_id=${chatIDLera}&text=${message}`;
+    const url = `https://api.telegram.org/bot${id}/sendMessage?chat_id=${chatIDGavr}&text=${message}`;
     return await axios.get(url);
 });
 

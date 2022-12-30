@@ -7,6 +7,10 @@ import { IFaq } from '../../types/data';
 import { FAQComponent } from '../../components/faq/faq-component';
 import { GetServerSidePropsContext } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import { onCloseModal } from '../../services/modalSlice';
+import Modal from '../../components/modal/modal';
+import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 
 const Wrapper = styled(motion.section)({
     display: 'flex',
@@ -60,12 +64,12 @@ interface IProps {
     faq: IFaq[];
 }
 const FAQ = ({ faq }: IProps) => {
-    // const dispatch = useAppDispatch();
-    // const { faq, loading, error } = useAppSelector((state) => state.faq);
+    const dispatch = useAppDispatch();
+    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
 
-    // useEffect(() => {
-    //     dispatch(fetchFaq());
-    // }, []);
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+    };
 
     return (
         <StyledMain>
@@ -86,6 +90,11 @@ const FAQ = ({ faq }: IProps) => {
                 <YellowBackground />
             </Wrapper>
             <PageAnimation />
+            {isModalOpen && formFromModal && (
+                <Modal onClose={handleCloseModal} showX={true}>
+                    <FormPopUp futureEvents={false} />
+                </Modal>
+            )}
         </StyledMain>
     );
 };

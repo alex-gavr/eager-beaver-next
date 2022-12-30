@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../buttons/button';
 import { Input, TInputInterface } from '../input/input';
-import { useWindowSize } from '../../utils/use-window-size';
 import { formatPhoneNumber } from '../../utils/format-phone-number';
-import { submitFormDataToTelegram } from '../../services/telegramSlice';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import Cookies from 'js-cookie';
-import { resetSubmitIntention } from '../../services/buttonSlice';
 import { PreloaderSmall } from '../preloader/preloader-small';
-import { formSubmit } from '../../services/userSlice';
 import styled from 'styled-components';
-import { IDeviceType } from '../../types/data';
+import { onOpenModalFormSubmitSuccess } from '../../services/modalSlice';
+import { v4 as uuid } from 'uuid';
+import { initMemberCountChange } from '../../services/futureEventSignUpData';
 
 const StyledForm = styled.form({
     flex: 1,
@@ -21,8 +19,8 @@ const StyledForm = styled.form({
     gap: '2rem',
     width: '90%',
     '@media only screen and (min-width: 50em)': {
-        width: '100%'
-    }
+        width: '100%',
+    },
 });
 const ButtonContainer = styled.div({
     display: 'flex',
@@ -31,31 +29,27 @@ const ButtonContainer = styled.div({
     alignItems: 'center',
     gap: '1rem',
     '@media only screen and (min-width: 50em)': {
-        flexDirection: 'row'
-    }
+        flexDirection: 'row',
+    },
 });
 const Disclaimer = styled.p({
     fontSize: '0.7rem',
     textAlign: 'center',
 });
-const SuccessMessage = styled.p({
-    color: 'green'
-})
-const FailureMessage = styled.p((props) =>({
-    color: props.theme.colors.error
-}));
 
 type FlexDirection = 'column' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'column-reverse' | 'row' | 'row-reverse' | undefined;
-interface IProps extends IDeviceType {
+interface IProps {
     flexDirection?: FlexDirection;
+    setSubmitSuccess: React.Dispatch<React.SetStateAction<boolean | null>>;
+    setError: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
-const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps) => {
+const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
     const dispatch = useAppDispatch();
-    const { submitSuccess, error, loading } = useAppSelector((state) => state.telegram);
+    const { isModalOpen } = useAppSelector((state) => state.modal);
+    const { futureEventDetails } = useAppSelector((state) => state.futureEventDetails);
+    const [loading, setLoading] = useState<boolean>(false);
     const name = Cookies.get('name');
-
-    const { width } = useWindowSize();
 
     const [values, setValues] = useState({
         name: '',
@@ -146,17 +140,92 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
         },
     ];
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         Cookies.set('name', values.name, { expires: 7, path: '/', secure: true, sameSite: 'Lax' });
-        dispatch(resetSubmitIntention());
-        dispatch(submitFormDataToTelegram(values));
-        dispatch(formSubmit(values));
-        setValues({
-            name: '',
-            tel: '',
-        });
-        setPhoneError(null);
+
+        // If user submits form for FutureEvent
+        if (futureEventDetails) {
+            const data = {
+                name: values.name,
+                tel: values.tel,
+                event: futureEventDetails.title,
+                age: futureEventDetails.age,
+                date: futureEventDetails.dateFull,
+            };
+            setValues({
+                name: '',
+                tel: '',
+            });
+            setPhoneError(null);
+            const JSONdata = JSON.stringify(data);
+            const endpoint = '/api/form-submit';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSONdata,
+            };
+            const response = await fetch(endpoint, options);
+            const result = await response.json();
+            // Here Module is always open
+            if (result.status === 500) {
+                // ERROR
+                setError(true);
+            } else if (result.status === 200) {
+                // SUCCESS
+                setSubmitSuccess(true);
+                dispatch(initMemberCountChange());
+            }
+        }
+        // If user submits for to contact them
+        else {
+            // Move data to another variable so we can clean setValues
+            const id = uuid();
+            const beaverCoins = 500;
+            const email = 'we@donno.com';
+            const data = {
+                name: values.name,
+                tel: values.tel,
+                email: email,
+                id: id,
+                beaverCoins: beaverCoins,
+            };
+            setValues({
+                name: '',
+                tel: '',
+            });
+            setPhoneError(null);
+            const JSONdata = JSON.stringify(data);
+            const endpoint = '/api/form-submit';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSONdata,
+            };
+            const response = await fetch(endpoint, options);
+            const result = await response.json();
+            if (result.status === 500) {
+                // ERROR
+                if (isModalOpen) {
+                    setError(true);
+                } else {
+                    dispatch(onOpenModalFormSubmitSuccess(false));
+                }
+            } else if (result.status === 200) {
+                // SUCCESS
+                if (isModalOpen) {
+                    setSubmitSuccess(true);
+                } else {
+                    dispatch(onOpenModalFormSubmitSuccess(true));
+                }
+            }
+        }
+        setLoading(false);
     };
 
     return (
@@ -188,8 +257,6 @@ const SubmitForm = ({ flexDirection, isMobileOnly, isTablet, isDesktop }: IProps
                     </Button>
                     <Disclaimer>Нажимая кнопку, вы даёте согласие на обработку своих персональных данных</Disclaimer>
                 </ButtonContainer>
-                {submitSuccess && <SuccessMessage> Спасибо! Скоро с Вами свяжутся, {name} </SuccessMessage>}
-                {submitSuccess === false || (error && <FailureMessage> Произошла ошибка 😢 {name}, попробуйте, пожалуйста, снова</FailureMessage>)}
             </StyledForm>
         </>
     );

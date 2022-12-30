@@ -8,6 +8,10 @@ import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { StyledMain } from '../../components/StyledMain';
 import dynamic from 'next/dynamic';
+import Modal from '../../components/modal/modal';
+import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import { onCloseModal } from '../../services/modalSlice';
 
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'), {
     ssr: false,
@@ -55,6 +59,13 @@ interface IProps {
 }
 
 const Teachers = ({ teachers, isMobileOnly }: IProps) => {
+    const dispatch = useAppDispatch();
+    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
+
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+    };
+
     return (
         <StyledMain>
             <StyledWrapper>
@@ -78,6 +89,11 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
                 <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
             </StyledWrapper>
             <PageAnimation />
+            {isModalOpen && formFromModal && (
+                <Modal onClose={handleCloseModal} showX={true}>
+                    <FormPopUp futureEvents={false} />
+                </Modal>
+            )}
         </StyledMain>
     );
 };

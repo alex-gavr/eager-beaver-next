@@ -15,6 +15,10 @@ import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
 import { StyledMain } from '../../components/StyledMain';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import { onCloseModal } from '../../services/modalSlice';
+import Modal from '../../components/modal/modal';
+import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 
 // Preloader for reviews
 const StyledSpan = styled.span({
@@ -100,16 +104,15 @@ interface IProps extends IDeviceType {
     reviews: IReviews[];
 }
 const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JSX.Element => {
-    const { width } = useWindowSize();
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
+    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
+
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+    };
+
     const ref = useRef(null);
     const slider = usePreventVerticalScroll(ref);
-    
-    // useEffect(() => {
-    //     dispatch(fetchReviews());
-    // }, [dispatch]);
-
-    // const { reviews, loading, error } = useAppSelector((state) => state.reviews);
 
     const responsive = {
         desktop: {
@@ -165,6 +168,11 @@ const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JS
                 <YellowBackground />
                 <PageAnimation />
             </StyledWrapper>
+            {isModalOpen && formFromModal && (
+                <Modal onClose={handleCloseModal} showX={true}>
+                    <FormPopUp futureEvents={false} />
+                </Modal>
+            )}
         </StyledMain>
     );
 };

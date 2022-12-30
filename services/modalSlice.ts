@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IModalState } from '../types/store-state';
 
 const initialState: IModalState = {
-    isOpen: false,
+    isModalOpen: false,
+    submitSuccess: null,
+    formFromModal: false,
+    formFutureEvents: false,
 };
 
 export const modalSlice = createSlice({
@@ -10,13 +13,28 @@ export const modalSlice = createSlice({
     initialState,
     reducers: {
         onOpenModal(state) {
-            state.isOpen = true;
+            state.isModalOpen = true;
         },
         onCloseModal(state) {
-            state.isOpen = false;
+            state.isModalOpen = false;
+            state.submitSuccess = null;
+            state.formFromModal = false;
+            state.formFutureEvents= false;
         },
+        onOpenModalFormSubmitSuccess(state, action) {
+            state.isModalOpen = true;
+            state.submitSuccess = action.payload;
+        },
+        onOpenModalForm(state) {
+            state.isModalOpen = true;
+            state.formFromModal = true;
+        },
+        onOpenModalFormFutureEvents(state) {
+            state.isModalOpen = true;
+            state.formFutureEvents= true;
+        }
     },
 });
 
-export const { onOpenModal, onCloseModal } = modalSlice.actions;
+export const { onOpenModal, onCloseModal, onOpenModalFormSubmitSuccess, onOpenModalForm, onOpenModalFormFutureEvents } = modalSlice.actions;
 export default modalSlice.reducer;

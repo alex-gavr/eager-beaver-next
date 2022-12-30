@@ -1,4 +1,3 @@
-import styles from './form-popup.module.css';
 import { FC } from 'react';
 import Cookies from 'js-cookie';
 import styled from 'styled-components';
@@ -14,7 +13,7 @@ export const StyledPopUp = styled.div((props) =>({
     '& > h1': {
         backgroundColor: props.theme.colors.secondaryDark,
         fontSize: 'clamp(1.4rem, 1.0258rem + 1.8144vw, 2.2rem)',
-        color: props.theme.colors.title,
+        color: props.theme.colors.white,
         padding: '0.5rem 1rem',
         borderRadius: '2rem',
         marginInline: '1rem',
@@ -34,7 +33,7 @@ export const StyledPopUp = styled.div((props) =>({
     }
 }))
 
-const FormPopUp: FC = () => {
+const FormPopUpSubmitSuccess: FC = () => {
     const name = Cookies.get('name');
 
     return (
@@ -44,4 +43,4 @@ const FormPopUp: FC = () => {
         </StyledPopUp>
     );
 };
-export default FormPopUp;
+export default FormPopUpSubmitSuccess;

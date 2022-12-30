@@ -192,6 +192,9 @@ export const Input = React.forwardRef<HTMLInputElement, TInputInterface>(
                 <InputInnerContainer onClick={onWrapperClick} value={value}>
                     <StyledPlaceholder htmlFor={type}>{placeholder}</StyledPlaceholder>
                     <StyledInput
+                        minLength={2}
+                        required
+                        maxLength={15}
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
                         onChange={onChange}

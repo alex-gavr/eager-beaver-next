@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { IDeviceType } from '../../../types/data';
 
+
+
 const Wrapper = styled(motion.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
@@ -55,6 +57,10 @@ const BeaverContainer = styled(motion.div)((props) => ({
 }));
 
 const FreeClass = ({isMobileOnly, isTablet, isDesktop}: IDeviceType) => {
+
+
+
+
     return (
         <AnimatePresence>
             <Wrapper variants={list} initial='hidden' whileInView='visible'>

@@ -3,6 +3,7 @@ import { IFutureEventDetailsState } from '../types/store-state';
 
 const initialState: IFutureEventDetailsState = {
     futureEventDetails: null, 
+    shouldChangeMember: false,
 };
 
 export const futureEventDetails = createSlice({
@@ -15,8 +16,14 @@ export const futureEventDetails = createSlice({
         resetDetails(state) {
             state.futureEventDetails = null;
         },
+        initMemberCountChange(state) {
+            state.shouldChangeMember= true;
+        },
+        resetMemberCountChange(state) {
+            state.shouldChangeMember= false;
+        }
     },
 })
 
-export const { setDetails, resetDetails } = futureEventDetails.actions;
+export const { setDetails, resetDetails, initMemberCountChange, resetMemberCountChange } = futureEventDetails.actions;
 export default futureEventDetails.reducer;

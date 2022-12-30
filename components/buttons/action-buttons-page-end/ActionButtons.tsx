@@ -2,6 +2,8 @@ import styles from './action-buttons.module.css';
 import { useRouter } from 'next/router'
 import { Button, ICustomButton } from '../button';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../../services/hook';
+import { onOpenModalForm } from '../../../services/modalSlice';
 // import { useAppDispatch } from '../../../services/hook';
 // import { initSubmitIntention } from '../../../services/buttonSlice';
 
@@ -28,15 +30,15 @@ interface IProps {
 
 const ActionButtons = ({ primaryButtonStyle, secondaryButtonStyle, showBackButton, fontSize, padding }: IProps) => {
     const router = useRouter();
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-    // const handleGetFreeTrial = () => {
-    //     dispatch(initSubmitIntention());
-    // };
+    const handleGetFreeTrial = () => {
+        dispatch(onOpenModalForm());
+    };
 
     return (
         <ButtonsContainer>
-            <Button type={primaryButtonStyle} typeHTML='button' disabled={false} fontSize={fontSize} padding={padding}>
+            <Button type={primaryButtonStyle} typeHTML='button' disabled={false} fontSize={fontSize} padding={padding} onClick={handleGetFreeTrial}>
                 Пробное занятие бесплатно
             </Button>
             {showBackButton && (

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Cookies from 'js-cookie';
-import { StyledPopUp } from './form-popup';
+import { StyledPopUp } from './FormPopUpSubmitSuccess';
 
-const FormSubmitFailPopUp: FC = () => {
+const FormPopUpSubmitFail: FC = () => {
     const name = Cookies.get('name');
 
     return (
@@ -12,4 +12,4 @@ const FormSubmitFailPopUp: FC = () => {
         </StyledPopUp>
     );
 };
-export default FormSubmitFailPopUp;
+export default FormPopUpSubmitFail;

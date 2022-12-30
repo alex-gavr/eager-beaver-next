@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
 import Cookies from 'js-cookie';
+import { Button } from '../buttons/button';
+import { useAppDispatch } from '../../services/hook';
+import { onOpenModal } from '../../services/modalSlice';
+import { PreloaderSmall } from '../preloader/preloader-small';
 
 const MainContent = styled(motion.div)({
     width: '100%',
@@ -92,13 +96,12 @@ interface IProps {
 const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
     const [name, setName] = useState<string | undefined>('');
 
-    useEffect(()=>{
+    useEffect(() => {
         const cookie = Cookies.get('name');
         if (cookie) {
             setName(cookie);
         }
-    },[])
-    
+    }, []);
 
     return (
         <AnimatePresence>

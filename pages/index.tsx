@@ -6,15 +6,28 @@ import TeachProcess from '../components/home/teach-process/teach-process';
 import Events from '../components/home/thematic-events/events';
 import FreeClass from '../components/home/free-class/free-class';
 import { IDeviceType } from '../types/data';
-// import PageAnimation from '../components/page-animation/PageAnimation';
 import { StyledMain } from '../components/StyledMain';
 import dynamic from 'next/dynamic';
+import { useAppDispatch, useAppSelector } from '../services/hook';
+import { onCloseModal } from '../services/modalSlice';
+import Modal from '../components/modal/modal';
+import { resetSubmitSuccess } from '../services/telegramSlice';
+import FormPopUpSubmitSuccess from '../components/submit-form/form-popup/FormPopUpSubmitSuccess';
+import FormPopUp from '../components/submit-form/form-popup/FormPopUp';
+import FormPopUpSubmitFail from '../components/submit-form/form-popup/FormSubmitFailPopUp';
 
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'), {
     ssr: false,
 });
 
 export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType) {
+    const dispatch = useAppDispatch();
+    const { isModalOpen, submitSuccess, formFromModal } = useAppSelector((state) => state.modal);
+
+    // Close Modal
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+    };
     return (
         <>
             <Head>
@@ -29,6 +42,21 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType)
                 <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <PageAnimation />
+                {isModalOpen && submitSuccess && (
+                    <Modal onClose={handleCloseModal} showX={false}>
+                        <FormPopUpSubmitSuccess />
+                    </Modal>
+                )}
+                {submitSuccess === false && isModalOpen && (
+                    <Modal onClose={handleCloseModal} showX={false}>
+                        <FormPopUpSubmitFail />
+                    </Modal>
+                )}
+                {isModalOpen && formFromModal && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={false} />
+                    </Modal>
+                )}
             </StyledMain>
         </>
     );

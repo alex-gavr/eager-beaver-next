@@ -10,7 +10,6 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
-import PageAnimation from '../components/page-animation/PageAnimation';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -38,7 +37,8 @@ const light: DefaultTheme = {
         black: 'rgb(0, 0, 0)',
         componentBackground: 'rgba(255,255,255)',
         eventsGradient: 'linear-gradient(180deg, #FFC009 0%, #EED07A 100%)',
-        mobileMenu: 'radial-gradient(circle, rgba(248,236,155,1) 0%, rgba(255,225,121,1) 100%)'
+        mobileMenu: 'radial-gradient(circle, rgba(248,236,155,1) 0%, rgba(255,225,121,1) 100%)',
+        modalGradient: 'linear-gradient(60deg, #abecd6 0%, #fbed96 100%)',
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -66,7 +66,8 @@ const dark: DefaultTheme = {
         black: 'rgb(0, 0, 0)',
         componentBackground: 'rgba(45,45,45)',
         eventsGradient: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
-        mobileMenu: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)'
+        mobileMenu: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
+        modalGradient: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -89,23 +90,28 @@ const Wrapper = styled.div({
     position: 'relative',
     overflow: 'hidden',
 });
+const AnimationHelperDiv = styled.div({
+    position: 'relative',
+    width: '100%',
+});
 
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
-            <ThemeProvider theme={dark}>
+            <ThemeProvider theme={light}>
                 <Provider store={store}>
                     <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
                         <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
                             <GlobalStyle />
                             <Header />
                             {/* This div is makes animation show in footer, but not in header */}
-                            <div style={{ position: 'relative', width: '100%' }}>
+                            <AnimationHelperDiv>
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>
                                 <Footer />
-                            </div>
+                            </AnimationHelperDiv>
+                            <div id='modal'></div>
                         </Wrapper>
                     </SkeletonTheme>
                 </Provider>

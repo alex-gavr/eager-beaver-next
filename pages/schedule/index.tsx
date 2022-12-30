@@ -7,6 +7,11 @@ import { GetServerSidePropsContext } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { IFutureEvent } from '../../types/data';
 import FutureEvents from '../../components/future-events/FutureEvents';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import Modal from '../../components/modal/modal';
+import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import { onCloseModal } from '../../services/modalSlice';
+import { resetDetails } from '../../services/futureEventSignUpData';
 
 const StyledSection = styled(motion.section)({
     display: 'flex',
@@ -25,12 +30,23 @@ interface IProps {
     futureEvents: IFutureEvent[];
 }
 const Schedule: FC<IProps> = ({ futureEvents }): JSX.Element => {
+    const { isModalOpen, submitSuccess, formFutureEvents } = useAppSelector((state) => state.modal);
+    const dispatch = useAppDispatch();
+    const handleCloseModal = () => {
+        dispatch(onCloseModal());
+        dispatch(resetDetails());
+    };
     return (
         <StyledMain>
             <StyledSection>
                 <FutureEvents futureEvents={futureEvents} />
             </StyledSection>
             <PageAnimation />
+            {isModalOpen && formFutureEvents && (
+                <Modal onClose={handleCloseModal} showX={true}>
+                    <FormPopUp futureEvents={true} />
+                </Modal>
+            )}
         </StyledMain>
     );
 };

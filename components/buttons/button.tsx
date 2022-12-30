@@ -48,7 +48,7 @@ export interface ICustomButton {
     typeHTML: 'button' | 'submit' | 'reset';
     type: 'primary' | 'secondary' | 'emptySecondary' | 'emptyPrimary';
     children: ReactNode;
-    onClick?: () => void;
+    onClick?: () => void ;
     disabled?: boolean;
     textColor?: string;
     padding?: string;
