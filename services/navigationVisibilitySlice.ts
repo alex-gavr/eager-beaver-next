@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFooterState } from '../types/store-state';
+import { INavigationState } from '../types/store-state';
 
-const initialState: IFooterState = {
+const initialState: INavigationState = {
     footerVisible: false,
     headerVisible: true,
 };

@@ -1,9 +1,4 @@
-export interface INavData {
-    isActive: boolean;
-    isPending: boolean;
-}
-
-// Notion types for api
+// Notion types START
 interface IKey {
     title: [
         {
@@ -45,7 +40,7 @@ interface IDate {
         end: string;
     };
 }
-
+// Notion types END
 export interface ITeacher {
     key: IKey;
     image: IImage;

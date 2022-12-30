@@ -1,4 +1,4 @@
-import { IFaq, IFutureEvent, ILocation, IPrices, IReviews, ITeacher } from './data';
+import { ILocation } from './data';
 
 export interface LoadingAndError {
     loading: boolean | null;
@@ -9,29 +9,8 @@ export interface IButtonState {
     submitIntention: boolean;
 }
 
-export interface IHeaderState {
-    isOpen: boolean;
-    animateMenu: boolean;
-}
-export interface ITeachersState extends LoadingAndError {
-    teachers: ITeacher[];
-}
-export interface IReviewsState extends LoadingAndError {
-    reviews: IReviews[];
-}
-export interface IPricesState extends LoadingAndError {
-    prices: IPrices[];
-}
-export interface IFaqState extends LoadingAndError {
-    faq: IFaq[];
-}
 export interface ILocationState extends LoadingAndError {
     userLocation: ILocation | null;
-}
-export interface IFutureEventsState extends LoadingAndError {
-    futureEvents: IFutureEvent[];
-    participantUpdateStatus: number | null;
-    longLoading: boolean;
 }
 
 export interface ITelegram extends LoadingAndError {
@@ -48,10 +27,6 @@ export interface IModalState {
     formFutureEvents: boolean,
 }
 
-export interface IUserState extends LoadingAndError {
-    formSubmitSuccess: boolean | null;
-}
-
 export interface IFutureEventDetailsState {
     futureEventDetails: {
         title: string;
@@ -60,7 +35,7 @@ export interface IFutureEventDetailsState {
     } | null;
     shouldChangeMember: boolean;
 }
-export interface IFooterState{
+export interface INavigationState{
     footerVisible: boolean;
     headerVisible: boolean;
 }
