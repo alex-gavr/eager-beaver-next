@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
             accept: 'application/json',
             'Notion-Version': '2022-06-28',
             'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.NOTION_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTION_KEY}`,
         },
         data: {
             properties: {

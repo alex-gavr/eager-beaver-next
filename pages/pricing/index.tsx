@@ -134,7 +134,7 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
             accept: 'application/json',
             'Notion-Version': '2022-06-28',
             'content-type': 'application/json',
-            Authorization: `${process.env.NOTION_KEY}`,
+            Authorization: `${process.env.NEXT_PUBLIC_NOTION_KEY}`,
         },
         body: JSON.stringify({
             filter: {
@@ -152,7 +152,7 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
         }),
     };
     try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NOTION_PRICES_DB}/query`, options);
+        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_PRICES_DB}/query`, options);
         const prices = await result.json().then((data) => data.results.map((data: any) => data.properties));
         return {
             props: {

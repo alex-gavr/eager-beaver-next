@@ -37,11 +37,11 @@ ${name} хочет привести ребенка на ${event} 🎉%0A
             accept: 'application/json',
             'Notion-Version': '2022-06-28',
             'content-type': 'application/json',
-            Authorization: `${process.env.NOTION_KEY}`,
+            Authorization: `${process.env.NEXT_PUBLIC_NOTION_KEY}`,
         },
         data: {
             parent: {
-                database_id: process.env.NOTION_USERS_DB,
+                database_id: process.env.NEXT_PUBLIC_NOTION_USERS_DB,
             },
             properties: {
                 key: {

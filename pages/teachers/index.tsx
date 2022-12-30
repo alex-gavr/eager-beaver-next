@@ -108,7 +108,7 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
             accept: 'application/json',
             'Notion-Version': '2022-06-28',
             'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.NOTION_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTION_KEY}`,
         },
         body: JSON.stringify({
             filter: {
@@ -120,7 +120,7 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
         }),
     };
     try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NOTION_TEACHER_DB}/query`, options);
+        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_TEACHER_DB}/query`, options);
         const teachers = await result.json().then((data) => data.results.map((data: any) => data.properties));
         return {
             props: {

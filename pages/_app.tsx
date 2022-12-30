@@ -102,6 +102,12 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
     const themeMode = theme === 'light' ? light : dark;
 
+    if (!componentMounted) {
+        return(
+            <div />
+        )
+    }
+
     return (
         <>
             <ThemeProvider theme={themeMode}>
