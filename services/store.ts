@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import buttonReducer from './buttonSlice';
 import telegramReducer from './telegramSlice';
 import modalReducer from './modalSlice';
 import locationReducer from './locationSlice';
@@ -8,7 +7,6 @@ import navigationVisibilityReducer from './navigationVisibilitySlice';
 
 export const store = configureStore({
     reducer:{
-        button: buttonReducer,
         telegram: telegramReducer,
         modal: modalReducer,
         location: locationReducer,
