@@ -10,6 +10,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
+import ThemeToggler from '../components/theme-switcher/ThemeToggler';
+import { useDarkMode } from '../utils/useDarkMode';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -96,9 +98,13 @@ const AnimationHelperDiv = styled.div({
 });
 
 export default function App({ Component, pageProps, router }: AppProps) {
+    const [theme, toggleTheme, componentMounted] = useDarkMode();
+
+    const themeMode = theme === 'light' ? light : dark;
+
     return (
         <>
-            <ThemeProvider theme={light}>
+            <ThemeProvider theme={themeMode}>
                 <Provider store={store}>
                     <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
                         <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
@@ -109,6 +115,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>
+                                <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
                                 <Footer />
                             </AnimationHelperDiv>
                             <div id='modal'></div>

@@ -32,10 +32,11 @@ const ButtonContainer = styled.div({
         flexDirection: 'row',
     },
 });
-const Disclaimer = styled.p({
+const Disclaimer = styled.p((props) => ({
     fontSize: '0.7rem',
     textAlign: 'center',
-});
+    color: props.theme.colors.paragraph
+}));
 
 type FlexDirection = 'column' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'column-reverse' | 'row' | 'row-reverse' | undefined;
 interface IProps {

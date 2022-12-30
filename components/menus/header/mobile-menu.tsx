@@ -92,7 +92,7 @@ const MobileMenu: FC<IProps> = ({ header, isOpen, toggle }): JSX.Element => {
         } else {
             allowScroll();
         }
-    });
+    },[isOpen]);
 
     return (
         <>
