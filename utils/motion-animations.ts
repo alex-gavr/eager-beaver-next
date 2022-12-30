@@ -177,8 +177,8 @@ export const beaver = {
     },
     hidden: {
         opacity: 0,
-        y: 50,
-        x: 25,
+        y: 125,
+        x: 75,
         transition: {
             duration: 1,
         },

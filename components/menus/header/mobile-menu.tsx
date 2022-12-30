@@ -71,9 +71,10 @@ const LogoContainer = styled(motion.div)({
     rotate: '140deg',
     translate: '-40% -20%',
     '& > img': {
-        width: '90%',
+        width: '60%',
         height: 'auto',
     },
+
 });
 
 interface IProps {
