@@ -58,9 +58,6 @@ const BeaverContainer = styled(motion.div)((props) => ({
 
 const FreeClass = ({isMobileOnly, isTablet, isDesktop}: IDeviceType) => {
 
-
-
-
     return (
         <AnimatePresence>
             <Wrapper variants={list} initial='hidden' whileInView='visible'>
@@ -71,7 +68,7 @@ const FreeClass = ({isMobileOnly, isTablet, isDesktop}: IDeviceType) => {
                     <BeaverContainer>
                         <Image src={beaver} alt='hello' />
                     </BeaverContainer>
-                    <SubmitForm isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
+                    <SubmitForm  />
                 </EvenColumns>
             </Wrapper>
         </AnimatePresence>

@@ -35,14 +35,14 @@ const ButtonContainer = styled.div({
 const Disclaimer = styled.p((props) => ({
     fontSize: '0.7rem',
     textAlign: 'center',
-    color: props.theme.colors.paragraph
+    color: props.theme.colors.paragraph,
 }));
 
 type FlexDirection = 'column' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'column-reverse' | 'row' | 'row-reverse' | undefined;
 interface IProps {
     flexDirection?: FlexDirection;
-    setSubmitSuccess: React.Dispatch<React.SetStateAction<boolean | null>>;
-    setError: React.Dispatch<React.SetStateAction<boolean | null>>;
+    setSubmitSuccess?: React.Dispatch<React.SetStateAction<boolean | null>>;
+    setError?: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
@@ -174,10 +174,14 @@ const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
             // Here Module is always open
             if (result.status === 500) {
                 // ERROR
-                setError(true);
+                if (setError) {
+                    setError(true);
+                }
             } else if (result.status === 200) {
                 // SUCCESS
-                setSubmitSuccess(true);
+                if (setSubmitSuccess) {
+                    setSubmitSuccess(true);
+                }
                 dispatch(initMemberCountChange());
             }
         }
@@ -212,14 +216,14 @@ const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
             const result = await response.json();
             if (result.status === 500) {
                 // ERROR
-                if (isModalOpen) {
+                if (isModalOpen && setError) {
                     setError(true);
                 } else {
                     dispatch(onOpenModalFormSubmitSuccess(false));
                 }
             } else if (result.status === 200) {
                 // SUCCESS
-                if (isModalOpen) {
+                if (isModalOpen && setSubmitSuccess) {
                     setSubmitSuccess(true);
                 } else {
                     dispatch(onOpenModalFormSubmitSuccess(true));
