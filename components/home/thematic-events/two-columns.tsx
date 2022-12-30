@@ -147,7 +147,7 @@ export const TwoColumns: FC<IProps> = ({ images, alt, imageSide, subHeading, par
                 }}
                 transition={{ duration: 1 }}
                 viewport={{ margin: '-20% 0px -20% 0px' }}>
-                <CarouselContainer ref={ref} order={ !isDesktop ? 1 : imageSide === 'left' ? 1 : 2 }>
+                <CarouselContainer ref={ref} order={ !isDesktop ? 2 : imageSide === 'left' ? 1 : 2 }>
                     <StyledCarousel
                         showDots={true}
                         responsive={responsive}
@@ -166,7 +166,7 @@ export const TwoColumns: FC<IProps> = ({ images, alt, imageSide, subHeading, par
                         ))}
                     </StyledCarousel>
                 </CarouselContainer>
-                <TextContainer order={ !isDesktop ? 2 : imageSide === 'left' ? 2 : 1 }>
+                <TextContainer order={ !isDesktop ? 1 : imageSide === 'left' ? 2 : 1 }>
                     <SubHeading>{subHeading}</SubHeading>
                     <motion.p>{paragraph}</motion.p>
                 </TextContainer>

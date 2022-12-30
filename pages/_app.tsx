@@ -12,6 +12,7 @@ import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
 import ThemeToggler from '../components/theme-switcher/ThemeToggler';
 import { useDarkMode } from '../utils/useDarkMode';
+import DayNightToggle from 'react-day-and-night-toggle';
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -97,15 +98,22 @@ const AnimationHelperDiv = styled.div({
     width: '100%',
 });
 
+const StyledToggle = styled(DayNightToggle)({
+    position: 'fixed',
+    bottom: 10,
+    left: 10,
+    zIndex: 10
+})
+
 export default function App({ Component, pageProps, router }: AppProps) {
-    const [theme, toggleTheme, componentMounted] = useDarkMode();
+    const { theme, toggleTheme, componentMounted } = useDarkMode();
+
+    const isDarkMode = theme === 'dark' ? true : false;
 
     const themeMode = theme === 'light' ? light : dark;
 
     if (!componentMounted) {
-        return(
-            <div />
-        )
+        return <div />;
     }
 
     return (
@@ -121,7 +129,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>
-                                <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
+                                {/* <ThemeToggler toggleTheme={toggleTheme} theme={theme} /> */}
+                                <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30}  />
                                 <Footer />
                             </AnimationHelperDiv>
                             <div id='modal'></div>

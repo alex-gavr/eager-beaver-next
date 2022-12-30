@@ -2027,6 +2027,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-day-and-night-toggle@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/react-day-and-night-toggle/-/react-day-and-night-toggle-1.0.18.tgz#32b5d5da3f6a521da43040a8194be996bc29e7d0"
+  integrity sha512-UpPlaKjQTPCGqklXMI/q7ybMmKlxZax27Ctqj3PaCbsgO8f7NNxlTai5drQWFDS81jW2sJRZbqz+673Y09Jllg==
+
 react-device-detect@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-2.2.2.tgz#dbabbce798ec359c83f574c3edb24cf1cca641a5"
