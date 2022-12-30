@@ -29,7 +29,7 @@ const Wrapper = styled(motion.section)({
 });
 
 const StyledHeading = styled.h1((props) => ({
-    color: props.theme.colors.black,
+    color: props.theme.colors.title,
     zIndex: 2,
     fontSize: 'clamp(2.4rem, 1.9487rem + 2.1880vw, 4rem)',
 }));

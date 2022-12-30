@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { footer } from '../links';
-import SchoolLocationMap from '../../map/map';
+// import SchoolLocationMap from '../../map/map';
 import { SocialIcon } from 'react-social-icons';
 import { list, opacity, popUp, toDown, toUp } from '../../../utils/motion-animations';
 import beaverRocket from '../../../images/beaver/BeaverRocket.svg';
@@ -8,6 +8,12 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const SchoolLocationMap = dynamic(() => import('../../map/map'), {
+    ssr: false,
+});
+
 // import { useInView } from 'react-intersection-observer';
 // import { useAppDispatch } from '../../../services/hook';
 // import { footerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
