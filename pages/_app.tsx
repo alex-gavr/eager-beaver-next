@@ -129,7 +129,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>
-                                {/* <ThemeToggler toggleTheme={toggleTheme} theme={theme} /> */}
                                 <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30}  />
                                 <Footer />
                             </AnimationHelperDiv>
