@@ -77,7 +77,7 @@ interface Props {
     isMobileOnly: boolean;
 }
 
-export const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, isMobileOnly }) => {
+const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, isMobileOnly }) => {
     // const { width } = useWindowSize();
     const [isImgLoaded, setIsImgLoaded] = useState(false);
 
@@ -105,3 +105,4 @@ export const TeacherCard: FC<Props> = ({ image, alt, name, description, includeP
         </StyledContainer>
     );
 };
+export default TeacherCard;

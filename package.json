@@ -27,7 +27,6 @@
     "react-moment": "^1.1.2",
     "react-multi-carousel-18": "^2.8.1",
     "react-redux": "^8.0.5",
-    "react-social-icons": "^5.15.0",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.5",
     "uuid": "^9.0.0"

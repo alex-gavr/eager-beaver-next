@@ -51,7 +51,7 @@ const IconContainer = styled.div({
     },
 });
 
-export const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
+const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
     const [open, setOpen] = useState(false);
 
     const handleToggle = () => {
@@ -87,3 +87,4 @@ export const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
         </WrapperContainer>
     );
 };
+export default FAQComponent;

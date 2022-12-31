@@ -11,10 +11,11 @@ import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../utils/useDarkMode';
-import DayNightToggle from 'react-day-and-night-toggle';
+// import DayNightToggle from 'react-day-and-night-toggle';
 import dynamic from 'next/dynamic';
 
 const Footer = dynamic(() => import('../components/menus/footer/footer'));
+const DayNightToggle = dynamic(() => import('react-day-and-night-toggle'));
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',

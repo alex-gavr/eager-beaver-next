@@ -1,18 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { footer } from '../links';
-// import SchoolLocationMap from '../../map/map';
-import { SocialIcon } from 'react-social-icons';
 import { list, opacity, popUp, toDown, toUp } from '../../../utils/motion-animations';
 import beaverRocket from '../../../images/beaver/BeaverRocket.svg';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import SocialMediaIcons from '../../social-media-block/SocialMediaIcons';
 
 const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ssr: false,
 });
+// const SocialMediaIcons = dynamic(() => import('../../social-media-block/SocialMediaIcons'));
 
 // import { useInView } from 'react-intersection-observer';
 // import { useAppDispatch } from '../../../services/hook';
@@ -210,10 +210,7 @@ const Footer = () => {
                 <SocialMediaContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-10% 0px -10% -0px' }}>
                     <motion.p variants={opacity}>присоединяйся к нам и здесь</motion.p>
                     <IconsContainer variants={toUp}>
-                        <SocialIcon url='https://t.me/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
-                        <SocialIcon url='https://wa.me/79093809657' network='whatsapp' target='_blank' rel='noopener noreferrer' />
-                        <SocialIcon url='https://instagram.com/eagerbeaver.vlg' target='_blank' rel='noopener noreferrer' />
-                        <SocialIcon url='https://vk.com/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
+                        <SocialMediaIcons />
                     </IconsContainer>
                 </SocialMediaContainer>
                 <FooterMainPart>
@@ -235,7 +232,7 @@ const Footer = () => {
                     <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
                         {footer.map((link) => (
                             <motion.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
-                                <StyledLink href={link.to}>{link.name}</StyledLink>
+                                <StyledLink prefetch={false} href={link.to}>{link.name}</StyledLink>
                             </motion.li>
                         ))}
                     </LinksList>

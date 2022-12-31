@@ -1,4 +1,4 @@
-import { FC, use, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import hero from '../../images/hero/heroCropped.webp';
 import heroMobile from '../../images/hero/mobileHero.webp';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -55,10 +55,10 @@ const Wrapper = styled(motion.section)({
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
     width: '100vw',
-    minHeight: '100vh',
+    minHeight: '90vh',
     '@media only screen and (max-width: 500px)': {
         gridTemplateColumns: '1fr',
-        height: '100vh',
+        minHeight: '80vh',
         [MainContent as any]: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',

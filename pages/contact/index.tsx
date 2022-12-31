@@ -2,14 +2,16 @@ import cloud from '../../images/clouds/1.svg';
 import cloud2 from '../../images/clouds/2.svg';
 import cloud3 from '../../images/clouds/3.svg';
 import { FC } from 'react';
-import { SocialIcon } from 'react-social-icons';
 import styled from 'styled-components';
-import SchoolLocationMap from '../../components/map/map';
 import { CloudContainer } from '../../components/CloudsContainer';
 import Image from 'next/image';
 import { StyledMain } from '../../components/StyledMain';
 import PageAnimation from '../../components/page-animation/PageAnimation';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+
+const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
+const SocialMediaIcons = dynamic(() => import('../../components/social-media-block/SocialMediaIcons'));
 
 // EMOTION STYLES
 const StyledFlexDiv = styled.div({
@@ -95,10 +97,7 @@ const Contact: FC = (): JSX.Element => {
                             </Paragraph>
                             <SubHeading>Соцсети</SubHeading>
                             <IconsContainer>
-                                <SocialIcon url='https://t.me/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
-                                <SocialIcon url='https://instagram.com/eagerbeaver.vlg' target='_blank' rel='noopener noreferrer' />
-                                <SocialIcon url='https://wa.me/79093809657' network='whatsapp' target='_blank' rel='noopener noreferrer' />
-                                <SocialIcon url='https://vk.com/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
+                                <SocialMediaIcons />
                             </IconsContainer>
                         </ContactDetails>
                         <CloudContainer top={0} left={0} animate={{ x: -40 }}>

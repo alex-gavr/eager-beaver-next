@@ -1,3 +1,5 @@
+import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { StyledMain } from '../../components/StyledMain';
 import styled from 'styled-components';
@@ -6,13 +8,18 @@ import PageAnimation from '../../components/page-animation/PageAnimation';
 import { GetServerSidePropsContext } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { IFutureEvent } from '../../types/data';
-import FutureEvents from '../../components/future-events/FutureEvents';
+// import FutureEvents from '../../components/future-events/FutureEvents';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
-import Modal from '../../components/modal/modal';
-import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+// import Modal from '../../components/modal/modal';
+// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { onCloseModal } from '../../services/modalSlice';
 import { resetDetails } from '../../services/futureEventSignUpData';
-import Head from 'next/head';
+
+const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
+const Modal = dynamic(() => import('../../components/modal/modal'));
+const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+
+
 
 const StyledSection = styled(motion.section)({
     display: 'flex',

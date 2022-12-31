@@ -11,7 +11,6 @@ import dynamic from 'next/dynamic';
 import { useAppDispatch, useAppSelector } from '../services/hook';
 import { onCloseModal } from '../services/modalSlice';
 // import Modal from '../components/modal/modal';
-import { resetSubmitSuccess } from '../services/telegramSlice';
 // import FormPopUpSubmitSuccess from '../components/submit-form/form-popup/FormPopUpSubmitSuccess';
 // import FormPopUp from '../components/submit-form/form-popup/FormPopUp';
 // import FormPopUpSubmitFail from '../components/submit-form/form-popup/FormSubmitFailPopUp';

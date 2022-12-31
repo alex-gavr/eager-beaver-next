@@ -1,22 +1,24 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-// import PageAnimation from '../../components/page-animation/PageAnimation';
-import { TeacherCard } from '../../components/teacher-card/teacher-card';
+// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
+import PageAnimation from '../../components/page-animation/PageAnimation';
+// import TeacherCard  from '../../components/teacher-card/teacher-card';
 import { ITeacher } from '../../types/data';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { StyledMain } from '../../components/StyledMain';
 import dynamic from 'next/dynamic';
-import Modal from '../../components/modal/modal';
-import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+// import Modal from '../../components/modal/modal';
+// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import Head from 'next/head';
 
-const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'), {
-    ssr: false,
-});
+const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
+const Modal = dynamic(() => import('../../components/modal/modal'));
+const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+
 
 const StyledWrapper = styled(motion.section)({
     display: 'flex',

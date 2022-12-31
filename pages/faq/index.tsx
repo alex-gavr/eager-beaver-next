@@ -1,17 +1,23 @@
+import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
+// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
 import PageAnimation from '../../components/page-animation/PageAnimation';
 import styled from 'styled-components';
 import { StyledMain } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
-import { FAQComponent } from '../../components/faq/faq-component';
+// import FAQComponent from '../../components/faq/faq-component';
 import { GetServerSidePropsContext } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
-import Modal from '../../components/modal/modal';
-import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
-import Head from 'next/head';
+// import Modal from '../../components/modal/modal';
+// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+
+const FAQComponent = dynamic(() => import('../../components/faq/faq-component'));
+const Modal = dynamic(() => import('../../components/modal/modal'));
+const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 
 const Wrapper = styled(motion.section)({
     display: 'flex',
