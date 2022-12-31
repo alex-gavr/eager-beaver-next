@@ -55,6 +55,7 @@ const Wrapper = styled(motion.section)({
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
     minHeight: '90vh',
+    width: '100%',
     '@media only screen and (max-width: 500px)': {
         gridTemplateColumns: '1fr',
         minHeight: '84vh',
