@@ -80,15 +80,6 @@ const Wrapper = styled(motion.section)({
         },
     },
 });
-const BackgroundImage = styled(Image)({
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-});
 
 interface IProps {
     isMobileOnly: boolean;
@@ -106,8 +97,8 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
     return (
         <AnimatePresence>
             <Wrapper>
-                {isMobileOnly && <BackgroundImage src={heroMobile} alt='' priority />}
-                {!isMobileOnly && <BackgroundImage src={hero} alt='' priority />}
+                {isMobileOnly && <Image fill style={{objectFit: 'cover'}} src={heroMobile} alt='hero image' priority />}
+                {!isMobileOnly && <Image fill style={{objectFit: 'cover'}} src={hero} alt='hero image' priority />}
                 <MainContent variants={list} animate='visible' initial='hidden'>
                     <Columns>
                         <motion.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>

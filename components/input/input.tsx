@@ -200,6 +200,8 @@ export const Input = React.forwardRef<HTMLInputElement, TInputInterface>(
                         onChange={onChange}
                         type={type}
                         name={name}
+                        aria-label={name}
+                        aria-required
                         ref={ref}
                         value={value}
                         disabled={disabled}
