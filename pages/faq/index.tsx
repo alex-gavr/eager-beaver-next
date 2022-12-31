@@ -1,9 +1,9 @@
+import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 // import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-import PageAnimation from '../../components/page-animation/PageAnimation';
-import styled from 'styled-components';
+// import PageAnimation from '../../components/page-animation/PageAnimation';
 import { StyledMain } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
 // import FAQComponent from '../../components/faq/faq-component';
@@ -18,6 +18,7 @@ const FAQComponent = dynamic(() => import('../../components/faq/faq-component'))
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 const Wrapper = styled(motion.section)({
     display: 'flex',

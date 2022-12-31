@@ -1,8 +1,10 @@
-import { IPrices } from '../../types/data';
+import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
+import { IPrices } from '../../types/data';
 import { GetServerSidePropsContext } from 'next';
 // import SwiperCards from '../../components/prices/SwiperCards';
-import PageAnimation from '../../components/page-animation/PageAnimation';
+// import PageAnimation from '../../components/page-animation/PageAnimation';
 import { StyledMain } from '../../components/StyledMain';
 // import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
 import { getSelectorsByUserAgent } from 'react-device-detect';
@@ -11,14 +13,13 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 // import Modal from '../../components/modal/modal';
 // import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
 
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const SidePopUp = dynamic(() => import('../../components/prices/side-popup/SidePopUp'));
 const SwiperCards = dynamic(() => import('../../components/prices/SwiperCards'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 const Wrapper = styled.section((props) => ({
     display: 'flex',

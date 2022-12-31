@@ -11,11 +11,11 @@ import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../utils/useDarkMode';
-// import DayNightToggle from 'react-day-and-night-toggle';
+import DayNightToggle from 'react-day-and-night-toggle';
 import dynamic from 'next/dynamic';
+import { Analytics } from '@vercel/analytics/react';
 
 const Footer = dynamic(() => import('../components/menus/footer/footer'));
-const DayNightToggle = dynamic(() => import('react-day-and-night-toggle'));
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -116,7 +116,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const themeMode = theme === 'light' ? light : dark;
 
     if (!componentMounted) {
-        return <div style={{ visibility: 'hidden', height:'100vh', width: '100vw' }} />;
+        return <div style={{ visibility: 'hidden', height: '100vh', width: '100vw' }} />;
     }
 
     return (
@@ -137,6 +137,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                             </AnimationHelperDiv>
                             <div id='modal'></div>
                         </Wrapper>
+                        <Analytics />
                     </SkeletonTheme>
                 </Provider>
             </ThemeProvider>

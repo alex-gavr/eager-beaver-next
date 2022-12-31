@@ -6,7 +6,7 @@ export const StyledMain = styled(motion.main)({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '50vh',
+    minHeight: '80vh',
     width: '100%',
     overflow: 'hidden',
 });

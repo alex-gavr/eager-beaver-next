@@ -1,12 +1,12 @@
+import styled from 'styled-components';
+import Image from 'next/image';
 import { FC, useLayoutEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useWindowSize } from '../../utils/use-window-size';
 import downArrow from '../../images/icons/downArrow.svg';
 import { AnimatePresence, motion } from 'framer-motion';
-import styled from 'styled-components';
-import Image from 'next/image';
 
-const StyledCard = styled(motion.div)(props => ({
+const StyledCard = styled(motion.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
@@ -17,8 +17,8 @@ const StyledCard = styled(motion.div)(props => ({
         textTransform: 'lowercase',
     },
     '& h2': {
-        color: props.theme.colors.title
-    }
+        color: props.theme.colors.title,
+    },
 }));
 const ContainerForImgAndDashes = styled.div({
     position: 'relative',
@@ -123,7 +123,7 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
 
     return (
         <AnimatePresence mode='wait' initial={false}>
-            <StyledCard >
+            <StyledCard>
                 <ContainerForImgAndDashes>
                     {isImgLoaded && <Dashed />}
                     <ImageContainer>
@@ -131,20 +131,15 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
                         <Image src={image} alt='' onLoadingComplete={handleImageLoaded} width={500} height={500} />
                     </ImageContainer>
                 </ContainerForImgAndDashes>
-                {!isImgLoaded && <Skeleton height={25} width={width < 500 ? 100 : 200} />}
-                {isImgLoaded && <h2>{name}</h2>}
+                <h2>{isImgLoaded ? name : <Skeleton height={25} width={width < 500 ? 100 : 200} />}</h2>
                 <StyledReviewCard onClick={toggleClassName}>
                     <ParentsInfoContainer>
-                        {!isImgLoaded && <Skeleton count={2} height={15} width={width < 500 ? 100 : 200} />}
-                        {isImgLoaded && <ParentName> {parent}</ParentName>}
-                        {isImgLoaded && <p>{`${relationToChild}:`}</p>}
+                        <ParentName> {isImgLoaded ? parent : <Skeleton height={15} width={width < 500 ? 100 : 200} />}</ParentName>
+                        <p>{isImgLoaded ? `${relationToChild}:` : <Skeleton height={15} width={width < 500 ? 100 : 200} />}</p>
                     </ParentsInfoContainer>
-                    {!isImgLoaded && <Skeleton height={15} width={width < 500 ? 300 : width < 1000 ? 350 : width < 1200 ? 450 : 550} count={4} />}
-                    {isImgLoaded && (
-                        <StyledReviewText ref={ref} $showFullText={showFullText}>
-                            {review}
-                        </StyledReviewText>
-                    )}
+                    <StyledReviewText ref={ref} $showFullText={showFullText}>
+                        {isImgLoaded ? review : <Skeleton height={15} width={width < 500 ? 300 : width < 1000 ? 350 : width < 1200 ? 450 : 550} count={4} />}
+                    </StyledReviewText>
                     {isImgLoaded && isOverflowY && (
                         <ShowFullIconContainer style={showFullText ? { rotate: '180deg' } : {}}>
                             <Image src={downArrow} alt='' />

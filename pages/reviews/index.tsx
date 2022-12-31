@@ -1,29 +1,24 @@
+import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FC, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ReviewCard } from '../../components/review-card/review-card';
-// import Carousel from 'react-multi-carousel-18';
 import 'react-multi-carousel-18/lib/styles.css';
-// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
 import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
-// import Error from '../../components/error/Error';
 import { LeftArrow, RightArrow } from '../../components/custom-arrows/CustomArrows';
-import PageAnimation from '../../components/page-animation/PageAnimation';
-import styled from 'styled-components';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
 import { StyledMain } from '../../components/StyledMain';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
-// import Modal from '../../components/modal/modal';
-// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 
 const Carousel = dynamic(() => import('react-multi-carousel-18'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 
 // Preloader for reviews

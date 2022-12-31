@@ -14,7 +14,7 @@ import { onCloseModal } from '../services/modalSlice';
 // import FormPopUpSubmitSuccess from '../components/submit-form/form-popup/FormPopUpSubmitSuccess';
 // import FormPopUp from '../components/submit-form/form-popup/FormPopUp';
 // import FormPopUpSubmitFail from '../components/submit-form/form-popup/FormSubmitFailPopUp';
-import PageAnimation from '../components/page-animation/PageAnimation';
+// import PageAnimation from '../components/page-animation/PageAnimation';
 
 const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
@@ -23,10 +23,7 @@ const Modal = dynamic(() => import('../components/modal/modal'));
 const FormPopUpSubmitSuccess = dynamic(() => import('../components/submit-form/form-popup/FormPopUpSubmitSuccess'));
 const FormPopUp = dynamic(() => import('../components/submit-form/form-popup/FormPopUp'));
 const FormPopUpSubmitFail = dynamic(() => import('../components/submit-form/form-popup/FormSubmitFailPopUp'));
-
-// const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'), {
-//     ssr: false,
-// });
+const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
 
 export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType) {
     const dispatch = useAppDispatch();

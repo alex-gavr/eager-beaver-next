@@ -1,17 +1,17 @@
+import styled from 'styled-components';
+import Head from 'next/head';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import cloud from '../../images/clouds/1.svg';
 import cloud2 from '../../images/clouds/2.svg';
 import cloud3 from '../../images/clouds/3.svg';
 import { FC } from 'react';
-import styled from 'styled-components';
 import { CloudContainer } from '../../components/CloudsContainer';
-import Image from 'next/image';
 import { StyledMain } from '../../components/StyledMain';
-import PageAnimation from '../../components/page-animation/PageAnimation';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
 
 const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
 const SocialMediaIcons = dynamic(() => import('../../components/social-media-block/SocialMediaIcons'));
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 // EMOTION STYLES
 const StyledFlexDiv = styled.div({

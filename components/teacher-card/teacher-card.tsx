@@ -1,21 +1,26 @@
 import play from '../../images/icons/play.svg';
 import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { useWindowSize } from '../../utils/use-window-size';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: '1rem',
     height: '100%',
-    width: '100%',
-    position:'relative',
+    width: '90%',
+    position: 'relative',
+    '@media only screen and (max-width: 500px)': {
+        width: '100%',
+    },
+    '@media only screen and (min-width: 501px) and (max-width: 960px)': {
+        width: '80%',
+    },
 });
-const ImageAndSpanContainer = styled.div((props) =>({
+const ImageAndSpanContainer = styled.div((props) => ({
     borderRadius: '50%',
     width: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
     height: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
@@ -24,7 +29,7 @@ const ImageAndSpanContainer = styled.div((props) =>({
     boxShadow: `8px -3px 1px ${props.theme.colors.secondaryDark}, -8px -5px 1px ${props.theme.colors.secondaryLight}`,
 }));
 
-const ImageContainer = styled.div((props) =>({
+const ImageContainer = styled.div((props) => ({
     borderRadius: '50%',
     width: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
     height: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
@@ -35,7 +40,7 @@ const ImageContainer = styled.div((props) =>({
     overflow: 'hidden',
     position: 'relative',
 }));
-const TextContainer = styled.div((props) =>({
+const TextContainer = styled.div((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -51,7 +56,7 @@ const TextContainer = styled.div((props) =>({
         letterSpacing: '0.06rem',
         padding: '0 1rem',
         color: props.theme.colors.paragraph,
-    }
+    },
 }));
 
 const TeacherPhoto = styled(Image)({
@@ -66,7 +71,7 @@ const PlayIcon = styled(Image)({
     right: 0,
     width: 'clamp(3.125rem, 2.3922rem + 3.4483vw, 5.625rem)',
     height: 'clamp(3.125rem, 2.3922rem + 3.4483vw, 5.625rem)',
-})
+});
 
 interface Props {
     image: string;
@@ -95,12 +100,10 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, is
                 {includePlay && isImgLoaded && <PlayIcon src={play} alt='' />}
             </ImageAndSpanContainer>
             <TextContainer>
-                {!isImgLoaded && <Skeleton height={50} width={250} />}
-                {isImgLoaded && <h2>{name}</h2>}
+                <h2>{isImgLoaded ? name : <Skeleton height={40} width={isMobileOnly ? 200 : 300} />}</h2>
             </TextContainer>
             <TextContainer>
-                {!isImgLoaded && <Skeleton height={15} width={isMobileOnly ? 300 : 500} count={isMobileOnly ? 6 : 4} />}
-                {isImgLoaded && <p>{description}</p>}
+                <p>{isImgLoaded ? description : <Skeleton height={15} width={isMobileOnly ? 300 : 600} count={isMobileOnly ? 6 : 6} />}</p>
             </TextContainer>
         </StyledContainer>
     );

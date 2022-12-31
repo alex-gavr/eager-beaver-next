@@ -1,10 +1,10 @@
+import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { StyledMain } from '../../components/StyledMain';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import PageAnimation from '../../components/page-animation/PageAnimation';
+// import PageAnimation from '../../components/page-animation/PageAnimation';
 import { GetServerSidePropsContext } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { IFutureEvent } from '../../types/data';
@@ -18,7 +18,7 @@ import { resetDetails } from '../../services/futureEventSignUpData';
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
-
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 
 const StyledSection = styled(motion.section)({

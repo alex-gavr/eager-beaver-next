@@ -1,33 +1,34 @@
 import styled from 'styled-components';
+import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 // import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-import PageAnimation from '../../components/page-animation/PageAnimation';
+// import PageAnimation from '../../components/page-animation/PageAnimation';
 // import TeacherCard  from '../../components/teacher-card/teacher-card';
 import { ITeacher } from '../../types/data';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { GetServerSidePropsContext } from 'next';
 import { StyledMain } from '../../components/StyledMain';
-import dynamic from 'next/dynamic';
 // import Modal from '../../components/modal/modal';
 // import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
-import Head from 'next/head';
 
 const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
-
+const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 const StyledWrapper = styled(motion.section)({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '4rem',
     padding: '2rem 0.5rem',
     position: 'relative',
+    minHeight: '80vh',
     '@media only screen and (min-width: 60em)': {
         padding: '2rem',
     },
@@ -73,7 +74,10 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
         <>
             <Head>
                 <title>Преподаватели</title>
-                <meta name='description' content='Наши прекрасные учителя знают как найти подход к каждому ученику и сделать обучение увлекательным путешествием. Поэтому результаты не заставят себя ждать!' />
+                <meta
+                    name='description'
+                    content='Наши прекрасные учителя знают как найти подход к каждому ученику и сделать обучение увлекательным путешествием. Поэтому результаты не заставят себя ждать!'
+                />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
