@@ -54,11 +54,10 @@ const Wrapper = styled(motion.section)({
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
-    width: '100vw',
     minHeight: '90vh',
     '@media only screen and (max-width: 500px)': {
         gridTemplateColumns: '1fr',
-        minHeight: '80vh',
+        minHeight: '84vh',
         [MainContent as any]: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',

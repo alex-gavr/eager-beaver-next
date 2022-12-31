@@ -87,7 +87,7 @@ const Header = () => {
                     <DesktopNavigation variants={list} initial='hidden' animate='visible'>
                         {header.map((link) => (
                             <motion.li variants={mobileHeaderAni} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 500 }} key={link.id}>
-                                <NavigationButton prefetch={false} href={link.to} >
+                                <NavigationButton href={link.to} >
                                     {link.name}
                                 </NavigationButton>
                             </motion.li>

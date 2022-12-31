@@ -91,7 +91,7 @@ const Wrapper = styled.div({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '100vh',
+    // minHeight: '100vh',
     width: '100%',
     position: 'relative',
     overflow: 'hidden',

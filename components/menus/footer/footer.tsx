@@ -232,7 +232,7 @@ const Footer = () => {
                     <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
                         {footer.map((link) => (
                             <motion.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
-                                <StyledLink prefetch={false} href={link.to}>{link.name}</StyledLink>
+                                <StyledLink href={link.to}>{link.name}</StyledLink>
                             </motion.li>
                         ))}
                     </LinksList>

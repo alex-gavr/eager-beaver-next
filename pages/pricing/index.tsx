@@ -28,6 +28,7 @@ const Wrapper = styled.section((props) => ({
     alignItems: 'center',
     padding: '2rem 0.5rem',
     position: 'relative',
+    minHeight: '70vh',
     '& > h1': {
         color: props.theme.colors.primaryDark,
         zIndex: 2,

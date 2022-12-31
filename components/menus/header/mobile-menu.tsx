@@ -104,7 +104,7 @@ const MobileMenu: FC<IProps> = ({ header, isOpen, toggle }): JSX.Element => {
                             <MobileNavigation variants={list} initial='hidden' animate='visible'>
                                 {header.map((link: any) => (
                                     <motion.li variants={toDown} onClick={toggle} key={link.id}>
-                                        <Link prefetch={false} href={link.to}>{link.name}</Link>
+                                        <Link href={link.to}>{link.name}</Link>
                                     </motion.li>
                                 ))}
                             </MobileNavigation>
