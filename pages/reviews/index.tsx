@@ -20,7 +20,6 @@ const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-
 // Preloader for reviews
 const StyledSpan = styled.span({
     width: '90vw',
@@ -174,8 +173,8 @@ const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JS
                     </CarouselContainer>
                     <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
                     <YellowBackground />
-                    <PageAnimation />
                 </StyledWrapper>
+                <PageAnimation />
                 {isModalOpen && formFromModal && (
                     <Modal onClose={handleCloseModal} showX={true}>
                         <FormPopUp futureEvents={false} />
