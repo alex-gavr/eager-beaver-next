@@ -12,9 +12,12 @@ const StyledContainer = styled.div({
     gap: '1rem',
     height: '100%',
     width: '90%',
+    maxWidth: 600,
     position: 'relative',
+    overflow: 'hidden',
+    marginTop: '1rem',
     '@media only screen and (max-width: 500px)': {
-        width: '100%',
+        width: '95%',
     },
     '@media only screen and (min-width: 501px) and (max-width: 960px)': {
         width: '80%',
@@ -54,7 +57,6 @@ const TextContainer = styled.div((props) => ({
     '& > p': {
         textAlign: 'center',
         letterSpacing: '0.06rem',
-        padding: '0 1rem',
         color: props.theme.colors.paragraph,
     },
 }));
@@ -80,10 +82,10 @@ interface Props {
     description: string;
     includePlay: boolean;
     isMobileOnly: boolean;
+    isTablet: boolean;
 }
 
-const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, isMobileOnly }) => {
-    // const { width } = useWindowSize();
+const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, isMobileOnly, isTablet }) => {
     const [isImgLoaded, setIsImgLoaded] = useState(false);
 
     const handleImageLoaded = () => {
@@ -100,10 +102,10 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, is
                 {includePlay && isImgLoaded && <PlayIcon src={play} alt='' />}
             </ImageAndSpanContainer>
             <TextContainer>
-                <h2>{isImgLoaded ? name : <Skeleton height={40} width={isMobileOnly ? 200 : 300} />}</h2>
+                <h2>{isImgLoaded ? name : <Skeleton height={40} width={isMobileOnly ? 200 : isTablet ? 250 : 300} />}</h2>
             </TextContainer>
             <TextContainer>
-                <p>{isImgLoaded ? description : <Skeleton height={15} width={isMobileOnly ? 300 : 600} count={isMobileOnly ? 6 : 6} />}</p>
+                <p>{isImgLoaded ? description : <Skeleton height={15} width={800} count={isMobileOnly ? 6 : 5} />}</p>
             </TextContainer>
         </StyledContainer>
     );

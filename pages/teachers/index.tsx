@@ -49,9 +49,9 @@ const Accent = styled.span((props) => ({
 const StyledTeachersContainer = styled.div({
     display: 'grid',
     gap: '3rem 2rem',
-    justifyContent: 'center',
-    alignItems: 'center',
     justifyItems: 'center',
+    alignItems: 'center',
+    minHeight: '70vh',
     '@media only screen and (min-width: 60em)': {
         gridTemplateColumns: 'repeat(2, 1fr)',
     },
@@ -60,9 +60,10 @@ const StyledTeachersContainer = styled.div({
 interface IProps {
     teachers: ITeacher[];
     isMobileOnly: boolean;
+    isTablet: boolean;
 }
 
-const Teachers = ({ teachers, isMobileOnly }: IProps) => {
+const Teachers = ({ teachers, isMobileOnly, isTablet }: IProps) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
 
@@ -97,10 +98,11 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
                                     description={teacher.description.rich_text[0].plain_text}
                                     includePlay={true}
                                     isMobileOnly={isMobileOnly}
+                                    isTablet={isTablet}
                                 />
                             ))}
                     </StyledTeachersContainer>
-                    <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
+                    {TeacherCard ? <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} /> : null}
                 </StyledWrapper>
                 <PageAnimation />
                 {isModalOpen && formFromModal && (
@@ -141,6 +143,7 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
             props: {
                 teachers,
                 isMobileOnly,
+                isTablet,
             },
         };
     } catch (err) {
