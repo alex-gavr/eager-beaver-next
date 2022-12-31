@@ -2,19 +2,11 @@ import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Hero from '../components/home/Hero';
 import { getSelectorsByUserAgent } from 'react-device-detect';
-// import TeachProcess from '../components/home/teach-process/teach-process';
-// import Events from '../components/home/thematic-events/events';
-// import FreeClass from '../components/home/free-class/free-class';
 import { IDeviceType } from '../types/data';
 import { StyledMain } from '../components/StyledMain';
 import dynamic from 'next/dynamic';
 import { useAppDispatch, useAppSelector } from '../services/hook';
 import { onCloseModal } from '../services/modalSlice';
-// import Modal from '../components/modal/modal';
-// import FormPopUpSubmitSuccess from '../components/submit-form/form-popup/FormPopUpSubmitSuccess';
-// import FormPopUp from '../components/submit-form/form-popup/FormPopUp';
-// import FormPopUpSubmitFail from '../components/submit-form/form-popup/FormSubmitFailPopUp';
-// import PageAnimation from '../components/page-animation/PageAnimation';
 
 const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
@@ -24,6 +16,7 @@ const FormPopUpSubmitSuccess = dynamic(() => import('../components/submit-form/f
 const FormPopUp = dynamic(() => import('../components/submit-form/form-popup/FormPopUp'));
 const FormPopUpSubmitFail = dynamic(() => import('../components/submit-form/form-popup/FormSubmitFailPopUp'));
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
+const FlyingBeaver = dynamic(() => import('../components/flying-beaver/FlyingBeaver'));
 
 export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType) {
     const dispatch = useAppDispatch();
@@ -45,6 +38,7 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType)
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
+                <FlyingBeaver isMobileOnly={isMobileOnly} isTablet={isTablet} />
                 <Hero isMobileOnly={isMobileOnly} />
                 <TeachProcess />
                 <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />

@@ -97,8 +97,7 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
     return (
         <AnimatePresence>
             <Wrapper>
-                {isMobileOnly && <Image fill style={{objectFit: 'cover'}} src={heroMobile} alt='hero image' priority />}
-                {!isMobileOnly && <Image fill style={{objectFit: 'cover'}} src={hero} alt='hero image' priority />}
+                <Image fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' priority />
                 <MainContent variants={list} animate='visible' initial='hidden'>
                     <Columns>
                         <motion.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
