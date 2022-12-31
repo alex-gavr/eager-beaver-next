@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const StyledContainer = styled.div({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '1rem',
     height: '100%',
