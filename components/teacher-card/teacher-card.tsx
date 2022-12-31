@@ -15,7 +15,6 @@ const StyledContainer = styled.div({
     maxWidth: 600,
     position: 'relative',
     overflow: 'hidden',
-    marginTop: '1rem',
     '@media only screen and (max-width: 500px)': {
         width: '95%',
     },
@@ -24,6 +23,7 @@ const StyledContainer = styled.div({
     },
 });
 const ImageAndSpanContainer = styled.div((props) => ({
+    marginTop: '1rem',
     borderRadius: '50%',
     width: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
     height: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',

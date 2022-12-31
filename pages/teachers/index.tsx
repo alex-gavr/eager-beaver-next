@@ -25,12 +25,13 @@ const StyledWrapper = styled(motion.section)({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: '4rem',
+    gap: '2rem',
     padding: '2rem 0.5rem',
     position: 'relative',
     minHeight: '80vh',
     '@media only screen and (min-width: 60em)': {
         padding: '2rem',
+        gap: '4rem'
     },
 });
 
