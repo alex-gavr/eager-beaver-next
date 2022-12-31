@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import Modal from '../../components/modal/modal';
 import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import Head from 'next/head';
 
 // Preloader for reviews
 const StyledSpan = styled.span({
@@ -133,47 +134,55 @@ const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JS
     };
 
     return (
-        <StyledMain>
-            <StyledWrapper ref={ref}>
-                <StyledHeading>
-                    Наши <Accent>ученики</Accent>
-                </StyledHeading>
-                <CarouselContainer>
-                    <StyledCarousel
-                        showDots={true}
-                        responsive={responsive}
-                        infinite={true}
-                        arrows={true}
-                        ssr={true}
-                        customLeftArrow={<LeftArrow />}
-                        customRightArrow={<RightArrow />}
-                        centerMode={isDesktop ? true : false}
-                        customTransition='transform 400ms ease-in-out'
-                        transitionDuration={1000}
-                        renderDotsOutside={true}>
-                        {reviews &&
-                            reviews.map((review) => (
-                                <ReviewCard
-                                    key={review.key.title[0].plain_text}
-                                    image={review.image.files[0].file.url}
-                                    name={review.name.rich_text[0].plain_text}
-                                    parent={review.parent.rich_text[0].plain_text}
-                                    relationToChild={review.relationToChild.rich_text[0].plain_text}
-                                    review={review.review.rich_text[0].plain_text}
-                                />
-                            ))}
-                    </StyledCarousel>
-                </CarouselContainer>
-                <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
-                <YellowBackground />
-                <PageAnimation />
-            </StyledWrapper>
-            {isModalOpen && formFromModal && (
-                <Modal onClose={handleCloseModal} showX={true}>
-                    <FormPopUp futureEvents={false} />
-                </Modal>
-            )}
-        </StyledMain>
+        <>
+            <Head>
+                <title>Отзывы</title>
+                <meta name='description' content='Вот что думают о нас родители! Мы ценим каждый ваш отзыв, вы помогаете нам становится лучше.' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <StyledWrapper ref={ref}>
+                    <StyledHeading>
+                        Наши <Accent>ученики</Accent>
+                    </StyledHeading>
+                    <CarouselContainer>
+                        <StyledCarousel
+                            showDots={true}
+                            responsive={responsive}
+                            infinite={true}
+                            arrows={true}
+                            ssr={true}
+                            customLeftArrow={<LeftArrow />}
+                            customRightArrow={<RightArrow />}
+                            centerMode={isDesktop ? true : false}
+                            customTransition='transform 400ms ease-in-out'
+                            transitionDuration={1000}
+                            renderDotsOutside={true}>
+                            {reviews &&
+                                reviews.map((review) => (
+                                    <ReviewCard
+                                        key={review.key.title[0].plain_text}
+                                        image={review.image.files[0].file.url}
+                                        name={review.name.rich_text[0].plain_text}
+                                        parent={review.parent.rich_text[0].plain_text}
+                                        relationToChild={review.relationToChild.rich_text[0].plain_text}
+                                        review={review.review.rich_text[0].plain_text}
+                                    />
+                                ))}
+                        </StyledCarousel>
+                    </CarouselContainer>
+                    <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
+                    <YellowBackground />
+                    <PageAnimation />
+                </StyledWrapper>
+                {isModalOpen && formFromModal && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={false} />
+                    </Modal>
+                )}
+            </StyledMain>
+        </>
     );
 };
 

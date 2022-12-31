@@ -59,8 +59,8 @@ export const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
     };
 
     return (
-        <WrapperContainer>
-            <QuestionContainer onClick={handleToggle}>
+        <WrapperContainer onClick={handleToggle}>
+            <QuestionContainer >
                 <h3>{question}</h3>
                 <IconContainer>
                     <Image

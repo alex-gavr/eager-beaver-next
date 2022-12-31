@@ -12,6 +12,7 @@ import Modal from '../../components/modal/modal';
 import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
+import Head from 'next/head';
 
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'), {
     ssr: false,
@@ -67,34 +68,42 @@ const Teachers = ({ teachers, isMobileOnly }: IProps) => {
     };
 
     return (
-        <StyledMain>
-            <StyledWrapper>
-                <StyledHeading>
-                    Наши <Accent>преподаватели</Accent>
-                </StyledHeading>
-                <StyledTeachersContainer>
-                    {teachers &&
-                        teachers.map((teacher) => (
-                            <TeacherCard
-                                key={teacher.key.title[0].plain_text}
-                                image={teacher.image.files[0].file.url}
-                                alt={teacher.name.rich_text[0].plain_text}
-                                name={teacher.name.rich_text[0].plain_text}
-                                description={teacher.description.rich_text[0].plain_text}
-                                includePlay={true}
-                                isMobileOnly={isMobileOnly}
-                            />
-                        ))}
-                </StyledTeachersContainer>
-                <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
-            </StyledWrapper>
-            <PageAnimation />
-            {isModalOpen && formFromModal && (
-                <Modal onClose={handleCloseModal} showX={true}>
-                    <FormPopUp futureEvents={false} />
-                </Modal>
-            )}
-        </StyledMain>
+        <>
+            <Head>
+                <title>Преподаватели</title>
+                <meta name='description' content='Наши прекрасные учителя знают как найти подход к каждому ученику и сделать обучение увлекательным путешествием. Поэтому результаты не заставят себя ждать!' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <StyledWrapper>
+                    <StyledHeading>
+                        Наши <Accent>преподаватели</Accent>
+                    </StyledHeading>
+                    <StyledTeachersContainer>
+                        {teachers &&
+                            teachers.map((teacher) => (
+                                <TeacherCard
+                                    key={teacher.key.title[0].plain_text}
+                                    image={teacher.image.files[0].file.url}
+                                    alt={teacher.name.rich_text[0].plain_text}
+                                    name={teacher.name.rich_text[0].plain_text}
+                                    description={teacher.description.rich_text[0].plain_text}
+                                    includePlay={true}
+                                    isMobileOnly={isMobileOnly}
+                                />
+                            ))}
+                    </StyledTeachersContainer>
+                    <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
+                </StyledWrapper>
+                <PageAnimation />
+                {isModalOpen && formFromModal && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={false} />
+                    </Modal>
+                )}
+            </StyledMain>
+        </>
     );
 };
 

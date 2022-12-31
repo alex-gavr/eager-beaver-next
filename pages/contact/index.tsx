@@ -9,6 +9,7 @@ import { CloudContainer } from '../../components/CloudsContainer';
 import Image from 'next/image';
 import { StyledMain } from '../../components/StyledMain';
 import PageAnimation from '../../components/page-animation/PageAnimation';
+import Head from 'next/head';
 
 // EMOTION STYLES
 const StyledFlexDiv = styled.div({
@@ -64,48 +65,56 @@ const IconsContainer = styled.div({
     zIndex: 2,
 });
 
-const SubHeading = styled.h2(props => ({
+const SubHeading = styled.h2((props) => ({
     zIndex: 2,
-    color: props.theme.colors.title
+    color: props.theme.colors.title,
 }));
-const Paragraph = styled.p(props => ({
+const Paragraph = styled.p((props) => ({
     zIndex: 2,
-    color: props.theme.colors.paragraph
+    color: props.theme.colors.paragraph,
 }));
 
 const Contact: FC = (): JSX.Element => {
     return (
-        <StyledMain>
-            <Wrapper>
-                <StyledFlexDiv>
-                    <SchoolLocationMap style={{ order: 2, placeSelf: 'center' }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
-                    <ContactDetails>
-                        <SubHeading>Контакты</SubHeading>
-                        <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
-                        <Paragraph>
-                            Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
-                        </Paragraph>
-                        <SubHeading>Соцсети</SubHeading>
-                        <IconsContainer>
-                            <SocialIcon url='https://t.me/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
-                            <SocialIcon url='https://instagram.com/eagerbeaver.vlg' target='_blank' rel='noopener noreferrer' />
-                            <SocialIcon url='https://wa.me/79093809657' network='whatsapp' target='_blank' rel='noopener noreferrer' />
-                            <SocialIcon url='https://vk.com/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
-                        </IconsContainer>
-                    </ContactDetails>
-                    <CloudContainer top={0} left={0} animate={{x: -40}}>
-                        <Image src={cloud} alt='' />
-                    </CloudContainer>
-                    <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{y: -40}}>
-                        <Image src={cloud2} alt='' />
-                    </CloudContainer>
-                    <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{y: 40}}>
-                        <Image src={cloud3} alt='' />
-                    </CloudContainer>
-                </StyledFlexDiv>
-            </Wrapper>
-            <PageAnimation />
-        </StyledMain>
+        <>
+            <Head>
+                <title>Контакты</title>
+                <meta name='description' content='Как связаться? Где находитесь? И как добраться? Ответы есть здесь!' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <Wrapper>
+                    <StyledFlexDiv>
+                        <SchoolLocationMap style={{ order: 2, placeSelf: 'center' }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
+                        <ContactDetails>
+                            <SubHeading>Контакты</SubHeading>
+                            <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
+                            <Paragraph>
+                                Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
+                            </Paragraph>
+                            <SubHeading>Соцсети</SubHeading>
+                            <IconsContainer>
+                                <SocialIcon url='https://t.me/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
+                                <SocialIcon url='https://instagram.com/eagerbeaver.vlg' target='_blank' rel='noopener noreferrer' />
+                                <SocialIcon url='https://wa.me/79093809657' network='whatsapp' target='_blank' rel='noopener noreferrer' />
+                                <SocialIcon url='https://vk.com/eagerbeavervlg' target='_blank' rel='noopener noreferrer' />
+                            </IconsContainer>
+                        </ContactDetails>
+                        <CloudContainer top={0} left={0} animate={{ x: -40 }}>
+                            <Image src={cloud} alt='' />
+                        </CloudContainer>
+                        <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{ y: -40 }}>
+                            <Image src={cloud2} alt='' />
+                        </CloudContainer>
+                        <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{ y: 40 }}>
+                            <Image src={cloud3} alt='' />
+                        </CloudContainer>
+                    </StyledFlexDiv>
+                </Wrapper>
+                <PageAnimation />
+            </StyledMain>
+        </>
     );
 };
 export default Contact;

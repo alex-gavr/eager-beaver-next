@@ -4,15 +4,17 @@ import GlobalStyle from '../components/GlobalStyles';
 import localFont from '@next/font/local';
 import styled from 'styled-components';
 import Header from '../components/menus/header/header';
-import Footer from '../components/menus/footer/footer';
+// import Footer from '../components/menus/footer/footer';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
-import ThemeToggler from '../components/theme-switcher/ThemeToggler';
 import { useDarkMode } from '../utils/useDarkMode';
 import DayNightToggle from 'react-day-and-night-toggle';
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('../components/menus/footer/footer'));
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -59,7 +61,7 @@ const dark: DefaultTheme = {
         background: 'rgba(0, 0, 0, 1)',
         title: 'rgba(255, 255, 255, 1)',
         paragraph: 'rgba(255, 255, 255, 0.7)',
-        primaryLight: 'rgba(255, 255, 255, 0.1)',
+        primaryLight: 'rgba(155, 155, 155, 0.1)',
         primaryMedium: 'rgb(255, 225, 31)',
         primaryDark: 'rgb(255, 194, 10)',
         secondaryLight: 'rgb(205, 240, 183)',
@@ -102,8 +104,8 @@ const StyledToggle = styled(DayNightToggle)({
     position: 'fixed',
     bottom: 10,
     left: 10,
-    zIndex: 10
-})
+    zIndex: 10,
+});
 
 export default function App({ Component, pageProps, router }: AppProps) {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
@@ -113,7 +115,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const themeMode = theme === 'light' ? light : dark;
 
     if (!componentMounted) {
-        return <div />;
+        return <div style={{ visibility: 'hidden', height:'100vh', width: '100vw' }} />;
     }
 
     return (
@@ -129,7 +131,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                     <Component {...pageProps} key={router.asPath} />
                                 </AnimatePresence>
-                                <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30}  />
+                                <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
                                 <Footer />
                             </AnimationHelperDiv>
                             <div id='modal'></div>

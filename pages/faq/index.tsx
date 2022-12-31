@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import Modal from '../../components/modal/modal';
 import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import Head from 'next/head';
 
 const Wrapper = styled(motion.section)({
     display: 'flex',
@@ -72,30 +73,38 @@ const FAQ = ({ faq }: IProps) => {
     };
 
     return (
-        <StyledMain>
-            <Wrapper>
-                <StyledHeading>
-                    <Accent> Вопрос </Accent> / Ответ
-                </StyledHeading>
-                <Column>
-                    {faq.map((question) => (
-                        <FAQComponent
-                            key={question.key.title[0].plain_text}
-                            question={question.question.rich_text[0].plain_text}
-                            answer={question.answer.rich_text[0].plain_text}
-                        />
-                    ))}
-                </Column>
-                <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
-                <YellowBackground />
-            </Wrapper>
-            <PageAnimation />
-            {isModalOpen && formFromModal && (
-                <Modal onClose={handleCloseModal} showX={true}>
-                    <FormPopUp futureEvents={false} />
-                </Modal>
-            )}
-        </StyledMain>
+        <>
+            <Head>
+                <title>Ответы на Вопросы</title>
+                <meta name='description' content='Мы собрали здесь самые популярные вопросы и ответы на них ' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <Wrapper>
+                    <StyledHeading>
+                        <Accent> Вопрос </Accent> / Ответ
+                    </StyledHeading>
+                    <Column>
+                        {faq.map((question) => (
+                            <FAQComponent
+                                key={question.key.title[0].plain_text}
+                                question={question.question.rich_text[0].plain_text}
+                                answer={question.answer.rich_text[0].plain_text}
+                            />
+                        ))}
+                    </Column>
+                    <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
+                    <YellowBackground />
+                </Wrapper>
+                <PageAnimation />
+                {isModalOpen && formFromModal && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={false} />
+                    </Modal>
+                )}
+            </StyledMain>
+        </>
     );
 };
 

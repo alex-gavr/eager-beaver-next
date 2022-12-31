@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import Modal from '../../components/modal/modal';
 import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import Head from 'next/head';
 
 const Wrapper = styled.section((props) => ({
     display: 'flex',
@@ -74,7 +75,6 @@ const Pricing = ({ prices, isMobileOnly }: IProps) => {
         dispatch(onCloseModal());
     };
 
-
     const pricesAdjustedArray: IPricesAdjustedArray[] =
         prices &&
         prices.map((price: IPrices) => {
@@ -103,24 +103,32 @@ const Pricing = ({ prices, isMobileOnly }: IProps) => {
         });
 
     return (
-        <StyledMain>
-            <Wrapper>
-                <h1>Тарифы</h1>
-                <h2>выбирай подходящий и приходи учиться</h2>
-                <SwiperContainer>
-                    <SwiperCards pricesAdjustedArray={pricesAdjustedArray} />
-                </SwiperContainer>
-                <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
-                <YellowBG />
-            </Wrapper>
-            {!isMobileOnly && <SidePopUp />}
-            <PageAnimation />
-            {isModalOpen && formFromModal && (
-                <Modal onClose={handleCloseModal} showX={true}>
-                    <FormPopUp futureEvents={false} />
-                </Modal>
-            )}
-        </StyledMain>
+        <>
+            <Head>
+                <title>Тарифы</title>
+                <meta name='description' content='Возможные варианты занятий с нами' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <Wrapper>
+                    <h1>Тарифы</h1>
+                    <h2>выбирай подходящий и приходи учиться</h2>
+                    <SwiperContainer>
+                        <SwiperCards pricesAdjustedArray={pricesAdjustedArray} />
+                    </SwiperContainer>
+                    <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
+                    <YellowBG />
+                </Wrapper>
+                {!isMobileOnly && <SidePopUp />}
+                <PageAnimation />
+                {isModalOpen && formFromModal && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={false} />
+                    </Modal>
+                )}
+            </StyledMain>
+        </>
     );
 };
 

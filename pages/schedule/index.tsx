@@ -12,6 +12,7 @@ import Modal from '../../components/modal/modal';
 import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { onCloseModal } from '../../services/modalSlice';
 import { resetDetails } from '../../services/futureEventSignUpData';
+import Head from 'next/head';
 
 const StyledSection = styled(motion.section)({
     display: 'flex',
@@ -37,17 +38,25 @@ const Schedule: FC<IProps> = ({ futureEvents }): JSX.Element => {
         dispatch(resetDetails());
     };
     return (
-        <StyledMain>
-            <StyledSection>
-                <FutureEvents futureEvents={futureEvents} />
-            </StyledSection>
-            <PageAnimation />
-            {isModalOpen && formFutureEvents && (
-                <Modal onClose={handleCloseModal} showX={true}>
-                    <FormPopUp futureEvents={true} />
-                </Modal>
-            )}
-        </StyledMain>
+        <>
+            <Head>
+                <title>Мероприятия</title>
+                <meta name='description' content='Предстоящие мероприятия в Eager Beaver!' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <StyledMain>
+                <StyledSection>
+                    <FutureEvents futureEvents={futureEvents} />
+                </StyledSection>
+                <PageAnimation />
+                {isModalOpen && formFutureEvents && (
+                    <Modal onClose={handleCloseModal} showX={true}>
+                        <FormPopUp futureEvents={true} />
+                    </Modal>
+                )}
+            </StyledMain>
+        </>
     );
 };
 
