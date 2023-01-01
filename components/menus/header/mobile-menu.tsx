@@ -70,8 +70,9 @@ const LogoContainer = styled(motion.div)({
     justifyContent: 'center',
     rotate: '140deg',
     translate: '-40% -20%',
+    width: '60%',
     '& > img': {
-        width: '60%',
+        width: '100%',
         height: 'auto',
     },
 

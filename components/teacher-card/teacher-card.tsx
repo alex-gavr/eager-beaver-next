@@ -10,7 +10,7 @@ const StyledContainer = styled.div({
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '1rem',
-    height: '100%',
+    height: 'auto',
     width: '90%',
     maxWidth: 600,
     position: 'relative',
@@ -53,11 +53,15 @@ const TextContainer = styled.div((props) => ({
     '& > h2': {
         textAlign: 'center',
         color: props.theme.colors.title,
+        width: '100%',
+        height: '100%',
     },
     '& > p': {
         textAlign: 'center',
         letterSpacing: '0.06rem',
         color: props.theme.colors.paragraph,
+        width: '100%',
+        height: '100%',
     },
 }));
 
