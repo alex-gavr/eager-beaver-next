@@ -4,7 +4,6 @@ import GlobalStyle from '../components/GlobalStyles';
 import localFont from '@next/font/local';
 import styled from 'styled-components';
 import Header from '../components/menus/header/header';
-// import Footer from '../components/menus/footer/footer';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Provider } from 'react-redux';
@@ -108,7 +107,9 @@ const StyledToggle = styled(DayNightToggle)({
     zIndex: 10,
 });
 
-export default function App({ Component, pageProps, router }: AppProps) {
+
+
+const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
 
     const isDarkMode = theme === 'dark' ? true : false;
@@ -130,7 +131,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                             {/* This div is makes animation show in footer, but not in header */}
                             <AnimationHelperDiv>
                                 <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
-                                    <Component {...pageProps} key={router.asPath} />
+                                    <Component {...pageProps} key={router.pathname} />
                                 </AnimatePresence>
                                 <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
                                 <Footer />
@@ -143,4 +144,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
             </ThemeProvider>
         </>
     );
-}
+};
+
+export default EagerBeaverApp;

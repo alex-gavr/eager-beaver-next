@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import Hero from '../components/home/Hero';
 import { getSelectorsByUserAgent } from 'react-device-detect';
@@ -11,14 +11,16 @@ import { onCloseModal } from '../services/modalSlice';
 const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
 const FreeClass = dynamic(() => import('../components/home/free-class/free-class'));
-const Modal = dynamic(() => import('../components/modal/modal'));
+const Modal = dynamic(() => import('../components/modal/modal'), {
+    loading: () =>  <div style={{width: 300, height: 300, backgroundColor: 'grey'}}> <h1>Loading...</h1></div>,
+});
 const FormPopUpSubmitSuccess = dynamic(() => import('../components/submit-form/form-popup/FormPopUpSubmitSuccess'));
 const FormPopUp = dynamic(() => import('../components/submit-form/form-popup/FormPopUp'));
 const FormPopUpSubmitFail = dynamic(() => import('../components/submit-form/form-popup/FormSubmitFailPopUp'));
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
 const FlyingBeaver = dynamic(() => import('../components/flying-beaver/FlyingBeaver'));
 
-export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType) {
+const Home: NextPage<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, submitSuccess, formFromModal } = useAppSelector((state) => state.modal);
 
@@ -44,14 +46,10 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType)
                 <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <PageAnimation />
-                {isModalOpen && submitSuccess && (
+                {isModalOpen && (
                     <Modal onClose={handleCloseModal} showX={false}>
-                        <FormPopUpSubmitSuccess />
-                    </Modal>
-                )}
-                {submitSuccess === false && isModalOpen && (
-                    <Modal onClose={handleCloseModal} showX={false}>
-                        <FormPopUpSubmitFail />
+                        {submitSuccess && <FormPopUpSubmitSuccess />}
+                        {submitSuccess === false && <FormPopUpSubmitFail />}
                     </Modal>
                 )}
                 {isModalOpen && formFromModal && (
@@ -62,7 +60,9 @@ export default function Home({ isMobileOnly, isTablet, isDesktop }: IDeviceType)
             </StyledMain>
         </>
     );
-}
+};
+export default Home;
+
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);

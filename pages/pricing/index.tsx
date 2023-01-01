@@ -2,33 +2,26 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { IPrices } from '../../types/data';
-import { GetServerSidePropsContext } from 'next';
-// import SwiperCards from '../../components/prices/SwiperCards';
-// import PageAnimation from '../../components/page-animation/PageAnimation';
 import { StyledMain } from '../../components/StyledMain';
-// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-import { getSelectorsByUserAgent } from 'react-device-detect';
-// import SidePopUp from '../../components/prices/side-popup/SidePopUp';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
-// import Modal from '../../components/modal/modal';
-// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import { fetchNotion } from '../../utils/fetchNotion';
+import SwiperCards from '../../components/prices/SwiperCards';
 
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const SidePopUp = dynamic(() => import('../../components/prices/side-popup/SidePopUp'));
-const SwiperCards = dynamic(() => import('../../components/prices/SwiperCards'));
+// const SwiperCards = dynamic(() => import('../../components/prices/SwiperCards'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 const Wrapper = styled.section((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     padding: '2rem 0.5rem',
     position: 'relative',
-    minHeight: '70vh',
     '& > h1': {
         color: props.theme.colors.primaryDark,
         zIndex: 2,
@@ -74,9 +67,8 @@ export interface IPricesAdjustedArray {
 
 interface IProps {
     prices: IPrices[];
-    isMobileOnly: boolean;
 }
-const Pricing = ({ prices, isMobileOnly }: IProps) => {
+const Pricing = ({ prices }: IProps) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
 
@@ -129,7 +121,8 @@ const Pricing = ({ prices, isMobileOnly }: IProps) => {
                     <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
                     <YellowBG />
                 </Wrapper>
-                {!isMobileOnly && <SidePopUp />}
+                {/* {!isMobileOnly && <SidePopUp />} */}
+                <SidePopUp />
                 <PageAnimation />
                 {isModalOpen && formFromModal && (
                     <Modal onClose={handleCloseModal} showX={true}>
@@ -141,40 +134,12 @@ const Pricing = ({ prices, isMobileOnly }: IProps) => {
     );
 };
 
-export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-    const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly } = getSelectorsByUserAgent(userAgent);
-
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'Notion-Version': '2022-06-28',
-            'content-type': 'application/json',
-            Authorization: `${process.env.NEXT_PUBLIC_NOTION_KEY}`,
-        },
-        body: JSON.stringify({
-            filter: {
-                property: 'key',
-                rich_text: {
-                    is_not_empty: true,
-                },
-            },
-            sorts: [
-                {
-                    property: 'key',
-                    direction: 'ascending',
-                },
-            ],
-        }),
-    };
+export async function getStaticProps() {
     try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_PRICES_DB}/query`, options);
-        const prices = await result.json().then((data) => data.results.map((data: any) => data.properties));
+        const prices = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_PRICES_DB);
         return {
             props: {
                 prices,
-                isMobileOnly,
             },
         };
     } catch (err) {

@@ -26,6 +26,9 @@ const WrapperDiv = styled(motion.div)((props) =>({
     padding: '1.5rem 1rem 1rem 1rem',
     gap: '1rem',
     boxShadow: '0px 2px 20px 10px rgba(0, 0, 0, 0.2)',
+    '@media only screen and (max-width: 600px)': {
+        display: 'none'
+    }
 }));
 
 const StyledOk = styled(Image)((props) =>({

@@ -1,21 +1,24 @@
 import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { FC, useRef } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ReviewCard } from '../../components/review-card/review-card';
 import 'react-multi-carousel-18/lib/styles.css';
 import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
 import { LeftArrow, RightArrow } from '../../components/custom-arrows/CustomArrows';
-import { getSelectorsByUserAgent } from 'react-device-detect';
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext, NextPage } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
 import { StyledMain } from '../../components/StyledMain';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
+import { getSelectorsByUserAgent } from 'react-device-detect';
+import { fetchNotion } from '../../utils/fetchNotion';
 
 const Carousel = dynamic(() => import('react-multi-carousel-18'));
-const Modal = dynamic(() => import('../../components/modal/modal'));
+const Modal = dynamic(() => import('../../components/modal/modal'), {
+    loading: () =>  <div style={{width: 300, height: 300}}> <h1>Loading...</h1></div>,
+});
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
@@ -34,7 +37,6 @@ const StyledWrapper = styled(motion.section)({
     padding: '1rem 0.5rem',
     position: 'relative',
     gap: '3rem',
-    minHeight: '80vh',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
     },
@@ -103,7 +105,7 @@ const StyledCarousel = styled(Carousel)({
 interface IProps extends IDeviceType {
     reviews: IReviews[];
 }
-const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JSX.Element => {
+const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
 
@@ -187,39 +189,13 @@ const Reviews: FC<IProps> = ({ reviews, isMobileOnly, isTablet, isDesktop }): JS
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
+    const { isDesktop } = getSelectorsByUserAgent(userAgent);
 
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'Notion-Version': '2022-06-28',
-            'content-type': 'application/json',
-            Authorization: `${process.env.NEXT_PUBLIC_NOTION_KEY}`,
-        },
-        body: JSON.stringify({
-            filter: {
-                property: 'key',
-                rich_text: {
-                    is_not_empty: true,
-                },
-            },
-            sorts: [
-                {
-                    property: 'key',
-                    direction: 'ascending',
-                },
-            ],
-        }),
-    };
     try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_REVIEWS_DB}/query`, options);
-        const reviews = await result.json().then((data) => data.results.map((data: any) => data.properties));
+        const reviews = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_REVIEWS_DB);
         return {
             props: {
                 reviews,
-                isMobileOnly,
-                isTablet,
                 isDesktop,
             },
         };

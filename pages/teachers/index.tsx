@@ -2,19 +2,15 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-// import PageAnimation from '../../components/page-animation/PageAnimation';
-// import TeacherCard  from '../../components/teacher-card/teacher-card';
 import { ITeacher } from '../../types/data';
-import { getSelectorsByUserAgent } from 'react-device-detect';
-import { GetServerSidePropsContext } from 'next';
+import {  NextPage } from 'next';
 import { StyledMain } from '../../components/StyledMain';
-// import Modal from '../../components/modal/modal';
-// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
+import { fetchNotion } from '../../utils/fetchNotion';
+import TeacherCard from '../../components/teacher-card/teacher-card';
 
-const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
+// const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
@@ -28,10 +24,9 @@ const StyledWrapper = styled(motion.section)({
     gap: '2rem',
     padding: '2rem 0.5rem',
     position: 'relative',
-    minHeight: '80vh',
     '@media only screen and (min-width: 60em)': {
         padding: '2rem',
-        gap: '4rem'
+        gap: '4rem',
     },
 });
 
@@ -60,11 +55,10 @@ const StyledTeachersContainer = styled.div({
 
 interface IProps {
     teachers: ITeacher[];
-    isMobileOnly: boolean;
-    isTablet: boolean;
 }
 
-const Teachers = ({ teachers, isMobileOnly, isTablet }: IProps) => {
+const Teachers: NextPage<IProps> = ({teachers}) => {
+    
     const dispatch = useAppDispatch();
     const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
 
@@ -98,12 +92,10 @@ const Teachers = ({ teachers, isMobileOnly, isTablet }: IProps) => {
                                     name={teacher.name.rich_text[0].plain_text}
                                     description={teacher.description.rich_text[0].plain_text}
                                     includePlay={true}
-                                    isMobileOnly={isMobileOnly}
-                                    isTablet={isTablet}
                                 />
                             ))}
                     </StyledTeachersContainer>
-                    {TeacherCard ? <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} /> : null}
+                    <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
                 </StyledWrapper>
                 <PageAnimation />
                 {isModalOpen && formFromModal && (
@@ -116,38 +108,16 @@ const Teachers = ({ teachers, isMobileOnly, isTablet }: IProps) => {
     );
 };
 
-export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-    const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
+export async function getStaticProps() {
 
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'Notion-Version': '2022-06-28',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTION_KEY}`,
-        },
-        body: JSON.stringify({
-            filter: {
-                property: 'key',
-                rich_text: {
-                    is_not_empty: true,
-                },
-            },
-        }),
-    };
-    try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_TEACHER_DB}/query`, options);
-        const teachers = await result.json().then((data) => data.results.map((data: any) => data.properties));
+    try{
+        const teachers = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_TEACHER_DB);
         return {
             props: {
                 teachers,
-                isMobileOnly,
-                isTablet,
             },
         };
-    } catch (err) {
+    } catch(err) {
         console.log(err);
     }
 }

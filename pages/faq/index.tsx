@@ -2,19 +2,14 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-// import ActionButtons from '../../components/buttons/action-buttons-page-end/ActionButtons';
-// import PageAnimation from '../../components/page-animation/PageAnimation';
 import { StyledMain } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
-// import FAQComponent from '../../components/faq/faq-component';
-import { GetServerSidePropsContext } from 'next';
-import { getSelectorsByUserAgent } from 'react-device-detect';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
-// import Modal from '../../components/modal/modal';
-// import FormPopUp from '../../components/submit-form/form-popup/FormPopUp';
+import { fetchNotion } from '../../utils/fetchNotion';
+import FAQComponent from '../../components/faq/faq-component';
 
-const FAQComponent = dynamic(() => import('../../components/faq/faq-component'));
+// const FAQComponent = dynamic(() => import('../../components/faq/faq-component'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
@@ -23,9 +18,8 @@ const PageAnimation = dynamic(() => import('../../components/page-animation/Page
 const Wrapper = styled(motion.section)({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    minHeight: '80vh',
     width: '95%',
     padding: '2rem 0',
     gap: '3rem',
@@ -115,34 +109,12 @@ const FAQ = ({ faq }: IProps) => {
     );
 };
 
-export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-    const userAgent = req.headers['user-agent'] || '';
-    const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
-
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'Notion-Version': '2022-06-28',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTION_KEY}`,
-        },
-        body: JSON.stringify({
-            filter: {
-                property: 'key',
-                rich_text: {
-                    is_not_empty: true,
-                },
-            },
-        }),
-    };
+export async function getStaticProps() {
     try {
-        const result = await fetch(`https://api.notion.com/v1/databases/${process.env.NEXT_PUBLIC_NOTION_FAQ_DB}/query`, options);
-        const faq = await result.json().then((data) => data.results.map((data: any) => data.properties));
+        const faq = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_FAQ_DB);
         return {
             props: {
                 faq,
-                isMobileOnly,
             },
         };
     } catch (err) {

@@ -8,6 +8,7 @@ import cloud3 from '../../images/clouds/3.svg';
 import { FC } from 'react';
 import { CloudContainer } from '../../components/CloudsContainer';
 import { StyledMain } from '../../components/StyledMain';
+import { NextPage } from 'next';
 
 const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
 const SocialMediaIcons = dynamic(() => import('../../components/social-media-block/SocialMediaIcons'));
@@ -40,7 +41,6 @@ const Wrapper = styled.section((props) => ({
     alignItems: 'center',
     padding: '2rem 0.5rem',
     gap: '5rem',
-    minHeight: '550px',
     position: 'relative',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
@@ -76,7 +76,7 @@ const Paragraph = styled.p((props) => ({
     color: props.theme.colors.paragraph,
 }));
 
-const Contact: FC = (): JSX.Element => {
+const Contact: NextPage = (): JSX.Element => {
     return (
         <>
             <Head>
@@ -87,29 +87,31 @@ const Contact: FC = (): JSX.Element => {
             </Head>
             <StyledMain>
                 <Wrapper>
-                    <StyledFlexDiv>
-                        <SchoolLocationMap style={{ order: 2, placeSelf: 'center' }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
-                        <ContactDetails>
-                            <SubHeading>Контакты</SubHeading>
-                            <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
-                            <Paragraph>
-                                Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
-                            </Paragraph>
-                            <SubHeading>Соцсети</SubHeading>
-                            <IconsContainer>
-                                <SocialMediaIcons />
-                            </IconsContainer>
-                        </ContactDetails>
-                        <CloudContainer top={0} left={0} animate={{ x: -40 }}>
-                            <Image src={cloud} alt='' />
-                        </CloudContainer>
-                        <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{ y: -40 }}>
-                            <Image src={cloud2} alt='' />
-                        </CloudContainer>
-                        <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{ y: 40 }}>
-                            <Image src={cloud3} alt='' />
-                        </CloudContainer>
-                    </StyledFlexDiv>
+                    {SchoolLocationMap && (
+                        <StyledFlexDiv>
+                            <SchoolLocationMap style={{ order: 2, placeSelf: 'center' }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
+                            <ContactDetails>
+                                <SubHeading>Контакты</SubHeading>
+                                <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
+                                <Paragraph>
+                                    Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
+                                </Paragraph>
+                                <SubHeading>Соцсети</SubHeading>
+                                <IconsContainer>
+                                    <SocialMediaIcons />
+                                </IconsContainer>
+                            </ContactDetails>
+                            <CloudContainer top={0} left={0} animate={{ x: -40 }}>
+                                <Image src={cloud} alt='' />
+                            </CloudContainer>
+                            <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{ y: -40 }}>
+                                <Image src={cloud2} alt='' />
+                            </CloudContainer>
+                            <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{ y: 40 }}>
+                                <Image src={cloud3} alt='' />
+                            </CloudContainer>
+                        </StyledFlexDiv>
+                    )}
                 </Wrapper>
                 <PageAnimation />
             </StyledMain>

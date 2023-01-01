@@ -81,11 +81,9 @@ interface Props {
     name: string;
     description: string;
     includePlay: boolean;
-    isMobileOnly: boolean;
-    isTablet: boolean;
 }
 
-const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, isMobileOnly, isTablet }) => {
+const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) => {
     const [isImgLoaded, setIsImgLoaded] = useState(false);
 
     const handleImageLoaded = () => {
@@ -102,10 +100,10 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay, is
                 {includePlay && isImgLoaded && <PlayIcon src={play} alt='' />}
             </ImageAndSpanContainer>
             <TextContainer>
-                <h2>{isImgLoaded ? name : <Skeleton height={40} width={isMobileOnly ? 200 : isTablet ? 250 : 300} />}</h2>
+                <h2>{isImgLoaded ? name : <Skeleton height={40} width={200} />}</h2>
             </TextContainer>
             <TextContainer>
-                <p>{isImgLoaded ? description : <Skeleton height={15} width={800} count={isMobileOnly ? 6 : 5} />}</p>
+                <p>{isImgLoaded ? description : <Skeleton height={15} width={800} count={5} />}</p>
             </TextContainer>
         </StyledContainer>
     );
