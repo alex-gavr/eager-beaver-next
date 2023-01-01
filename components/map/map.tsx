@@ -1,6 +1,20 @@
 import { YMaps, Map, Placemark, GeolocationControl, ZoomControl } from '@pbe/react-yandex-maps';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { useWindowSize } from '../../utils/use-window-size';
+import styled from 'styled-components';
+const Wrapper = styled.div({
+    position: 'relative',
+    width: 300,
+    height: 300,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '@media only screen and (min-width: 900px)': {
+        width: 550,
+        height: 550,
+    },
+});
 
 interface IProps {
     style?: any;
@@ -13,6 +27,7 @@ interface IProps {
 }
 
 const SchoolLocationMap: FC<IProps> = ({ style, widthMobile, widthDesktop, heightMobile, heightDesktop, latitude, longitude }) => {
+    const [mapLoaded, setMapLoaded] = useState(false);
     const { width } = useWindowSize();
     const options = {
         iconLayout: 'default#image',
@@ -23,8 +38,16 @@ const SchoolLocationMap: FC<IProps> = ({ style, widthMobile, widthDesktop, heigh
     };
     return (
         <YMaps>
-            <div style={style}>
+            <Wrapper style={style}>
+                {!mapLoaded && (
+                    <Skeleton
+                        width={width < 900 ? widthMobile : widthDesktop}
+                        height={width < 900 ? heightMobile : heightDesktop}
+                        style={{ zIndex: 888, position: 'absolute', top: 0, left: 0 }}
+                    />
+                )}
                 <Map
+                    onLoad={() => setMapLoaded(true)}
                     style={{
                         width: width < 900 ? widthMobile : widthDesktop,
                         height: width < 900 ? heightMobile : heightDesktop,
@@ -45,7 +68,7 @@ const SchoolLocationMap: FC<IProps> = ({ style, widthMobile, widthDesktop, heigh
                         }}
                     />
                 </Map>
-            </div>
+            </Wrapper>
         </YMaps>
     );
 };

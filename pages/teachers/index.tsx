@@ -46,7 +46,7 @@ const StyledTeachersContainer = styled.div({
     display: 'grid',
     gap: '3rem 2rem',
     justifyItems: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     minHeight: '70vh',
     '@media only screen and (min-width: 60em)': {
         gridTemplateColumns: 'repeat(2, 1fr)',

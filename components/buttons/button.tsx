@@ -43,12 +43,11 @@ const EmptySecondaryButton = styled(SecondaryButton)((props) => ({
     border: `2px solid ${props.theme.colors.secondaryLight}`,
 }));
 
-
 export interface ICustomButton {
     typeHTML: 'button' | 'submit' | 'reset';
     type: 'primary' | 'secondary' | 'emptySecondary' | 'emptyPrimary';
     children: ReactNode;
-    onClick?: () => void ;
+    onClick?: () => void;
     disabled?: boolean;
     textColor?: string;
     padding?: string;
@@ -56,6 +55,9 @@ export interface ICustomButton {
     fontSize?: string;
     animate?: boolean;
     isInputFocused?: boolean;
+    width?: number | string;
+    height?: number | string;
+    placeSelf?: string;
 }
 
 const animation = {
@@ -68,7 +70,22 @@ const transition = {
     repeatDelay: 5,
 };
 
-export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, disabled, textColor, padding, fontFamily, fontSize, animate, isInputFocused }) => {
+export const Button: FC<ICustomButton> = ({
+    typeHTML,
+    type,
+    children,
+    onClick,
+    disabled,
+    textColor,
+    padding,
+    fontFamily,
+    fontSize,
+    animate,
+    isInputFocused,
+    width,
+    height,
+    placeSelf,
+}) => {
     return (
         <>
             {type === 'primary' && (
@@ -78,6 +95,9 @@ export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, d
                         padding: padding,
                         fontFamily: fontFamily,
                         fontSize: fontSize,
+                        width: width,
+                        height: height,
+                        placeSelf: placeSelf,
                         borderColor: isInputFocused ? 'rgb(101, 164, 111)' : undefined,
                     }}
                     type={typeHTML}
@@ -96,6 +116,9 @@ export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, d
                         padding: padding,
                         fontFamily: fontFamily,
                         fontSize: fontSize,
+                        width: width,
+                        height: height,
+                        placeSelf: placeSelf,
                         borderColor: isInputFocused ? 'rgb(101, 164, 111)' : undefined,
                     }}
                     type={typeHTML}
@@ -114,6 +137,9 @@ export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, d
                         padding: padding,
                         fontFamily: fontFamily,
                         fontSize: fontSize,
+                        width: width,
+                        height: height,
+                        placeSelf: placeSelf,
                         borderColor: isInputFocused ? 'rgb(101, 164, 111)' : undefined,
                     }}
                     type={typeHTML}
@@ -132,6 +158,9 @@ export const Button: FC<ICustomButton> = ({ typeHTML, type, children, onClick, d
                         padding: padding,
                         fontFamily: fontFamily,
                         fontSize: fontSize,
+                        width: width,
+                        height: height,
+                        placeSelf: placeSelf,
                         borderColor: isInputFocused ? 'rgb(101, 164, 111)' : undefined,
                     }}
                     type={typeHTML}

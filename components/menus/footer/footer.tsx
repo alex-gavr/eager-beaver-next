@@ -8,9 +8,13 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import SocialMediaIcons from '../../social-media-block/SocialMediaIcons';
+import { Button } from '../../buttons/button';
+import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ssr: false,
+    loading: () => <Skeleton width={300} height={300} style={{ placeSelf: 'center' }} />,
 });
 // const SocialMediaIcons = dynamic(() => import('../../social-media-block/SocialMediaIcons'));
 
@@ -48,7 +52,6 @@ const IconsContainer = styled(motion.div)({
     justifyContent: 'center',
     alignItems: 'center',
     gap: '1.2rem',
-    
 });
 const FooterMainPart = styled(motion.div)({
     width: '100%',
@@ -77,19 +80,19 @@ const BeaverOnARocket = styled(Image)({
         position: 'absolute',
         top: '1rem',
         left: '3rem',
-    }
+    },
 });
 const Address = styled.p({
     order: 2,
     '@media only screen and (min-width: 50em)': {
-        order: 1
-    }
+        order: 1,
+    },
 });
 const Phone = styled.p({
     order: 3,
     '@media only screen and (min-width: 50em)': {
-        order: 2
-    }
+        order: 2,
+    },
 });
 
 const MapAndAddressContainer = styled(motion.div)({
@@ -132,7 +135,7 @@ const LinksList = styled(motion.ul)((props) => ({
     alignItems: 'flex-start',
     gap: '2.5rem 2rem',
     '& > li': {
-        fontSize: props.theme.fontSize.footer
+        fontSize: props.theme.fontSize.footer,
     },
     '@media only screen and (max-width: 320px)': {
         gridTemplateColumns: '1fr',
@@ -140,7 +143,7 @@ const LinksList = styled(motion.ul)((props) => ({
     },
     '@media only screen and (max-width: 400px)': {
         gap: '2.2rem 0rem',
-        placeSelf: 'flex-start'
+        placeSelf: 'flex-start',
     },
     '@media only screen and (min-width: 560px) and (max-width: 900px)': {
         gridTemplateColumns: 'repeat(3, 1fr)',
@@ -149,9 +152,8 @@ const LinksList = styled(motion.ul)((props) => ({
     '@media only screen and (min-width: 900px)': {
         width: 'fit-content',
     },
-
 }));
-const StyledLink = styled(Link)((props) =>({
+const StyledLink = styled(Link)((props) => ({
     padding: '1rem',
     color: 'white',
     fontSize: props.theme.fontSize.footer,
@@ -159,8 +161,8 @@ const StyledLink = styled(Link)((props) =>({
     '&:hover': {
         color: props.theme.colors.title,
         backgroundColor: props.theme.colors.secondaryDark,
-        borderRadius: '2rem'
-    }
+        borderRadius: '2rem',
+    },
 }));
 const CreditsContainer = styled(motion.div)((props) => ({
     display: 'flex',
@@ -176,16 +178,16 @@ const CreditsContainer = styled(motion.div)((props) => ({
         textTransform: 'capitalize',
         fontSize: '0.6rem',
         '@media only screen and (min-width: 560px) and (max-width: 900px)': {
-            fontSize: '0.7rem'
+            fontSize: '0.7rem',
         },
         '@media only screen and (min-width: 900px)': {
-            fontSize: '0.8rem'
+            fontSize: '0.8rem',
         },
-    }
+    },
 }));
 const CreditsContainerOmitLera = styled(motion.div)((props) => ({
     display: 'grid',
-    gridTemplateColumns:'repeat(2, 1fr)',
+    gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '0.5rem',
     '@media only screen and (min-width: 900px)': {
         display: 'grid',
@@ -195,6 +197,11 @@ const CreditsContainerOmitLera = styled(motion.div)((props) => ({
 }));
 
 const Footer = () => {
+    const [showMap, setShowMap] = useState(false);
+
+    const handleShowMap = () => {
+        setShowMap(!showMap);
+    };
     // const dispatch = useAppDispatch();
 
     // const { ref, inView } = useInView({});
@@ -227,7 +234,19 @@ const Footer = () => {
                                 </motion.a>
                             </Phone>
                         </AddressContainer>
-                        <SchoolLocationMap style={{ placeSelf: 'center' }} widthDesktop={300} heightDesktop={300} widthMobile={300} heightMobile={300} />
+                        {showMap ? (
+                            <SchoolLocationMap
+                                style={{ placeSelf: 'center', width: 300, height: 300 }}
+                                widthDesktop={300}
+                                heightDesktop={300}
+                                widthMobile={300}
+                                heightMobile={300}
+                            />
+                        ) : (
+                            <Button typeHTML='button' type='primary' onClick={handleShowMap} width={300} height={300} placeSelf='center'>
+                                Показать на Карте
+                            </Button>
+                        )}
                     </MapAndAddressContainer>
                     <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
                         {footer.map((link) => (
@@ -237,11 +256,7 @@ const Footer = () => {
                         ))}
                     </LinksList>
                 </FooterMainPart>
-                <CreditsContainer
-                    variants={list}
-                    initial='hidden'
-                    whileInView='visible'
-                    viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
+                <CreditsContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
                     <motion.p variants={popUp}>Product Owner: Валерия Евстратова</motion.p>
                     <CreditsContainerOmitLera variants={list}>
                         <motion.p variants={popUp}>Design: Мария Рязанова</motion.p>

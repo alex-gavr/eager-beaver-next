@@ -14,14 +14,18 @@ const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
 const SocialMediaIcons = dynamic(() => import('../../components/social-media-block/SocialMediaIcons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-// EMOTION STYLES
-const StyledFlexDiv = styled.div({
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+const Grid = styled.div({
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    alignItems: 'center',
+    justifyItems: 'center',
     gap: '2rem',
+    '@media only screen and (min-width: 900px)': {
+        display: 'grid',
+        alignItems: 'center',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '2rem',
+    },
 });
 
 const ContactDetails = styled.div({
@@ -33,6 +37,9 @@ const ContactDetails = styled.div({
     gap: '1rem',
     position: 'relative',
     order: 1,
+    '@media only screen and (min-width: 900px)': {
+        order: 2,
+    },
 });
 const Wrapper = styled.section((props) => ({
     display: 'flex',
@@ -44,16 +51,6 @@ const Wrapper = styled.section((props) => ({
     position: 'relative',
     '@media only screen and (min-width: 50em)': {
         padding: '2rem',
-    },
-    [StyledFlexDiv as any]: {
-        '@media only screen and (min-width: 50em)': {
-            flexDirection: 'row',
-        },
-    },
-    [ContactDetails as any]: {
-        '@media only screen and (min-width: 50em)': {
-            order: 2,
-        },
     },
 }));
 
@@ -87,31 +84,30 @@ const Contact: NextPage = (): JSX.Element => {
             </Head>
             <StyledMain>
                 <Wrapper>
-                    {SchoolLocationMap && (
-                        <StyledFlexDiv>
-                            <SchoolLocationMap style={{ order: 2, placeSelf: 'center' }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
-                            <ContactDetails>
-                                <SubHeading>Контакты</SubHeading>
-                                <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
-                                <Paragraph>
-                                    Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
-                                </Paragraph>
-                                <SubHeading>Соцсети</SubHeading>
-                                <IconsContainer>
-                                    <SocialMediaIcons />
-                                </IconsContainer>
-                            </ContactDetails>
-                            <CloudContainer top={0} left={0} animate={{ x: -40 }}>
-                                <Image src={cloud} alt='' />
-                            </CloudContainer>
-                            <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{ y: -40 }}>
-                                <Image src={cloud2} alt='' />
-                            </CloudContainer>
-                            <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{ y: 40 }}>
-                                <Image src={cloud3} alt='' />
-                            </CloudContainer>
-                        </StyledFlexDiv>
-                    )}
+                    <Grid>
+                        <SchoolLocationMap style={{ order: 2 }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
+                        <ContactDetails>
+                            <SubHeading>Контакты</SubHeading>
+                            <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
+                            <Paragraph>
+                                Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
+                            </Paragraph>
+                            <SubHeading>Соцсети</SubHeading>
+                            <IconsContainer>
+                                <SocialMediaIcons />
+                            </IconsContainer>
+                        </ContactDetails>
+
+                        <CloudContainer top={0} left={0} animate={{ x: -40 }}>
+                            <Image src={cloud} alt='' />
+                        </CloudContainer>
+                        <CloudContainer top={0} right={'10%'} height={150} width={150} animate={{ y: -40 }}>
+                            <Image src={cloud2} alt='' />
+                        </CloudContainer>
+                        <CloudContainer bottom={'10%'} right={'5%'} height={100} width={100} animate={{ y: 40 }}>
+                            <Image src={cloud3} alt='' />
+                        </CloudContainer>
+                    </Grid>
                 </Wrapper>
                 <PageAnimation />
             </StyledMain>
