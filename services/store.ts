@@ -1,15 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import telegramReducer from './telegramSlice';
 import modalReducer from './modalSlice';
-import locationReducer from './locationSlice';
 import futureEventDetailsReducer from './futureEventSignUpData';
 import navigationVisibilityReducer from './navigationVisibilitySlice';
 
 export const store = configureStore({
     reducer:{
-        telegram: telegramReducer,
         modal: modalReducer,
-        location: locationReducer,
         futureEventDetails: futureEventDetailsReducer,
         navigationVisibility: navigationVisibilityReducer,
     },

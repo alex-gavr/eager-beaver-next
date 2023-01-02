@@ -27,7 +27,8 @@ ${name} хочет привести ребенка на ${event} 🎉%0A
 Напиши им 😉
 `;
 
-    const url = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatIDGavr}&text=${event ? messageForFutureEvent : messageFormCompleted}`;
+    const url = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatIDLera}&text=${event ? messageForFutureEvent : messageFormCompleted}`;
+    const url2 = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatIDGavr}&text=${event ? messageForFutureEvent : messageFormCompleted}`;
 
     // Notion Add User to DB
     const notionOptions = {
@@ -87,6 +88,7 @@ ${name} хочет привести ребенка на ${event} 🎉%0A
     } else {
         try {
             const telegramAlertSubmit = await axios.get(url);
+            const telegramAlertSubmitGavr = axios.get(url2);
             const status = telegramAlertSubmit.status;
             const notionUserSubmit = await axios(notionOptions);
             const status2 = notionUserSubmit.status;

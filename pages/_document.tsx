@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
                     <NextScript />
                     <noscript id='y-metrika'>
                         <div>
-                            <Image unoptimized src='https://mc.yandex.ru/watch/91764388' style={{ position: 'absolute', left: '-9999px' }} alt='' />
+                            <Image unoptimized src='https://mc.yandex.ru/watch/91764388' style={{ position: 'absolute', left: '-9999px' }} width={2} height={2} alt='' />
                         </div>
                     </noscript>
                 </body>
