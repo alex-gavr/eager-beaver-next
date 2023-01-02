@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import { EffectCards } from 'swiper';
 import Image from 'next/image';
 import checkMark from '../../images/icons/checkMark.svg';
 import styled from 'styled-components';
@@ -108,7 +108,7 @@ const ContainerForBulletPoint = styled.div(props =>({
 
 const SwiperCards = ({ pricesAdjustedArray }: any) => {
     return (
-        <StyledSwiper effect={'cards'} grabCursor={true} modules={[EffectCards]}>
+        <StyledSwiper effect={'cards'} modules={[EffectCards]}>
             {pricesAdjustedArray &&
                 pricesAdjustedArray.map((price: any) => {
                     const color = price.mainArray.cardColor.rich_text[0].plain_text

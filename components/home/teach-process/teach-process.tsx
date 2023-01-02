@@ -1,4 +1,3 @@
-// import styles from './teach.module.css';
 import cloud from '../../../images/clouds/4.svg';
 import { FC } from 'react';
 import TeachingSteps from './teaching-steps/TeachingSteps';
