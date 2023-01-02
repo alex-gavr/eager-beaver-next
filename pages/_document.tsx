@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
-import Image from 'next/image';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -33,9 +32,9 @@ export default class MyDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
-                    <noscript id='y-metrika'>
+                    <noscript>
                         <div>
-                            <Image unoptimized src='https://mc.yandex.ru/watch/91764388' style={{ position: 'absolute', left: '-9999px' }} width={2} height={2} alt='' />
+                            <img src='https://mc.yandex.ru/watch/91764388' style={{ position: 'absolute', left: '-9999px' }} width={2} height={2} alt='' />
                         </div>
                     </noscript>
                 </body>
