@@ -4,7 +4,6 @@ import { list, opacity, popUp, toDown, toUp } from '../../../utils/motion-animat
 import beaverRocket from '../../../images/beaver/BeaverRocket.svg';
 import Link from 'next/link';
 import styled from 'styled-components';
-// import { useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import SocialMediaIcons from '../../social-media-block/SocialMediaIcons';
@@ -17,7 +16,11 @@ import { footerVisibilityStatus } from '../../../services/navigationVisibilitySl
 
 const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ssr: false,
-    loading: () => <Skeleton width={300} height={300} style={{ placeSelf: 'center' }} />,
+    loading: () => (
+        <div style={{ placeSelf: 'center', width: 300, height: 300 }}>
+            <Skeleton width={300} height={300} />
+        </div>
+    ),
 });
 
 const StyledFooter = styled.footer({
@@ -208,9 +211,8 @@ const Footer = () => {
     const { ref, inView } = useInView({});
 
     useEffect(() => {
-        dispatch(footerVisibilityStatus(inView))
-
-    }, [inView])
+        dispatch(footerVisibilityStatus(inView));
+    }, [inView]);
 
     return (
         <AnimatePresence>
