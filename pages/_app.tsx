@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import { store } from '../services/store';
 import { AnimatePresence } from 'framer-motion';
 import { useDarkMode } from '../utils/useDarkMode';
-import DayNightToggle from 'react-day-and-night-toggle';
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
 import { LazyMotion } from 'framer-motion';
@@ -18,6 +17,7 @@ import Script from 'next/script';
 
 const Footer = dynamic(() => import('../components/menus/footer/footer'));
 const FixedSocialMedia = dynamic(() => import('../components/social-media-block/FixedSocialMedia'));
+const DayNightToggle = dynamic(() => import('../components/toggle'));
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -102,12 +102,6 @@ const AnimationHelperDiv = styled.div({
     width: '100%',
 });
 
-const StyledToggle = styled(DayNightToggle)({
-    position: 'fixed',
-    bottom: 10,
-    left: 10,
-    zIndex: 10,
-});
 
 const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
@@ -153,7 +147,7 @@ const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
                                     <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
                                         <Component {...pageProps} key={router.pathname} />
                                     </AnimatePresence>
-                                    <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
+                                    <DayNightToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
                                     <Footer />
                                 </AnimationHelperDiv>
                                 <div id='modal'></div>
