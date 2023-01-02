@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { StyledMain } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
@@ -15,7 +15,7 @@ const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const Wrapper = styled(motion.section)({
+const Wrapper = styled(m.section)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

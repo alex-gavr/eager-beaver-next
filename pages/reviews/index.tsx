@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ReviewCard } from '../../components/review-card/review-card';
 import 'react-multi-carousel-18/lib/styles.css';
 import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
@@ -29,7 +29,7 @@ const StyledSpan = styled.span({
     height: '90vh',
 });
 
-const StyledWrapper = styled(motion.section)({
+const StyledWrapper = styled(m.section)({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -65,7 +65,7 @@ const Accent = styled.span((props) => ({
     color: props.theme.colors.title,
     transition: 'all 0.5s ease-in-out',
 }));
-const CarouselContainer = styled(motion.div)((props) => ({
+const CarouselContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

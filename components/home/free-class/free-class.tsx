@@ -1,7 +1,6 @@
-import React from 'react';
 import beaver from '../../../images/logo.svg';
 import SubmitForm from '../../submit-form/submit-form';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { list, toUp, opacity } from '../../../utils/motion-animations';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -9,7 +8,7 @@ import { IDeviceType } from '../../../types/data';
 
 
 
-const Wrapper = styled(motion.div)((props) => ({
+const Wrapper = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -28,13 +27,13 @@ const Wrapper = styled(motion.div)((props) => ({
     },
 }));
 
-const Accent = styled(motion.span)((props) => ({
+const Accent = styled(m.span)((props) => ({
     backgroundColor: props.theme.colors.primaryDark,
     color: props.theme.colors.title,
     padding: '0.2rem 1rem',
     borderRadius: '3rem',
 }));
-const EvenColumns = styled(motion.div)((props) => ({
+const EvenColumns = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -45,7 +44,7 @@ const EvenColumns = styled(motion.div)((props) => ({
         width: '90%',
     },
 }));
-const BeaverContainer = styled(motion.div)((props) => ({
+const BeaverContainer = styled(m.div)((props) => ({
     width: '50%',
     '@media only screen and (min-width: 50em)': {
         width: '40%',
@@ -61,9 +60,9 @@ const FreeClass = ({isMobileOnly, isTablet, isDesktop}: IDeviceType) => {
     return (
         <AnimatePresence>
             <Wrapper variants={list} initial='hidden' whileInView='visible'>
-                <motion.h1 variants={toUp} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
+                <m.h1 variants={toUp} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
                     Получите пробное занятие <Accent> бесплатно </Accent>
-                </motion.h1>
+                </m.h1>
                 <EvenColumns variants={opacity} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
                     <BeaverContainer>
                         <Image src={beaver} alt='hello' />

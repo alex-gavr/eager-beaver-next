@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const StyledCard = styled(motion.div)((props) => ({
+export const StyledCard = styled(m.div)((props) => ({
     width: 320,
     maxWidth: 600,
     display: 'flex',
@@ -25,14 +25,14 @@ export const StyledCard = styled(motion.div)((props) => ({
         width: '95%',
     },
 }));
-export const FlexColumnCenter = styled(motion.div)({
+export const FlexColumnCenter = styled(m.div)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
 })
 
-export const StyledDateNumber = styled(motion.span)((props) => ({
+export const StyledDateNumber = styled(m.span)((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
     color: props.theme.colors.title,
     width: 'clamp(6.25rem, 5.6486rem + 2.8302vw, 8.125rem)',
@@ -58,7 +58,7 @@ export const StyledDateNumber = styled(motion.span)((props) => ({
         left: '0rem',
     },
 }));
-export const MonthAndTimeContainer = styled(motion.div)((props) => ({
+export const MonthAndTimeContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -69,7 +69,7 @@ export const MonthAndTimeContainer = styled(motion.div)((props) => ({
     fontSize: 'clamp(1.5rem, 1.3396rem + 0.7547vw, 2rem)',
 }));
 
-export const TitleAndAgeContainer = styled(motion.div)((props) => ({
+export const TitleAndAgeContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -88,7 +88,7 @@ export const TitleAndAgeContainer = styled(motion.div)((props) => ({
         color: props.theme.colors.secondaryDark,
     },
 }));
-export const SpaceBetween = styled(motion.div)((props) => ({
+export const SpaceBetween = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -99,7 +99,7 @@ export const SpaceBetween = styled(motion.div)((props) => ({
         gap: '3rem',
     },
 }));
-export const InnerContainer = styled(motion.div)((props) => ({
+export const InnerContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -109,14 +109,14 @@ export const InnerContainer = styled(motion.div)((props) => ({
     textTransform: 'lowercase',
     color: props.theme.colors.paragraph,
 }));
-export const InnerContainerDetails = styled(motion.div)((props) => ({
+export const InnerContainerDetails = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
     width: '100%',
 }));
-export const TogglerContainer = styled(motion.div)((props) => ({
+export const TogglerContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

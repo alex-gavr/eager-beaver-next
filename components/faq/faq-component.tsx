@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { toggleHeight } from '../../utils/motion-animations';
 import downArrow from '../../images/icons/downArrow.svg';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ interface Props {
     answer: string;
 }
 
-const WrapperContainer = styled(motion.div)((props) => ({
+const WrapperContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -27,7 +27,7 @@ const WrapperContainer = styled(motion.div)((props) => ({
     },
 }));
 
-const QuestionContainer = styled(motion.div)(props => ({
+const QuestionContainer = styled(m.div)(props => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -75,13 +75,13 @@ const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
             </QuestionContainer>
             <AnimatePresence mode='wait' >
                 {open && (
-                    <motion.p
+                    <m.p
                         variants={toggleHeight}
                         initial={toggleHeight.hidden}
                         animate={toggleHeight.visible}
                         exit={toggleHeight.exit}>
                         {answer}
-                    </motion.p>
+                    </m.p>
                 )}
             </AnimatePresence>
         </WrapperContainer>

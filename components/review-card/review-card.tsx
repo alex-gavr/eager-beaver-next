@@ -4,9 +4,9 @@ import { FC, useLayoutEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useWindowSize } from '../../utils/use-window-size';
 import downArrow from '../../images/icons/downArrow.svg';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
-const StyledCard = styled(motion.div)((props) => ({
+const StyledCard = styled(m.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
@@ -66,7 +66,7 @@ const Dashed = styled.span`
     border-radius: 200px;
     transform: translateY(-15px);
 `;
-const StyledReviewCard = styled(motion.div)`
+const StyledReviewCard = styled(m.div)`
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -80,7 +80,7 @@ const StyledReviewCard = styled(motion.div)`
 interface IStyledReviewText {
     $showFullText: boolean;
 }
-const StyledReviewText = styled(motion.p)<IStyledReviewText>`
+const StyledReviewText = styled(m.p)<IStyledReviewText>`
     display: -webkit-box;
     -webkit-line-clamp: ${(props) => (props.$showFullText ? 'initial' : '4')};
     -webkit-box-orient: vertical;

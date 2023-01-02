@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const StyledMain = styled(motion.main)({
+export const StyledMain = styled(m.main)({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

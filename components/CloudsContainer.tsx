@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styled from 'styled-components';
 interface ICloudContainerProps {
     top?: string | number | undefined;
@@ -11,7 +11,7 @@ interface ICloudContainerProps {
     
 }
 
-export const CloudContainer = styled(motion.div)<ICloudContainerProps>(({ top, left, right, bottom, showOnMobile, width, height }) => ({
+export const CloudContainer = styled(m.div)<ICloudContainerProps>(({ top, left, right, bottom, showOnMobile, width, height }) => ({
     display: showOnMobile ? 'block' : 'none',
     zIndex: '99',
     position: 'absolute',

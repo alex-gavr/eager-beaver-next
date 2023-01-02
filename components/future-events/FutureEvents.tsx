@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import AnimatedTextWords from '../AnimatedTextWords/AnimatedTextWords';
 import { BeaverSleeps } from './BeaverSleeps';
 import EventCard from './event-card/EventCard';
@@ -11,7 +11,7 @@ import { IFutureEvent } from '../../types/data';
 import Image from 'next/image';
 import { CloudContainer } from '../CloudsContainer';
 
-const Wrapper = styled(motion.div)((props) => ({
+const Wrapper = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -38,7 +38,7 @@ const YellowBG = styled.span((props) => ({
     background: props.theme.colors.eventsGradient
 }));
 
-const EventsContainer = styled(motion.div)((props) => ({
+const EventsContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     alignItems: 'center',
@@ -55,7 +55,7 @@ const EventsContainer = styled(motion.div)((props) => ({
     },
 }));
 
-const BeaverContainer = styled(motion.div)((props) => ({
+const BeaverContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     alignItems: 'center',

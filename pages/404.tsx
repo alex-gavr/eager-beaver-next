@@ -1,6 +1,5 @@
 import { StyledMain } from "../components/StyledMain"
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "../components/buttons/button";
 import PageAnimation from "../components/page-animation/PageAnimation";
@@ -8,7 +7,7 @@ import { useRouter } from "next/router";
 import beaver from '../images/beaver/scared.svg';
 
 
-const Wrapper = styled(motion.section)((props) => ({
+const Wrapper = styled.section((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

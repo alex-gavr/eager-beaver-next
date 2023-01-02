@@ -3,7 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { StyledMain } from '../../components/StyledMain';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { IFutureEvent } from '../../types/data';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
@@ -15,13 +15,12 @@ const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const StyledSection = styled(motion.section)({
+const StyledSection = styled(m.section)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: '4rem 0.5rem',
-    fontFamily: 'var(--ff-primary-bold)',
     position: 'relative',
     gap: '4rem',
     width: '100%',
@@ -67,6 +66,7 @@ export async function getStaticProps() {
             props: {
                 futureEvents,
             },
+            revalidate: 60,
         };
     } catch (err) {
         console.log(err);

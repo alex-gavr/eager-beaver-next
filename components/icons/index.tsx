@@ -15,7 +15,6 @@ import { ShowIcon } from './show';
 import { HideIcon } from './hide';
 import { LogoutIcon } from './logout';
 import { TIconProps } from './utils';
-import React from 'react';
 
 export type TICons = {
     CurrencyIcon: React.FC<TIconProps>;

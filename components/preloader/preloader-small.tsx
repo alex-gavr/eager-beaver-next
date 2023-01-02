@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-const PreloaderSmallContainer = styled(motion.div)({
+const PreloaderSmallContainer = styled(m.div)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

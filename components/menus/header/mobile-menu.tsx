@@ -1,5 +1,5 @@
 import logo from '../../../images/logo.svg';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FC, useEffect } from 'react';
 import { useScrollBlock } from '../../../utils/blockScroll';
 import { list, toDown, beaver, headerSidebar } from '../../../utils/motion-animations';
@@ -17,7 +17,7 @@ const Nav = styled.nav({
     gap: '5rem',
     zIndex: 900,
 });
-const Background = styled(motion.div)((props) => ({
+const Background = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -31,14 +31,14 @@ const Background = styled(motion.div)((props) => ({
     background: props.theme.colors.mobileMenu,
     zIndex: 9,
 }));
-const MobileNavigationContainer = styled(motion.div)({
+const MobileNavigationContainer = styled(m.div)({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
     height: '70vh',
 });
-const MobileNavigation = styled(motion.div)((props) => ({
+const MobileNavigation = styled(m.div)((props) => ({
     height: 'auto',
     width: '70%',
     display: 'flex',
@@ -61,7 +61,7 @@ const MobileNavigation = styled(motion.div)((props) => ({
     },
 }));
 
-const LogoContainer = styled(motion.div)({
+const LogoContainer = styled(m.div)({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -104,9 +104,9 @@ const MobileMenu: FC<IProps> = ({ header, isOpen, toggle }): JSX.Element => {
                         <MobileNavigationContainer>
                             <MobileNavigation variants={list} initial='hidden' animate='visible'>
                                 {header.map((link: any) => (
-                                    <motion.li variants={toDown} onClick={toggle} key={link.id}>
+                                    <m.li variants={toDown} onClick={toggle} key={link.id}>
                                         <Link href={link.to}>{link.name}</Link>
-                                    </motion.li>
+                                    </m.li>
                                 ))}
                             </MobileNavigation>
                         </MobileNavigationContainer>

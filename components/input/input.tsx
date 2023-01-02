@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-// import clsx from 'clsx';
 import { useState } from 'react';
 import * as Icons from '../icons';
-// import './input.css';
 import { TICons } from '../icons';
 import styled from 'styled-components';
 

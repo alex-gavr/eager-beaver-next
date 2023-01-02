@@ -1,7 +1,7 @@
 // import styles from './teaching-steps.module.css';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Button } from '../../../buttons/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useWindowSize } from '../../../../utils/use-window-size';
 import styled, { useTheme } from 'styled-components';
 // import ym from 'react-yandex-metrika';
@@ -15,7 +15,7 @@ const Wrapper = styled.div({
     width: '100%',
 });
 
-const StepsContainer = styled(motion.div)({
+const StepsContainer = styled(m.div)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -23,7 +23,7 @@ const StepsContainer = styled(motion.div)({
     position: 'relative',
     width: '100%',
 });
-const TheStepContainer = styled(motion.div)((props) => ({
+const TheStepContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'flex-start',

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ITeacher } from '../../types/data';
 import {  NextPage } from 'next';
 import { StyledMain } from '../../components/StyledMain';
@@ -16,7 +16,7 @@ const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const StyledWrapper = styled(motion.section)({
+const StyledWrapper = styled(m.section)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

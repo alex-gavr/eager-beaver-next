@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import ok from '../../../images/icons/OkHand.svg';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ const ColumnDiv = styled.div({
     justifyContent: 'center',
     width: '100%',
 });
-const WrapperDiv = styled(motion.div)((props) =>({
+const WrapperDiv = styled(m.div)((props) =>({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

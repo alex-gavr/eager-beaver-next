@@ -8,9 +8,8 @@ import Moment from 'react-moment';
 import 'moment/locale/ru';
 import moment from 'moment';
 import downArrow from '../../../images/icons/downArrow.svg';
-import { onOpenModal, onOpenModalFormFutureEvents } from '../../../services/modalSlice';
+import { onOpenModalFormFutureEvents } from '../../../services/modalSlice';
 import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
-import { resetEnrolledToFutureEvent } from '../../../services/telegramSlice';
 import Image from 'next/image';
 import {
     FlexColumnCenter,

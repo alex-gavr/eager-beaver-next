@@ -1,4 +1,3 @@
-import React from 'react';
 import { getIconColor, TIconProps } from './utils';
 
 export const ArrowDownIcon = ({ type, onClick }: TIconProps) => {

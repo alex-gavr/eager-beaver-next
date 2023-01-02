@@ -1,8 +1,8 @@
-import { motion, useIsPresent } from 'framer-motion';
+import { m, useIsPresent } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const StyledAnimationDiv = styled(motion.div)({
+const StyledAnimationDiv = styled(m.div)({
     position: 'absolute',
     top: 0,
     left: 0,

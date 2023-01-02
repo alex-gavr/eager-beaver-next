@@ -1,7 +1,7 @@
 import { useWindowSize } from '../../../utils/use-window-size';
 import { FC, useRef } from 'react';
 import { ImageWithSkeleton } from '../../image-with-skeleton/img-with-skeleton';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import Carousel from 'react-multi-carousel-18';
 import 'react-multi-carousel-18/lib/styles.css';
 import { IEventsData } from './thematic-events-data';
@@ -10,7 +10,7 @@ import { LeftArrow, RightArrow } from '../../custom-arrows/CustomArrows';
 import styled from 'styled-components';
 import { IDeviceType } from '../../../types/data';
 
-const EvenColumns = styled(motion.div)({
+const EvenColumns = styled(m.div)({
     display: 'grid',
     gridTemplateColumns: '1fr',
     gap: '3rem',
@@ -43,7 +43,7 @@ const ImageContainer = styled.div({
     },
 });
 
-const TextContainer = styled(motion.div)<any>((props) => ({
+const TextContainer = styled(m.div)<any>((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -57,7 +57,7 @@ const TextContainer = styled(motion.div)<any>((props) => ({
         color: props.theme.colors.paragraph
     },
 }));
-const SubHeading = styled(motion.h2)((props) => ({
+const SubHeading = styled(m.h2)((props) => ({
     backgroundColor: props.theme.colors.primaryDark,
     padding: '0.5rem 1rem',
     borderRadius: '1.5rem',
@@ -67,7 +67,7 @@ const SubHeading = styled(motion.h2)((props) => ({
     textAlign: 'center',
 }));
 
-const CarouselContainer = styled(motion.div)<any>(({order}) => ({
+const CarouselContainer = styled(m.div)<any>(({order}) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -168,7 +168,7 @@ export const TwoColumns: FC<IProps> = ({ images, alt, imageSide, subHeading, par
                 </CarouselContainer>
                 <TextContainer order={ !isDesktop ? 1 : imageSide === 'left' ? 2 : 1 }>
                     <SubHeading>{subHeading}</SubHeading>
-                    <motion.p>{paragraph}</motion.p>
+                    <m.p>{paragraph}</m.p>
                 </TextContainer>
             </EvenColumns>
         </AnimatePresence>

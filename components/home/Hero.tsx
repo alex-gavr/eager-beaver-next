@@ -1,18 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import hero from '../../images/hero/heroCropped.webp';
 import heroMobile from '../../images/hero/mobileHero.webp';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { list, toRight, toDown, toLeft, popUp } from '../../utils/motion-animations';
 import styled from 'styled-components';
 import Image from 'next/image';
 import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
 import Cookies from 'js-cookie';
-import { Button } from '../buttons/button';
-import { useAppDispatch } from '../../services/hook';
-import { onOpenModal } from '../../services/modalSlice';
-import { PreloaderSmall } from '../preloader/preloader-small';
 
-const MainContent = styled(motion.div)({
+const MainContent = styled(m.div)({
     width: '100%',
     maxWidth: '1200px',
     display: 'flex',
@@ -22,7 +18,7 @@ const MainContent = styled(motion.div)({
     marginLeft: '2rem',
 });
 
-const Columns = styled(motion.div)((props) => ({
+const Columns = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -41,7 +37,7 @@ const Columns = styled(motion.div)((props) => ({
         textShadow: '2px 2px 5px black',
     },
 }));
-const ButtonContainer = styled(motion.div)({
+const ButtonContainer = styled(m.div)({
     display: 'flex',
     flexFlow: 'column',
     justifyContent: 'center',
@@ -50,7 +46,7 @@ const ButtonContainer = styled(motion.div)({
     marginTop: '2rem',
 });
 
-const Wrapper = styled(motion.section)({
+const Wrapper = styled(m.section)({
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
@@ -100,13 +96,13 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                 <Image fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' priority />
                 <MainContent variants={list} animate='visible' initial='hidden'>
                     <Columns>
-                        <motion.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
+                        <m.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
                             {name && `Привет, ${name}`}
-                        </motion.p>
-                        <motion.h1 variants={toRight}>Eager Beaver Language School</motion.h1>
-                        <motion.p variants={toLeft}>
+                        </m.p>
+                        <m.h1 variants={toRight}>Eager Beaver Language School</m.h1>
+                        <m.p variants={toLeft}>
                             детская языковая школа инклюзивного вида обучения <br /> сделай свой первый шаг к изучению английского языка
-                        </motion.p>
+                        </m.p>
                         <ButtonContainer variants={popUp}>
                             <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
                         </ButtonContainer>

@@ -13,8 +13,10 @@ import { useDarkMode } from '../utils/useDarkMode';
 import DayNightToggle from 'react-day-and-night-toggle';
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
+import { LazyMotion } from 'framer-motion';
 
 const Footer = dynamic(() => import('../components/menus/footer/footer'));
+const FixedSocialMedia = dynamic(() => import('../components/social-media-block/FixedSocialMedia'));
 
 const KoskoBold = localFont({
     src: '../fonts/KoskoBold.ttf',
@@ -90,7 +92,6 @@ const Wrapper = styled.div({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // minHeight: '100vh',
     width: '100%',
     position: 'relative',
     overflow: 'hidden',
@@ -107,8 +108,6 @@ const StyledToggle = styled(DayNightToggle)({
     zIndex: 10,
 });
 
-
-
 const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
 
@@ -123,24 +122,27 @@ const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     return (
         <>
             <ThemeProvider theme={themeMode}>
-                <Provider store={store}>
-                    <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
-                        <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
-                            <GlobalStyle />
-                            <Header />
-                            {/* This div is makes animation show in footer, but not in header */}
-                            <AnimationHelperDiv>
-                                <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
-                                    <Component {...pageProps} key={router.pathname} />
-                                </AnimatePresence>
-                                <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
-                                <Footer />
-                            </AnimationHelperDiv>
-                            <div id='modal'></div>
-                        </Wrapper>
-                        <Analytics />
-                    </SkeletonTheme>
-                </Provider>
+                <LazyMotion features={async () => (await import('../components/domAnimation')).default}>
+                    <Provider store={store}>
+                        <SkeletonTheme baseColor='#cdf0b7' highlightColor='#f8ec9b'>
+                            <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
+                                <GlobalStyle />
+                                <Header />
+                                <FixedSocialMedia />
+                                {/* This div is makes animation show in footer, but not in header */}
+                                <AnimationHelperDiv>
+                                    <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
+                                        <Component {...pageProps} key={router.pathname} />
+                                    </AnimatePresence>
+                                    <StyledToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
+                                    <Footer />
+                                </AnimationHelperDiv>
+                                <div id='modal'></div>
+                            </Wrapper>
+                            <Analytics />
+                        </SkeletonTheme>
+                    </Provider>
+                </LazyMotion>
             </ThemeProvider>
         </>
     );

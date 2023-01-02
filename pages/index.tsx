@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import { useAppDispatch, useAppSelector } from '../services/hook';
 import { onCloseModal } from '../services/modalSlice';
 
+
 const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
 const FreeClass = dynamic(() => import('../components/home/free-class/free-class'));
@@ -64,6 +65,7 @@ const Home: NextPage<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }) => {
 export default Home;
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
+    
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
 

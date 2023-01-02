@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { footer } from '../links';
 import { list, opacity, popUp, toDown, toUp } from '../../../utils/motion-animations';
 import beaverRocket from '../../../images/beaver/BeaverRocket.svg';
@@ -9,18 +9,16 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import SocialMediaIcons from '../../social-media-block/SocialMediaIcons';
 import { Button } from '../../buttons/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { useAppDispatch } from '../../../services/hook';
+import { useInView } from 'react-intersection-observer';
+import { footerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
 
 const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ssr: false,
     loading: () => <Skeleton width={300} height={300} style={{ placeSelf: 'center' }} />,
 });
-// const SocialMediaIcons = dynamic(() => import('../../social-media-block/SocialMediaIcons'));
-
-// import { useInView } from 'react-intersection-observer';
-// import { useAppDispatch } from '../../../services/hook';
-// import { footerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
 
 const StyledFooter = styled.footer({
     width: '100vw',
@@ -31,7 +29,7 @@ const StyledFooter = styled.footer({
     backgroundColor: '#1d1e25',
     position: 'relative',
 });
-const SocialMediaContainer = styled(motion.div)((props) => ({
+const SocialMediaContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
@@ -46,14 +44,14 @@ const SocialMediaContainer = styled(motion.div)((props) => ({
         color: props.theme.colors.secondaryLight,
     },
 }));
-const IconsContainer = styled(motion.div)({
+const IconsContainer = styled(m.div)({
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'center',
     alignItems: 'center',
     gap: '1.2rem',
 });
-const FooterMainPart = styled(motion.div)({
+const FooterMainPart = styled(m.div)({
     width: '100%',
     maxWidth: '1300px',
     display: 'flex',
@@ -95,7 +93,7 @@ const Phone = styled.p({
     },
 });
 
-const MapAndAddressContainer = styled(motion.div)({
+const MapAndAddressContainer = styled(m.div)({
     width: '98%',
     display: 'flex',
     flexDirection: 'column',
@@ -107,6 +105,9 @@ const MapAndAddressContainer = styled(motion.div)({
     gap: '1rem',
     paddingBottom: '2rem',
     borderBottom: '3px solid rgb(248, 236, 155)',
+    '@media only screen and (max-width: 50em)': {
+        alignItems: 'center',
+    },
     '@media only screen and (min-width: 900px)': {
         width: '50%',
         borderRight: '3px solid rgb(248, 236, 155)',
@@ -118,7 +119,7 @@ const MapAndAddressContainer = styled(motion.div)({
         flexDirection: 'row',
     },
 });
-const AddressContainer = styled(motion.div)({
+const AddressContainer = styled(m.div)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -127,7 +128,7 @@ const AddressContainer = styled(motion.div)({
     letterSpacing: '0.05rem',
     gap: '1rem',
 });
-const LinksList = styled(motion.ul)((props) => ({
+const LinksList = styled(m.ul)((props) => ({
     display: 'grid',
     gridTemplateRows: 'repeat(5, 1fr)',
     gridAutoFlow: 'column',
@@ -164,7 +165,7 @@ const StyledLink = styled(Link)((props) => ({
         borderRadius: '2rem',
     },
 }));
-const CreditsContainer = styled(motion.div)((props) => ({
+const CreditsContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -185,7 +186,7 @@ const CreditsContainer = styled(motion.div)((props) => ({
         },
     },
 }));
-const CreditsContainerOmitLera = styled(motion.div)((props) => ({
+const CreditsContainerOmitLera = styled(m.div)((props) => ({
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '0.5rem',
@@ -202,20 +203,20 @@ const Footer = () => {
     const handleShowMap = () => {
         setShowMap(!showMap);
     };
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-    // const { ref, inView } = useInView({});
+    const { ref, inView } = useInView({});
 
-    // useEffect(() => {
-    //     dispatch(footerVisibilityStatus(inView))
+    useEffect(() => {
+        dispatch(footerVisibilityStatus(inView))
 
-    // }, [inView])
+    }, [inView])
 
     return (
         <AnimatePresence>
-            <StyledFooter>
+            <StyledFooter ref={ref}>
                 <SocialMediaContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-10% 0px -10% -0px' }}>
-                    <motion.p variants={opacity}>присоединяйся к нам и здесь</motion.p>
+                    <m.p variants={opacity}>присоединяйся к нам и здесь</m.p>
                     <IconsContainer variants={toUp}>
                         <SocialMediaIcons />
                     </IconsContainer>
@@ -229,9 +230,9 @@ const Footer = () => {
                             </Address>
                             <Phone>
                                 Телефон для связи:
-                                <motion.a href='tel:+7(909)380-96-57' style={{ color: 'inherit' }}>
+                                <m.a href='tel:+7(909)380-96-57' style={{ color: 'inherit' }}>
                                     +7(909)380-96-57
-                                </motion.a>
+                                </m.a>
                             </Phone>
                         </AddressContainer>
                         {showMap ? (
@@ -250,19 +251,19 @@ const Footer = () => {
                     </MapAndAddressContainer>
                     <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
                         {footer.map((link) => (
-                            <motion.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
+                            <m.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
                                 <StyledLink href={link.to}>{link.name}</StyledLink>
-                            </motion.li>
+                            </m.li>
                         ))}
                     </LinksList>
                 </FooterMainPart>
                 <CreditsContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
-                    <motion.p variants={popUp}>Product Owner: Валерия Евстратова</motion.p>
+                    <m.p variants={popUp}>Product Owner: Валерия Евстратова</m.p>
                     <CreditsContainerOmitLera variants={list}>
-                        <motion.p variants={popUp}>Design: Мария Рязанова</motion.p>
-                        <motion.p variants={popUp}>Development: Александр Гавриленко</motion.p>
-                        <motion.p variants={popUp}>Photography: Диана Удаева</motion.p>
-                        <motion.p variants={popUp}>Illustrations: Елизавета Шведова</motion.p>
+                        <m.p variants={popUp}>Design: Мария Рязанова</m.p>
+                        <m.p variants={popUp}>Development: Александр Гавриленко</m.p>
+                        <m.p variants={popUp}>Photography: Диана Удаева</m.p>
+                        <m.p variants={popUp}>Illustrations: Елизавета Шведова</m.p>
                     </CreditsContainerOmitLera>
                 </CreditsContainer>
             </StyledFooter>

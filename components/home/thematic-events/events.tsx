@@ -1,7 +1,7 @@
 import { TwoColumns } from './two-columns';
 import { FC } from 'react';
 import { eventsData } from './thematic-events-data';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { list, toUp } from '../../../utils/motion-animations';
 import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
@@ -22,7 +22,7 @@ const Wrapper = styled.section({
         padding: '2rem',
     },
 });
-const WelcomeTextContainer = styled(motion.div)((props) => ({
+const WelcomeTextContainer = styled(m.div)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -49,11 +49,11 @@ const Events: FC<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }): JSX.Ele
                     <h1>
                         <AnimatedTextWords title={true} text='Тематические мероприятия' textAnimation='fromTopRight' />
                     </h1>
-                    <motion.p variants={toUp} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
+                    <m.p variants={toUp} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
                         Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом.
                         Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы. Проведение таких мероприятий для нас является
                         неотъемлемой частью образования.
-                    </motion.p>
+                    </m.p>
                 </WelcomeTextContainer>
                 {eventsData.map((event) => (
                     <TwoColumns

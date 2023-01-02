@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FC, ReactNode } from 'react';
-import styled, { ThemeConsumer } from 'styled-components';
+import styled from 'styled-components';
 
-const PrimaryButton = styled(motion.button)((props) => ({
+const PrimaryButton = styled(m.button)((props) => ({
     border: '2px solid transparent',
     borderRadius: '1.85rem',
     color: props.theme.colors.black,

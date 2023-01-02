@@ -3,14 +3,14 @@ import cloud from '../../../images/clouds/4.svg';
 import { FC } from 'react';
 import { BeaverHi } from './BeaverHi';
 import TeachingSteps from './teaching-steps/TeachingSteps';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { list, opacity, toLeft, toRight } from '../../../utils/motion-animations';
 import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { CloudContainer } from '../../CloudsContainer';
 
-const StyledSection = styled(motion.section)(props => ({
+const StyledSection = styled(m.section)(props => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -29,7 +29,7 @@ const StyledSection = styled(motion.section)(props => ({
         color: props.theme.colors.title
     }
 }));
-const EvenColumns = styled(motion.div)({
+const EvenColumns = styled(m.div)({
     zIndex: 100,
     display: 'grid',
     gridTemplateColumns: '1fr',

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../buttons/button';
 import { Input, TInputInterface } from '../input/input';
 import { formatPhoneNumber } from '../../utils/format-phone-number';

@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import cloud from '../../images/clouds/1.svg';
 import cloud2 from '../../images/clouds/2.svg';
 import cloud3 from '../../images/clouds/3.svg';
-import { FC } from 'react';
 import { CloudContainer } from '../../components/CloudsContainer';
 import { StyledMain } from '../../components/StyledMain';
 import { NextPage } from 'next';

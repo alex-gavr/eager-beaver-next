@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styled from 'styled-components';
 
 const Toggle = styled.button((props) => ({
@@ -19,7 +19,7 @@ const Toggle = styled.button((props) => ({
     },
 }));
 
-const Path = (props: any) => <motion.path fill='transparent' strokeWidth='3' stroke='hsl(0, 0%, 18%)' strokeLinecap='round' {...props} />;
+const Path = (props: any) => <m.path fill='transparent' strokeWidth='3' stroke='hsl(0, 0%, 18%)' strokeLinecap='round' {...props} />;
 
 interface Props {
     toggle: () => void;

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import styled from 'styled-components';
 import {
     textFromTop,
@@ -18,7 +18,7 @@ interface IProps {
     fontSize?: string;
 }
 
-const StyledContainer = styled(motion.div)({
+const StyledContainer = styled(m.div)({
     overflow: 'hidden',
     display: 'flex',
     flexFlow: 'row wrap',
@@ -28,7 +28,7 @@ const StyledContainer = styled(motion.div)({
     zIndex: 2,
 });
 
-const StyledTitle = styled(motion.span)({
+const StyledTitle = styled(m.span)({
     fontSize: 'clamp(2.5rem, 2.2179rem + 1.3675vw, 3.5rem)',
     fontFamily: 'var(--ff-heading)',
     zIndex: 2,
@@ -37,7 +37,7 @@ const StyledTitle = styled(motion.span)({
         marginRight: 16,
     },
 });
-const StyledText = styled(motion.span)({
+const StyledText = styled(m.span)({
     fontSize: 'clamp(1.2rem, 1.1154rem + 0.4103vw, 1.5rem);',
     fontFamily: 'var(--ff-body)',
     textTransform: 'lowercase',

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import beaverRocket from '../../images/beaver/BeaverRocket.svg';
 import { IDeviceType } from '../../types/data';
 
@@ -9,7 +9,7 @@ interface IProps {
     rotate?: string;
 }
 
-const StyledDiv = styled(motion.div)<IProps>(({ width, rotate }) => ({
+const StyledDiv = styled(m.div)<IProps>(({ width, rotate }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
