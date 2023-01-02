@@ -33,8 +33,8 @@ const FlyingBeaver = ({ isMobileOnly, isTablet }: Omit<IDeviceType, 'isDesktop'>
                 width={isMobileOnly ? '40%' : isTablet ? '20%' : '10rem'}
                 rotate={isMobileOnly ? '55deg' : '40deg'}
                 animate={{
-                    x: isMobileOnly ? '-70vw' : '-100vw',
-                    y: isMobileOnly ? '-150vh' : '-150vh',
+                    x: isMobileOnly ? '-100vw' : '-100vw',
+                    y: isMobileOnly ? '-180vh' : '-180vh',
                     transition: {
                         duration: 4.5,
                         delay: 1,
