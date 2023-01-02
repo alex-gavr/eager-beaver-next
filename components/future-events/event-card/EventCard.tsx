@@ -4,9 +4,6 @@ import { Button } from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
 import { toggleHeight } from '../../../utils/motion-animations';
 import { PreloaderSmall } from '../../preloader/preloader-small';
-import Moment from 'react-moment';
-import 'moment/locale/ru';
-import moment from 'moment';
 import downArrow from '../../../images/icons/downArrow.svg';
 import { onOpenModalFormFutureEvents } from '../../../services/modalSlice';
 import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
@@ -22,6 +19,7 @@ import {
     TitleAndAgeContainer,
     TogglerContainer,
 } from './EventCardsStyles';
+import { convertH2M, minutesEachHourInOneDay, TimeDiff } from '../../../utils/timeCalcHelpers';
 
 interface IProps {
     title: string;
@@ -38,53 +36,31 @@ interface IProps {
 const EventCard = ({ title, description, age, participants: participantsData, total_spots, price, start, end, page_id }: IProps) => {
     const [participants, setParticipants] = useState<number>(participantsData);
     const { shouldChangeMember } = useAppSelector((state) => state.futureEventDetails);
-
-    const { enrolledToFutureEvent } = useAppSelector((state) => state.telegram);
     const [enrolled, setEnrolled] = useState(false);
     const [buttonLoading, setButtonLoading] = useState(false);
-    const [enrolledDataOptions, setEnrolledDataOptions] = useState({
-        page_id: '',
-        members: 0,
-    });
     const dispatch = useAppDispatch();
 
-    Moment.globalLocale = 'ru';
+    const day = new Date(start).toLocaleString('ru-RU', { day: 'numeric' });
+    const month = new Date(start)
+        .toLocaleString('ru-RU', {
+            month: 'long',
+            day: 'numeric',
+        })
+        .split(' ')[1];
+    const timeStart = new Date(start).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    const timeEnd = new Date(end).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
-    // Duration calculations
-    const startingTime = moment(start).format('LT');
-    const endingTime = moment(end).format('LT');
-    const startingTime1 = moment(startingTime, 'LT');
-    const endingTime1 = moment(endingTime, 'LT');
-    const diff = endingTime1.diff(startingTime1, 'm');
-    const minutesEachHourInOneDay = [
-        60,
-        60 * 2,
-        60 * 3,
-        60 * 4,
-        60 * 5,
-        60 * 6,
-        60 * 7,
-        60 * 8,
-        60 * 9,
-        60 * 10,
-        60 * 11,
-        60 * 12,
-        60 * 13,
-        60 * 14,
-        60 * 15,
-        60 * 16,
-        60 * 17,
-        60 * 18,
-        60 * 19,
-        60 * 20,
-        60 * 21,
-        60 * 22,
-        60 * 23,
-        60 * 24,
-    ];
+    // Date full in format - 31 декабря 2022 г.
+    const dateFull = new Date(start).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Calculate difference between ending time and starting time
+    const duration2 = TimeDiff(timeStart, timeEnd);
+    // Convert duration to minutes
+    const diff = convertH2M(duration2);
+
     const isFullHour = minutesEachHourInOneDay.some((i) => i === diff);
-    const hours = moment.duration(diff, 'minutes').hours();
-    const minutes = moment.duration(diff, 'minutes').minutes();
+    const hours = Math.floor(diff / 60)
+    const minutes = diff % 60;
     const durationName = hours === 1 ? 'час' : hours > 4 ? 'часов' : 'часа';
 
     let duration = null;
@@ -99,28 +75,8 @@ const EventCard = ({ title, description, age, participants: participantsData, to
     // Spots Left
     const spotsLeft = total_spots - participants;
 
-    // Month
-    const dateFull = moment(start).format('LL');
-    const dateFullSplit = dateFull.split(' ');
-    const month = dateFullSplit[1];
-
     const [open, setOpen] = useState(false);
 
-    // const handleClick = (title: string, age: string, participants: number, dateFull: string, page_id: string) => {
-    //     const values = {
-    //         title,
-    //         age,
-    //         dateFull,
-    //     };
-    //     dispatch(setDetails(values));
-    //     dispatch(onOpenModal());
-    //     dispatch(resetEnrolledToFutureEvent());
-    //     const members = participants + 1;
-    //     setEnrolledDataOptions({
-    //         page_id: page_id,
-    //         members: members,
-    //     });
-    // };
     const handleClick = async (title: string, age: string, dateFull: string) => {
         const values = {
             title,
@@ -169,13 +125,11 @@ const EventCard = ({ title, description, age, participants: participantsData, to
     return (
         <StyledCard>
             <StyledDateNumber>
-                <Moment format='DD'>{start}</Moment>
+                <span>{day}</span>
             </StyledDateNumber>
             <MonthAndTimeContainer>
                 <span>{month}</span>
-                <Moment element={'span'} format='LT'>
-                    {start}
-                </Moment>
+                <span>{timeStart}</span>
             </MonthAndTimeContainer>
             <FlexColumnCenter>
                 <TitleAndAgeContainer>
@@ -201,7 +155,6 @@ const EventCard = ({ title, description, age, participants: participantsData, to
                                     typeHTML='submit'
                                     padding='0.5rem 0.9rem'
                                     fontFamily='var(--ff-body)'
-                                    // onClick={() => handleClick(title, age, participants, dateFull, page_id)}
                                     onClick={() => handleClick(title, age, dateFull)}
                                     disabled={enrolled || spotsLeft === 0}>
                                     {buttonLoading ? <PreloaderSmall /> : enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}

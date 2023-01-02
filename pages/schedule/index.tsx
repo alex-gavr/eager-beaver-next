@@ -9,22 +9,12 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { resetDetails } from '../../services/futureEventSignUpData';
 import { fetchNotion } from '../../utils/fetchNotion';
+import { StyledSection } from '../../components/StyledSectionForFutureEvents';
 
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
-
-const StyledSection = styled(m.section)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '4rem 0.5rem',
-    position: 'relative',
-    gap: '4rem',
-    width: '100%',
-});
 
 interface IProps {
     futureEvents: IFutureEvent[];
@@ -66,7 +56,7 @@ export async function getStaticProps() {
             props: {
                 futureEvents,
             },
-            revalidate: 60,
+            revalidate: 15,
         };
     } catch (err) {
         console.log(err);

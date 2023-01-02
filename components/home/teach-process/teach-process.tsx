@@ -1,7 +1,6 @@
 // import styles from './teach.module.css';
 import cloud from '../../../images/clouds/4.svg';
 import { FC } from 'react';
-import { BeaverHi } from './BeaverHi';
 import TeachingSteps from './teaching-steps/TeachingSteps';
 import { AnimatePresence, m } from 'framer-motion';
 import { list, opacity, toLeft, toRight } from '../../../utils/motion-animations';
@@ -9,8 +8,19 @@ import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { CloudContainer } from '../../CloudsContainer';
+import dynamic from 'next/dynamic';
 
-const StyledSection = styled(m.section)(props => ({
+const BeaverHiOptimized = dynamic(() => import('./BeaverHi'));
+
+const BeaverDiv = styled.div({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+});
+
+const StyledSection = styled(m.section)((props) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -26,8 +36,8 @@ const StyledSection = styled(m.section)(props => ({
     },
     '& > h1': {
         zIndex: 2,
-        color: props.theme.colors.title
-    }
+        color: props.theme.colors.title,
+    },
 }));
 const EvenColumns = styled(m.div)({
     zIndex: 100,
@@ -62,7 +72,9 @@ const TeachProcess: FC = (): JSX.Element => {
                 </h1>
                 <EvenColumns variants={opacity}>
                     <TeachingSteps />
-                    <BeaverHi />
+                    <BeaverDiv>
+                        <BeaverHiOptimized />
+                    </BeaverDiv>
                 </EvenColumns>
                 <Background />
                 <CloudContainer top={'10%'} left={0} variants={toRight} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>

@@ -28,7 +28,7 @@ const Wrapper = styled(m.div)((props) => ({
 }));
 
 const Accent = styled(m.span)((props) => ({
-    backgroundColor: props.theme.colors.primaryDark,
+    backgroundColor: props.theme.colors.secondaryDark,
     color: props.theme.colors.title,
     padding: '0.2rem 1rem',
     borderRadius: '3rem',

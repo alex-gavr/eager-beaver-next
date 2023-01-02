@@ -1,6 +1,5 @@
 import { m } from 'framer-motion';
 import AnimatedTextWords from '../AnimatedTextWords/AnimatedTextWords';
-import { BeaverSleeps } from './BeaverSleeps';
 import EventCard from './event-card/EventCard';
 import cloud from '../../images/clouds/5.svg';
 import cloud2 from '../../images/clouds/3.svg';
@@ -10,6 +9,9 @@ import styled from 'styled-components';
 import { IFutureEvent } from '../../types/data';
 import Image from 'next/image';
 import { CloudContainer } from '../CloudsContainer';
+import dynamic from 'next/dynamic';
+
+const BeaverSleeps = dynamic(() => import('./BeaverSleeps'));
 
 const Wrapper = styled(m.div)((props) => ({
     display: 'flex',
