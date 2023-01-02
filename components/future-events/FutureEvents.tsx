@@ -49,6 +49,9 @@ const EventsContainer = styled(m.div)((props) => ({
     height: '100%',
     rowGap: '5rem',
     columnGap: '2rem',
+    '& > h2': {
+        color: props.theme.colors.paragraph,
+    },
     '@media only screen and (max-width: 30em)': {
         rowGap: '4rem',
     },

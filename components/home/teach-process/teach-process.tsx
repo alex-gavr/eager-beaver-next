@@ -1,4 +1,5 @@
-import cloud from '../../../images/clouds/4.svg';
+import cloud from '../../../images/clouds/5.svg';
+import cloud2 from '../../../images/clouds/2.svg';
 import { FC } from 'react';
 import TeachingSteps from './teaching-steps/TeachingSteps';
 import { AnimatePresence, m } from 'framer-motion';
@@ -86,7 +87,7 @@ const TeachProcess: FC = (): JSX.Element => {
                     whileInView='visible'
                     initial='hidden'
                     viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
-                    <Image src={cloud} alt='cloud2' />
+                    <Image src={cloud2} alt='cloud2' />
                 </CloudContainer>
             </StyledSection>
         </AnimatePresence>
