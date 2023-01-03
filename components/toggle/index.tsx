@@ -52,7 +52,7 @@ const DayAndNightToggle = ({
     }, [checked, startingInactive])
 
     return (
-        <SwitchContainer initial={{left: '-10%'}} animate={{left: '10px'}} transition={{delay: 2, duration: 1, ease: 'easeInOut'}} className={className} size={roundedSize} {...labelProps}>
+        <SwitchContainer initial={{left: '-30%'}} animate={{left: '10px'}} transition={{delay: 2, duration: 1, ease: 'easeInOut'}} className={className} size={roundedSize} {...labelProps}>
             <Switch shadows={shadows} size={roundedSize} checked={checked}
                 onClick={
                     !disable
