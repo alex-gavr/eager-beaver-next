@@ -66,15 +66,6 @@ export interface IPrices {
     feature3: IText;
 }
 
-export interface ILocation {
-    city: string;
-    ip: string;
-    latitude: string;
-    longitude: string;
-    zipcode: string;
-    country: string;
-}
-
 export interface IFaq {
     key: IKey;
     question: IText;

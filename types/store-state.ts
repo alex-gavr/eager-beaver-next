@@ -1,5 +1,3 @@
-import { ILocation } from './data';
-
 export interface LoadingAndError {
     loading: boolean | null;
     error: boolean;
@@ -7,10 +5,6 @@ export interface LoadingAndError {
 
 export interface IButtonState {
     submitIntention: boolean;
-}
-
-export interface ILocationState extends LoadingAndError {
-    userLocation: ILocation | null;
 }
 
 export interface ITelegram extends LoadingAndError {
