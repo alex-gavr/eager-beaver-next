@@ -3,26 +3,16 @@ import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFutureEvent } from '../../types/data';
-import { useAppDispatch, useAppSelector } from '../../services/hook';
-import { onCloseModal } from '../../services/modalSlice';
-import { resetDetails } from '../../services/futureEventSignUpData';
 import { fetchNotion } from '../../utils/fetchNotion';
 
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
-const Modal = dynamic(() => import('../../components/modal/modal'));
-const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 interface IProps {
     futureEvents: IFutureEvent[];
 }
 const Schedule: FC<IProps> = ({ futureEvents }) => {
-    const { isModalOpen, submitSuccess, formFutureEvents } = useAppSelector((state) => state.modal);
-    const dispatch = useAppDispatch();
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-        dispatch(resetDetails());
-    };
+
     return (
         <>
             <Head>
@@ -36,11 +26,6 @@ const Schedule: FC<IProps> = ({ futureEvents }) => {
                     <FutureEvents futureEvents={futureEvents} />
                 </StyledSection>
                 <PageAnimation />
-                {isModalOpen && formFutureEvents && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        <FormPopUp futureEvents={true} />
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

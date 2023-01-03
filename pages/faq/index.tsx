@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { m } from 'framer-motion';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
-import { useAppDispatch, useAppSelector } from '../../services/hook';
-import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
 import FAQComponent from '../../components/faq/faq-component';
 
-// const FAQComponent = dynamic(() => import('../../components/faq/faq-component'));
-const Modal = dynamic(() => import('../../components/modal/modal'));
-const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
@@ -59,12 +54,6 @@ interface IProps {
     faq: IFaq[];
 }
 const FAQ = ({ faq }: IProps) => {
-    const dispatch = useAppDispatch();
-    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
-
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-    };
 
     return (
         <>
@@ -92,11 +81,6 @@ const FAQ = ({ faq }: IProps) => {
                     <YellowBackground />
                 </Wrapper>
                 <PageAnimation />
-                {isModalOpen && formFromModal && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        <FormPopUp futureEvents={false} />
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

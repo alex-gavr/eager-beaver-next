@@ -3,15 +3,11 @@ import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { IPrices } from '../../types/data';
 import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
-import { useAppDispatch, useAppSelector } from '../../services/hook';
-import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
 import SwiperCards from '../../components/prices/SwiperCards';
 
-const Modal = dynamic(() => import('../../components/modal/modal'));
-const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+
 const SidePopUp = dynamic(() => import('../../components/prices/side-popup/SidePopUp'));
-// const SwiperCards = dynamic(() => import('../../components/prices/SwiperCards'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
@@ -57,12 +53,6 @@ interface IProps {
     prices: IPrices[];
 }
 const Pricing = ({ prices }: IProps) => {
-    const dispatch = useAppDispatch();
-    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
-
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-    };
 
     const pricesAdjustedArray: IPricesAdjustedArray[] =
         prices &&
@@ -113,11 +103,6 @@ const Pricing = ({ prices }: IProps) => {
                 </StyledSection>
                 <SidePopUp />
                 <PageAnimation />
-                {isModalOpen && formFromModal && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        <FormPopUp futureEvents={false} />
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

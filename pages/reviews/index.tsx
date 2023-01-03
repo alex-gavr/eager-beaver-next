@@ -9,14 +9,11 @@ import { LeftArrow, RightArrow } from '../../components/custom-arrows/CustomArro
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
 import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
-import { useAppDispatch, useAppSelector } from '../../services/hook';
-import { onCloseModal } from '../../services/modalSlice';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { fetchNotion } from '../../utils/fetchNotion';
-import Carousel from 'react-multi-carousel-18'
+import Carousel from 'react-multi-carousel-18';
 
-const Modal = dynamic(() => import('../../components/modal/modal'));
-const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
+
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
@@ -77,13 +74,6 @@ interface IProps extends IDeviceType {
     reviews: IReviews[];
 }
 const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
-    const dispatch = useAppDispatch();
-    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
-
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-    };
-
     const ref = useRef(null);
     const slider = usePreventVerticalScroll(ref);
 
@@ -144,15 +134,10 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
                                 ))}
                         </StyledCarousel>
                     </CarouselContainer>
-                    { Carousel ? <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} /> : null}
+                    {Carousel ? <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} /> : null}
                     <YellowBackground />
                 </StyledSection>
                 <PageAnimation />
-                {isModalOpen && formFromModal && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        <FormPopUp futureEvents={false} />
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

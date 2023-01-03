@@ -5,18 +5,12 @@ import { getSelectorsByUserAgent } from 'react-device-detect';
 import { IDeviceType, IFutureEvent } from '../types/data';
 import { StyledMain, StyledSection } from '../components/StyledMain';
 import dynamic from 'next/dynamic';
-import { useAppDispatch, useAppSelector } from '../services/hook';
-import { onCloseModal } from '../services/modalSlice';
 import { fetchNotion } from '../utils/fetchNotion';
 
 const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
 const FutureEvents = dynamic(() => import('../components/future-events/FutureEvents'));
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
 const FreeClass = dynamic(() => import('../components/home/free-class/free-class'));
-const Modal = dynamic(() => import('../components/modal/modal'));
-const FormPopUpSubmitSuccess = dynamic(() => import('../components/submit-form/form-popup/FormPopUpSubmitSuccess'));
-const FormPopUp = dynamic(() => import('../components/submit-form/form-popup/FormPopUp'));
-const FormPopUpSubmitFail = dynamic(() => import('../components/submit-form/form-popup/FormSubmitFailPopUp'));
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
 const FlyingBeaver = dynamic(() => import('../components/flying-beaver/FlyingBeaver'));
 
@@ -24,13 +18,7 @@ interface IProps extends IDeviceType {
     futureEvents: IFutureEvent[];
 }
 const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvents }) => {
-    const dispatch = useAppDispatch();
-    const { isModalOpen, submitSuccess, formFromModal, formFutureEvents } = useAppSelector((state) => state.modal);
 
-    // Close Modal
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-    };
     return (
         <>
             <Head>
@@ -52,17 +40,6 @@ const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvent
                 </StyledSection>
                 <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <PageAnimation />
-                {isModalOpen && (
-                    <Modal onClose={handleCloseModal} showX={false}>
-                        {submitSuccess && <FormPopUpSubmitSuccess />}
-                        {submitSuccess === false && <FormPopUpSubmitFail />}
-                    </Modal>
-                )}
-                {isModalOpen && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        {formFromModal ? <FormPopUp futureEvents={false} /> : formFutureEvents ? <FormPopUp futureEvents={true} /> : null}
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

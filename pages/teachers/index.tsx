@@ -4,13 +4,9 @@ import dynamic from 'next/dynamic';
 import { ITeacher } from '../../types/data';
 import {  NextPage } from 'next';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
-import { useAppDispatch, useAppSelector } from '../../services/hook';
-import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
 import TeacherCard from '../../components/teacher-card/teacher-card';
 
-const Modal = dynamic(() => import('../../components/modal/modal'));
-const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
@@ -38,12 +34,6 @@ interface IProps {
 
 const Teachers: NextPage<IProps> = ({teachers}) => {
     
-    const dispatch = useAppDispatch();
-    const { isModalOpen, formFromModal } = useAppSelector((state) => state.modal);
-
-    const handleCloseModal = () => {
-        dispatch(onCloseModal());
-    };
 
     return (
         <>
@@ -77,11 +67,6 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
                     <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
                 </StyledSection>
                 <PageAnimation />
-                {isModalOpen && formFromModal && (
-                    <Modal onClose={handleCloseModal} showX={true}>
-                        <FormPopUp futureEvents={false} />
-                    </Modal>
-                )}
             </StyledMain>
         </>
     );

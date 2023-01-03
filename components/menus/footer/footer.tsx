@@ -161,6 +161,7 @@ const CreditsContainer = styled(FlexCCC)((props) => ({
         letterSpacing: '0.1rem',
         textTransform: 'capitalize',
         fontSize: '0.6rem',
+        color: props.theme.colors.black,
         '@media only screen and (min-width: 560px) and (max-width: 900px)': {
             fontSize: '0.7rem',
         },
