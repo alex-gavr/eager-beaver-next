@@ -3,12 +3,9 @@ import { Button, ICustomButton } from '../button';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../../services/hook';
 import { onOpenModalForm } from '../../../services/modalSlice';
+import { FlexCCC } from '../../StyledMain';
 
-const ButtonsContainer = styled.div({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const ButtonsContainer = styled(FlexCCC)({
     width: '100%',
     gap: '2rem',
     zIndex: 2,

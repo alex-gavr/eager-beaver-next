@@ -10,6 +10,7 @@ import {
     textFromLeft,
     textFromTopLeft,
 } from '../../utils/motion-animations';
+import { FlexCCC } from '../StyledMain';
 
 interface IProps {
     title: boolean;
@@ -18,12 +19,9 @@ interface IProps {
     fontSize?: string;
 }
 
-const StyledContainer = styled(m.div)({
+const StyledContainer = styled(FlexCCC)({
     overflow: 'hidden',
-    display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: '100%',
     zIndex: 2,
 });

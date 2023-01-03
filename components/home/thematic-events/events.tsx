@@ -6,12 +6,9 @@ import { list, toUp } from '../../../utils/motion-animations';
 import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
 import { IDeviceType } from '../../../types/data';
+import { FlexCCC } from '../../StyledMain';
 
-const Wrapper = styled.section({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const Wrapper = styled(FlexCCC)({
     gap: '3rem',
     minHeight: '80vh',
     position: 'relative',
@@ -22,22 +19,12 @@ const Wrapper = styled.section({
         padding: '2rem',
     },
 });
-const WelcomeTextContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const WelcomeTextContainer = styled(FlexCCC)((props) => ({
     maxWidth: '95%',
     gap: '1rem',
-    '& > h1': {
-        color: props.theme.colors.title
-    },
     '& > p': {
-        color: props.theme.colors.paragraph,
         textAlign: 'center',
-        letterSpacing: '0.06rem',
         padding: '0 1rem',
-        textTransform: 'lowercase',
     },
 }));
 

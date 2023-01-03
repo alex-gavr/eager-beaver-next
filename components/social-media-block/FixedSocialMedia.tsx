@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 import { useAppSelector } from '../../services/hook';
 import SocialMediaIcons from './SocialMediaIcons';
-import { AnimatePresence, m } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import whatsapp from '../../images/icons/social-media/whatsapp.svg';
 import { useWindowSize } from '../../utils/use-window-size';
+import { FlexCCC } from '../StyledMain';
 
-const StyledDiv = styled(m.div)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StyledDiv = styled(FlexCCC)({
     position: 'fixed',
     zIndex: 800,
 });

@@ -1,15 +1,12 @@
-import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
-import { StyledMain } from '../../components/StyledMain';
-import { m } from 'framer-motion';
+import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFutureEvent } from '../../types/data';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { resetDetails } from '../../services/futureEventSignUpData';
 import { fetchNotion } from '../../utils/fetchNotion';
-import { StyledSection } from '../../components/StyledSectionForFutureEvents';
 
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
@@ -35,7 +32,7 @@ const Schedule: FC<IProps> = ({ futureEvents }) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
-                <StyledSection>
+                <StyledSection style={{width: '100vw'}}>
                     <FutureEvents futureEvents={futureEvents} />
                 </StyledSection>
                 <PageAnimation />

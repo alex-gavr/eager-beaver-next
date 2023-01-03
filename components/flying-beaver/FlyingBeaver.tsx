@@ -1,19 +1,16 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { AnimatePresence, m } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import beaverRocket from '../../images/beaver/BeaverRocket.svg';
 import { IDeviceType } from '../../types/data';
+import { FlexCCC } from '../StyledMain';
 
 interface IProps {
     width?: string;
     rotate?: string;
 }
 
-const StyledDiv = styled(m.div)<IProps>(({ width, rotate }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+const StyledDiv = styled(FlexCCC)<IProps>(({ width, rotate }) => ({
     position: 'absolute',
     zIndex: 999,
     top: '110vh',

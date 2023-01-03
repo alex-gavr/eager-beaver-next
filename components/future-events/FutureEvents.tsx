@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import AnimatedTextWords from '../AnimatedTextWords/AnimatedTextWords';
 import EventCard from './event-card/EventCard';
 import cloud from '../../images/clouds/5.svg';
@@ -10,25 +9,20 @@ import { IFutureEvent } from '../../types/data';
 import Image from 'next/image';
 import { CloudContainer } from '../CloudsContainer';
 import dynamic from 'next/dynamic';
+import { FlexCCC } from '../StyledMain';
 
 const BeaverSleeps = dynamic(() => import('./BeaverSleeps'));
 
-const Wrapper = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+const Wrapper = styled(FlexCCC)((props) => ({
     width: '100%',
-    height: '100%',
     gap: '6rem',
     zIndex: 100,
-    maxWidth: '1300px',
+    maxWidth: '1500px',
     '& > h1': {
         textAlign: 'center',
         backgroundColor: props.theme.colors.secondaryDark,
         padding: '0.5rem 2rem',
         borderRadius: '2rem',
-        color: props.theme.colors.title,
         fontSize: 'clamp(2.5rem, 2.0189rem + 2.2642vw, 4rem)',
     },
 }));
@@ -40,11 +34,7 @@ const YellowBG = styled.span((props) => ({
     background: props.theme.colors.eventsGradient
 }));
 
-const EventsContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    alignItems: 'center',
-    justifyContent: 'center',
+const EventsContainer = styled(FlexCCC)((props) => ({
     width: '100%',
     height: '100%',
     rowGap: '5rem',
@@ -60,14 +50,10 @@ const EventsContainer = styled(m.div)((props) => ({
     },
 }));
 
-const BeaverContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%',
+const BeaverContainer = styled(FlexCCC)((props) => ({
+    width: '80%',
     '@media only screen and (min-width: 50em)': {
-        width: '30%',
+        width: '40%',
     },
 }));
 
@@ -114,13 +100,13 @@ const FutureEvents = ({ futureEvents }: IProps) => {
             <CloudContainer top={'2%'} left={0}>
                 <Image src={cloud} alt='' />
             </CloudContainer>
-            <CloudContainer top={'10%'} left={'20%'}>
+            <CloudContainer top={'5%'} left={'20%'}>
                 <Image src={cloud2} alt='' />
             </CloudContainer>
             <CloudContainer top={0} right={0}>
                 <Image src={cloud3} alt='' />
             </CloudContainer>
-            <CloudContainer top={'12%'} right={'10%'}>
+            <CloudContainer top={'10%'} right={'10%'}>
                 <Image src={cloud4} alt='' />
             </CloudContainer>
             <YellowBG />

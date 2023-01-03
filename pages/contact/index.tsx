@@ -6,7 +6,7 @@ import cloud from '../../images/clouds/1.svg';
 import cloud2 from '../../images/clouds/2.svg';
 import cloud3 from '../../images/clouds/3.svg';
 import { CloudContainer } from '../../components/CloudsContainer';
-import { StyledMain } from '../../components/StyledMain';
+import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
 import { NextPage } from 'next';
 
 const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
@@ -27,10 +27,7 @@ const Grid = styled.div({
     },
 });
 
-const ContactDetails = styled.div({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+const ContactDetails = styled(FlexCCC)({
     alignItems: 'flex-start',
     width: '90%',
     gap: '1rem',
@@ -40,36 +37,16 @@ const ContactDetails = styled.div({
         order: 2,
     },
 });
-const Wrapper = styled.section((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '2rem 0.5rem',
-    gap: '5rem',
-    position: 'relative',
-    '@media only screen and (min-width: 50em)': {
-        padding: '2rem',
-    },
-}));
 
-const IconsContainer = styled.div({
-    display: 'flex',
+const IconsContainer = styled(FlexCCC)({
     flexFlow: 'row nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     gap: '1.2rem',
     overflow: 'hidden',
     zIndex: 2,
 });
 
 const SubHeading = styled.h2((props) => ({
-    zIndex: 2,
     color: props.theme.colors.title,
-}));
-const Paragraph = styled.p((props) => ({
-    zIndex: 2,
-    color: props.theme.colors.paragraph,
 }));
 
 const Contact: NextPage = (): JSX.Element => {
@@ -82,21 +59,20 @@ const Contact: NextPage = (): JSX.Element => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
-                <Wrapper>
+                <StyledSection>
                     <Grid>
                         <SchoolLocationMap style={{ order: 2 }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
                         <ContactDetails>
                             <SubHeading>Контакты</SubHeading>
-                            <Paragraph> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </Paragraph>
-                            <Paragraph>
+                            <p> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </p>
+                            <p>
                                 Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
-                            </Paragraph>
+                            </p>
                             <SubHeading>Соцсети</SubHeading>
                             <IconsContainer>
                                 <SocialMediaIcons />
                             </IconsContainer>
                         </ContactDetails>
-
                         <CloudContainer top={0} left={0} animate={{ x: -40 }}>
                             <Image src={cloud} alt='' />
                         </CloudContainer>
@@ -107,7 +83,7 @@ const Contact: NextPage = (): JSX.Element => {
                             <Image src={cloud3} alt='' />
                         </CloudContainer>
                     </Grid>
-                </Wrapper>
+                </StyledSection>
                 <PageAnimation />
             </StyledMain>
         </>

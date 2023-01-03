@@ -4,17 +4,14 @@ import { toggleHeight } from '../../utils/motion-animations';
 import downArrow from '../../images/icons/downArrow.svg';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { FlexCCC } from '../StyledMain';
 
 interface Props {
     question: string;
     answer: string;
 }
 
-const WrapperContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+const WrapperContainer = styled(FlexCCC)((props) => ({
     borderRadius: '2rem',
     width: '100%',
     padding: '2rem',
@@ -27,8 +24,7 @@ const WrapperContainer = styled(m.div)((props) => ({
     },
 }));
 
-const QuestionContainer = styled(m.div)(props => ({
-    display: 'flex',
+const QuestionContainer = styled(FlexCCC)(props => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

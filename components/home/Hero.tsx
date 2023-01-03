@@ -7,46 +7,34 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
 import Cookies from 'js-cookie';
+import { FlexCCC } from '../StyledMain';
 
-const MainContent = styled(m.div)({
+const MainContent = styled(FlexCCC)({
     width: '100%',
     maxWidth: '1200px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginLeft: '2rem',
 });
 
-const Columns = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+const Columns = styled(FlexCCC)((props) => ({
     alignItems: 'flex-start',
     gap: '1rem',
     width: '95%',
     ' & > h1': {
-        lineHeight: 1.2,
         color: props.theme.colors.primaryDark,
         textShadow: '2px 2px 5px black',
     },
     ' & > p': {
-        fontSize: 'var(--fs-body)',
         color: 'white',
         letterSpacing: '0.08rem',
         textShadow: '2px 2px 5px black',
     },
 }));
-const ButtonContainer = styled(m.div)({
-    display: 'flex',
-    flexFlow: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const ButtonContainer = styled(FlexCCC)({
     gap: '2rem',
     marginTop: '2rem',
 });
 
-const Wrapper = styled(m.section)({
+const Wrapper = styled.section({
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     position: 'relative',
@@ -55,16 +43,16 @@ const Wrapper = styled(m.section)({
     '@media only screen and (max-width: 500px)': {
         gridTemplateColumns: '1fr',
         minHeight: '84vh',
-        [MainContent as any]: {
+        [MainContent]: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
             marginLeft: '1rem',
         },
-        [Columns as any]: {
+        [Columns]: {
             width: '80%',
             marginTop: '1rem',
         },
-        [ButtonContainer as any]: {
+        [ButtonContainer]: {
             position: 'absolute',
             bottom: 0,
             left: 0,

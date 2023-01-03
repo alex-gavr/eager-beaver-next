@@ -2,49 +2,26 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useRef } from 'react';
-import { m } from 'framer-motion';
 import { ReviewCard } from '../../components/review-card/review-card';
 import 'react-multi-carousel-18/lib/styles.css';
 import { usePreventVerticalScroll } from '../../utils/usePreventVerticalScroll';
 import { LeftArrow, RightArrow } from '../../components/custom-arrows/CustomArrows';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { IReviews, IDeviceType } from '../../types/data';
-import { StyledMain } from '../../components/StyledMain';
+import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { fetchNotion } from '../../utils/fetchNotion';
 
 const Carousel = dynamic(() => import('react-multi-carousel-18'));
-const Modal = dynamic(() => import('../../components/modal/modal'), {
-    loading: () =>  <div style={{width: 300, height: 300}}> <h1>Loading...</h1></div>,
-});
+const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-// Preloader for reviews
-const StyledSpan = styled.span({
-    width: '90vw',
-    height: '90vh',
-});
-
-const StyledWrapper = styled(m.section)({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '1rem 0.5rem',
-    position: 'relative',
-    gap: '3rem',
-    '@media only screen and (min-width: 50em)': {
-        padding: '2rem',
-    },
-});
-
 const StyledHeading = styled.h1((props) => ({
     color: props.theme.colors.secondaryDark,
-    zIndex: 2,
     width: '80%',
     textAlign: 'center',
 }));
@@ -52,10 +29,8 @@ const YellowBackground = styled.span((props) => ({
     position: 'absolute',
     height: '100%',
     width: '100vw',
+    top: 0,
     backgroundColor: props.theme.colors.primaryLight,
-    '@media only screen and (min-width: 50em)': {
-        top: 0,
-    },
 }));
 
 const Accent = styled.span((props) => ({
@@ -65,11 +40,7 @@ const Accent = styled.span((props) => ({
     color: props.theme.colors.title,
     transition: 'all 0.5s ease-in-out',
 }));
-const CarouselContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const CarouselContainer = styled(FlexCCC)((props) => ({
     width: '100vw',
     position: 'relative',
     padding: '1rem',
@@ -143,7 +114,7 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
-                <StyledWrapper ref={ref}>
+                <StyledSection ref={ref} style={{ minHeight: '100vh' }}>
                     <StyledHeading>
                         Наши <Accent>ученики</Accent>
                     </StyledHeading>
@@ -175,7 +146,7 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
                     </CarouselContainer>
                     <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
                     <YellowBackground />
-                </StyledWrapper>
+                </StyledSection>
                 <PageAnimation />
                 {isModalOpen && formFromModal && (
                     <Modal onClose={handleCloseModal} showX={true}>

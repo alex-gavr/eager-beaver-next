@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { m } from 'framer-motion';
-import { StyledMain } from '../../components/StyledMain';
+import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
@@ -15,17 +15,10 @@ const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const Wrapper = styled(m.section)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+const Wrapper = styled(StyledSection)({
+    gap: '4rem',
     width: '95%',
-    padding: '2rem 0',
-    gap: '3rem',
-    position: 'relative',
-    '@media only screen and (min-width: 50em)': {
-        padding: '2rem',
+    '@media only screen and (min-width: 60em)': {
         width: '80%',
     },
 });

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import checkMark from '../../images/icons/checkMark.svg';
 import styled from 'styled-components';
 import { SlideButtons } from '../custom-arrows/leftAndRightButtons';
+import { FlexCCC } from '../StyledMain';
 
 const StyledSwiper = styled(Swiper)({
     display: 'flex',
@@ -30,11 +31,7 @@ const StyledSwiperSlide = styled(SwiperSlide)({
     }
 });
 
-const StyledCard = styled.div((props) =>({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StyledCard = styled(FlexCCC)((props) =>({
     padding: '1rem 0.2rem',
     gap: '2rem',
     borderRadius: '2rem',
@@ -47,11 +44,7 @@ const StyledCard = styled.div((props) =>({
         padding: '1rem'
     }
 }))
-const NameContainer = styled.div((props) =>({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const NameContainer = styled(FlexCCC)((props) =>({
     backgroundColor: props.color === 'yellow' ? props.theme.colors.primaryDark : props.theme.colors.secondaryDark,
     width: '90%',
     padding: '1rem',
@@ -60,11 +53,7 @@ const NameContainer = styled.div((props) =>({
         width: '100%',
     }
 }));
-const FlexContainer = styled.div((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const FlexContainer = styled(FlexCCC)((props) => ({
     gap: '0.4rem',
     '& > h2': {
         color: props.theme.colors.title,
@@ -81,17 +70,12 @@ const FlexContainer = styled.div((props) => ({
     }
 }));
 
-const StyledDescription = styled.ul({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StyledDescription = styled(FlexCCC)({
     gap: '1rem',
     width: '90%'
 });
 
-const ContainerForBulletPoint = styled.div(props =>({
-    display: 'flex',
+const ContainerForBulletPoint = styled(FlexCCC)(props =>({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
@@ -121,7 +105,7 @@ const SwiperCards = ({ pricesAdjustedArray }: any) => {
                                         <p>{price.mainArray.price.rich_text[0].plain_text}</p>
                                     </FlexContainer>
                                 </NameContainer>
-                                <StyledDescription>
+                                <StyledDescription as='ul'>
                                     {price.features.map((point: any, index: number) => {
                                         const text = point.map((i: any) => i.text).join('');
                                         return (

@@ -1,12 +1,9 @@
 import { FC } from 'react';
-import { m } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { FlexCCC } from '../StyledMain';
 
-const PreloaderSmallContainer = styled(m.div)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+const PreloaderSmallContainer = styled(FlexCCC)({
     height: '100%',
     width: '100%',
 });

@@ -4,12 +4,9 @@ import styled from 'styled-components';
 import FormPopUpSubmitSuccess from './FormPopUpSubmitSuccess';
 import FormPopUpSubmitFail from './FormSubmitFailPopUp';
 import { Button } from '../../buttons/button';
+import { FlexCCC } from '../../StyledMain';
 
-const StyledWrapper = styled.div((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StyledWrapper = styled(FlexCCC)((props) => ({
     width: '100%',
     height: '100%',
     gap: '1rem',

@@ -1,22 +1,15 @@
 
 import styled from 'styled-components';
-import { AnimatePresence, m } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import ok from '../../../images/icons/OkHand.svg';
 import { useState } from 'react';
 import Image from 'next/image';
+import { FlexCCC } from '../../StyledMain';
 
-const ColumnDiv = styled.div({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+const ColumnDiv = styled(FlexCCC)({
     width: '100%',
 });
-const WrapperDiv = styled(m.div)((props) =>({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+const WrapperDiv = styled(FlexCCC)((props) =>({
     position: 'absolute',
     top: '0.5rem',
     right: '0.5rem',

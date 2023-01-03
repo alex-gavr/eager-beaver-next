@@ -13,6 +13,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useAppDispatch } from '../../../services/hook';
 import { useInView } from 'react-intersection-observer';
 import { footerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
+import { FlexCCC } from '../../StyledMain';
 
 const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ssr: false,
@@ -23,20 +24,12 @@ const SchoolLocationMap = dynamic(() => import('../../map/map'), {
     ),
 });
 
-const StyledFooter = styled.footer({
+const StyledFooter = styled(FlexCCC)({
     width: '100vw',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#1d1e25',
     position: 'relative',
 });
-const SocialMediaContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const SocialMediaContainer = styled(FlexCCC)((props) => ({
     padding: '2rem',
     gap: '1rem',
     '@media only screen and (min-width: 500px)': {
@@ -47,20 +40,14 @@ const SocialMediaContainer = styled(m.div)((props) => ({
         color: props.theme.colors.secondaryLight,
     },
 }));
-const IconsContainer = styled(m.div)({
-    display: 'flex',
+const IconsContainer = styled(FlexCCC)({
     flexFlow: 'row nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     gap: '1.2rem',
 });
-const FooterMainPart = styled(m.div)({
+const FooterMainPart = styled(FlexCCC)({
     width: '100%',
     maxWidth: '1300px',
-    display: 'flex',
-    flexFlow: 'column nowrap',
     justifyContent: 'space-evenly',
-    alignItems: 'center',
     gap: '2rem',
     padding: '1rem',
     '@media only screen and (min-width: 900px)': {
@@ -69,38 +56,38 @@ const FooterMainPart = styled(m.div)({
     },
 });
 const BeaverOnARocket = styled(Image)({
-    width: '200px',
-    height: '200px',
+    width: 200,
+    height: 200,
     placeSelf: 'center',
     transform: 'scaleX(-1)',
     rotate: ' -10deg',
     order: 1,
     '@media only screen and (min-width: 50em)': {
-        width: '120px',
-        height: '120px',
+        width: 120,
+        height: 120,
         position: 'absolute',
         top: '1rem',
         left: '3rem',
     },
 });
-const Address = styled.p({
+const Address = styled.p((props) => ({
+    color: props.theme.colors.white,
     order: 2,
     '@media only screen and (min-width: 50em)': {
         order: 1,
     },
-});
-const Phone = styled.p({
+}));
+const Phone = styled.p((props) => ({
+    color: props.theme.colors.white,
+    letterSpacing: '0.1rem',
     order: 3,
     '@media only screen and (min-width: 50em)': {
         order: 2,
     },
-});
+}));
 
-const MapAndAddressContainer = styled(m.div)({
+const MapAndAddressContainer = styled(FlexCCC)({
     width: '98%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'flex-start',
     color: 'white',
     textTransform: 'lowercase',
@@ -122,35 +109,37 @@ const MapAndAddressContainer = styled(m.div)({
         flexDirection: 'row',
     },
 });
-const AddressContainer = styled(m.div)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+const AddressContainer = styled(FlexCCC)((props) => ({
     alignItems: 'flex-start',
     textTransform: 'lowercase',
     letterSpacing: '0.05rem',
     gap: '1rem',
-});
+}));
 const LinksList = styled(m.ul)((props) => ({
     display: 'grid',
     gridTemplateRows: 'repeat(5, 1fr)',
     gridAutoFlow: 'column',
     justifyItems: 'flex-start',
     alignItems: 'flex-start',
-    gap: '2.5rem 2rem',
+    gap: '1rem',
     '& > li': {
         fontSize: props.theme.fontSize.footer,
+        '&:hover': {
+            color: props.theme.colors.title,
+            backgroundColor: props.theme.colors.secondaryDark,
+            borderRadius: '2rem',
+        },
     },
     '@media only screen and (max-width: 320px)': {
         gridTemplateColumns: '1fr',
         gridAutoFlow: 'row',
     },
     '@media only screen and (max-width: 400px)': {
-        gap: '2.2rem 0rem',
+        gap: '0.5rem 0rem',
         placeSelf: 'flex-start',
     },
     '@media only screen and (min-width: 560px) and (max-width: 900px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridTemplateColumns: 'repeat(2, 1fr)',
         gridAutoFlow: 'column',
     },
     '@media only screen and (min-width: 900px)': {
@@ -162,17 +151,8 @@ const StyledLink = styled(Link)((props) => ({
     color: 'white',
     fontSize: props.theme.fontSize.footer,
     letterSpacing: '0.2rem',
-    '&:hover': {
-        color: props.theme.colors.title,
-        backgroundColor: props.theme.colors.secondaryDark,
-        borderRadius: '2rem',
-    },
 }));
-const CreditsContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const CreditsContainer = styled(FlexCCC)((props) => ({
     padding: '1rem',
     gap: '1rem',
     width: '100vw',
@@ -216,7 +196,7 @@ const Footer = () => {
 
     return (
         <AnimatePresence>
-            <StyledFooter ref={ref}>
+            <StyledFooter ref={ref} as='footer'>
                 <SocialMediaContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-10% 0px -10% -0px' }}>
                     <m.p variants={opacity}>присоединяйся к нам и здесь</m.p>
                     <IconsContainer variants={toUp}>

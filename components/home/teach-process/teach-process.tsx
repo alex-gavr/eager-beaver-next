@@ -9,36 +9,11 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { CloudContainer } from '../../CloudsContainer';
 import dynamic from 'next/dynamic';
+import { FlexCCC, StyledSection } from '../../StyledMain';
 
 const BeaverHiOptimized = dynamic(() => import('./BeaverHi'));
 
-const BeaverDiv = styled.div({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-});
 
-const StyledSection = styled(m.section)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '2rem',
-    padding: '1rem 0.5rem',
-    position: 'relative',
-    marginTop: '3rem',
-    maxWidth: '1400px',
-    minHeight: '100vh',
-    '@media only screen and (min-width: 50em)': {
-        padding: '2rem',
-    },
-    '& > h1': {
-        zIndex: 2,
-        color: props.theme.colors.title,
-    },
-}));
 const EvenColumns = styled(m.div)({
     zIndex: 100,
     display: 'grid',
@@ -66,15 +41,15 @@ const Background = styled.span((props) => ({
 const TeachProcess: FC = (): JSX.Element => {
     return (
         <AnimatePresence>
-            <StyledSection variants={list} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
+            <StyledSection style={{marginTop: '3rem',}} variants={list} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
                 <h1>
                     <AnimatedTextWords title={true} text='Как проходит обучение' textAnimation='fromBottomLeft' />
                 </h1>
                 <EvenColumns variants={opacity}>
                     <TeachingSteps />
-                    <BeaverDiv>
+                    <FlexCCC>
                         <BeaverHiOptimized />
-                    </BeaverDiv>
+                    </FlexCCC>
                 </EvenColumns>
                 <Background />
                 <CloudContainer top={'10%'} left={0} variants={toRight} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>

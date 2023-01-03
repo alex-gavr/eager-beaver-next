@@ -1,13 +1,9 @@
-import { m } from "framer-motion";
 import styled from "styled-components";
+import { FlexCCC } from "../../StyledMain";
 
-export const StyledCard = styled(m.div)((props) => ({
+export const StyledCard = styled(FlexCCC)((props) => ({
     width: 320,
     maxWidth: 600,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     gap: '2rem',
     backgroundColor: props.theme.colors.componentBackground,
     padding: '0.5rem 1rem 1rem 1.5rem',
@@ -25,14 +21,8 @@ export const StyledCard = styled(m.div)((props) => ({
         width: '95%',
     },
 }));
-export const FlexColumnCenter = styled(m.div)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-})
 
-export const StyledDateNumber = styled(m.span)((props) => ({
+export const StyledDateNumber = styled(FlexCCC)((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
     color: props.theme.colors.title,
     width: 'clamp(6.25rem, 5.6486rem + 2.8302vw, 8.125rem)',
@@ -42,9 +32,6 @@ export const StyledDateNumber = styled(m.span)((props) => ({
     position: 'absolute',
     top: '-3rem',
     left: '2rem',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     '@media only screen and (min-width: 30em) and (max-width: 50em)': {
         top: '-3.5rem',
         left: '3rem',
@@ -58,10 +45,7 @@ export const StyledDateNumber = styled(m.span)((props) => ({
         left: '0rem',
     },
 }));
-export const MonthAndTimeContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+export const MonthAndTimeContainer = styled(FlexCCC)((props) => ({
     alignItems: 'flex-start',
     letterSpacing: '0.1rem',
     color: props.theme.colors.secondaryDark,
@@ -69,11 +53,7 @@ export const MonthAndTimeContainer = styled(m.div)((props) => ({
     fontSize: 'clamp(1.5rem, 1.3396rem + 0.7547vw, 2rem)',
 }));
 
-export const TitleAndAgeContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+export const TitleAndAgeContainer = styled(FlexCCC)((props) => ({
     gap: '0.5rem',
     '& > h2': {
         fontSize: 'clamp(1.8rem, 1.4792rem + 1.5094vw, 2.8rem)',
@@ -88,39 +68,24 @@ export const TitleAndAgeContainer = styled(m.div)((props) => ({
         color: props.theme.colors.secondaryDark,
     },
 }));
-export const SpaceBetween = styled(m.div)((props) => ({
-    display: 'flex',
+export const SpaceBetween = styled(FlexCCC)((props) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     gap: '2rem',
     width: '100%',
     '@media only screen and (min-width: 50em)': {
         gap: '3rem',
     },
 }));
-export const InnerContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
+export const InnerContainer = styled(FlexCCC)((props) => ({
     justifyContent: 'flex-start',
-    alignItems: 'center',
     gap: '2rem',
-    letterSpacing: '0.05rem',
-    textTransform: 'lowercase',
-    color: props.theme.colors.paragraph,
 }));
-export const InnerContainerDetails = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+export const InnerContainerDetails = styled(FlexCCC)((props) => ({
     alignItems: 'flex-start',
     width: '100%',
 }));
-export const TogglerContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+export const TogglerContainer = styled(FlexCCC)((props) => ({
     width: '70%',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     paddingBlock: '1rem',

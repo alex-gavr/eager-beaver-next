@@ -43,8 +43,11 @@ const GlobalStyle = createGlobalStyle`
     /* A elements that don't have a class get default styles */
     a {
         text-decoration: none;
-        color: var(--clr-neutral-900);
+        color: ${({ theme }) => theme.colors.paragraph};
         cursor: inherit;
+        display: block;
+        width: 100%;
+        height: 100%;
     }
 
     /* Make images easier to work with */
@@ -74,10 +77,14 @@ const GlobalStyle = createGlobalStyle`
     h1 {
         font-family: var(--ff-heading);
         font-size: ${({ theme }) => theme.fontSize.heading};
+        color: ${({ theme }) => theme.colors.title};
+        z-index: 2;
+        line-height: 1.2;
     }
     h2 {
         font-family: var(--ff-heading);
         font-size: ${({ theme }) => theme.fontSize.subHeading};
+        z-index: 2;
     }
     h3 {
         font-family: var(--ff-heading);
@@ -86,6 +93,10 @@ const GlobalStyle = createGlobalStyle`
     p {
         font-family: var(--ff-body);
         font-size: ${({ theme }) => theme.fontSize.body};
+        color: ${({ theme }) => theme.colors.paragraph};
+        text-transform: lowercase;
+        letter-spacing: 0.06rem;
+        z-index: 2;
     }
     li {
         font-family: var(--ff-body);

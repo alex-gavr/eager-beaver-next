@@ -2,7 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { IPrices } from '../../types/data';
-import { StyledMain } from '../../components/StyledMain';
+import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
@@ -15,16 +15,9 @@ const SidePopUp = dynamic(() => import('../../components/prices/side-popup/SideP
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const Wrapper = styled.section((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: '2rem 0.5rem',
-    position: 'relative',
+const HeadingContainer = styled(FlexCCC)((props) => ({
     '& > h1': {
         color: props.theme.colors.primaryDark,
-        zIndex: 2,
     },
     '& > h2': {
         color: props.theme.colors.secondaryDark,
@@ -32,18 +25,13 @@ const Wrapper = styled.section((props) => ({
         zIndex: 2,
         textAlign: 'center',
     },
-    '@media only screen and (min-width:50em)': {
-        padding: '2rem',
-    },
 }));
-const SwiperContainer = styled.div({
+
+const SwiperContainer = styled(FlexCCC)({
     position: 'relative',
     width: '100%',
     height: '100%',
     minHeight: '50vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginBottom: '3rem',
 });
 const YellowBG = styled.span((props) => ({
@@ -112,16 +100,17 @@ const Pricing = ({ prices }: IProps) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
-                <Wrapper>
-                    <h1>Тарифы</h1>
-                    <h2>выбирай подходящий и приходи учиться</h2>
+                <StyledSection>
+                    <HeadingContainer>
+                        <h1>Тарифы</h1>
+                        <h2>выбирай подходящий и приходи учиться</h2>
+                    </HeadingContainer>
                     <SwiperContainer>
                         <SwiperCards pricesAdjustedArray={pricesAdjustedArray} />
                     </SwiperContainer>
                     <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptyPrimary' showBackButton={true} />
                     <YellowBG />
-                </Wrapper>
-                {/* {!isMobileOnly && <SidePopUp />} */}
+                </StyledSection>
                 <SidePopUp />
                 <PageAnimation />
                 {isModalOpen && formFromModal && (

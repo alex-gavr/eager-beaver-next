@@ -1,31 +1,20 @@
-// import styles from './teaching-steps.module.css';
-import { m } from 'framer-motion';
 import { Button } from '../../../buttons/button';
 import { useState } from 'react';
 import { useWindowSize } from '../../../../utils/use-window-size';
 import styled, { useTheme } from 'styled-components';
+import { FlexCCC } from '../../../StyledMain';
 // import ym from 'react-yandex-metrika';
 
-const Wrapper = styled.div({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const Wrapper = styled(FlexCCC)({
     gap: '1rem',
     width: '100%',
 });
 
-const StepsContainer = styled(m.div)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StepsContainer = styled(FlexCCC)({
     position: 'relative',
     width: '100%',
 });
-const TheStepContainer = styled(m.div)((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
+const TheStepContainer = styled(FlexCCC)((props) => ({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     position: 'absolute',
@@ -39,9 +28,9 @@ const TheStepContainer = styled(m.div)((props) => ({
     borderRadius: '2rem',
     gap: '0.5rem',
     boxShadow: '1px 1px 10px 5px rgba(0, 0, 0, 0.2)',
-    ' & > p': {
-        textTransform: 'lowercase',
-    },
+    '& > p': {
+        color: props.theme.colors.black,
+    }
 }));
 
 const TheStepHead = styled.div((props) => ({
@@ -51,7 +40,6 @@ const TheStepHead = styled.div((props) => ({
     alignItems: 'center',
     width: '100%',
     '& > h2': {
-        fontSize: props.theme.fontSize.subHeading,
         color: props.theme.colors.black,
         backgroundColor: props.theme.colors.primaryMedium,
         padding: '0.2rem 1rem',
@@ -63,6 +51,7 @@ const TheStepHead = styled.div((props) => ({
         },
     },
     '& > p': {
+        color: props.theme.colors.black,
         fontSize: '0.8rem',
         '@media only screen and (min-width: 50em)': {
             fontSize: '1rem',

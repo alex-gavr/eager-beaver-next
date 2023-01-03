@@ -102,7 +102,6 @@ const AnimationHelperDiv = styled.div({
     width: '100%',
 });
 
-
 const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
 
@@ -141,7 +140,7 @@ const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
                             <Wrapper className={`${KoskoBold.variable} ${KoskoRegular.variable}`}>
                                 <GlobalStyle />
                                 <Header />
-                                <FixedSocialMedia />
+                                {router.pathname === '/reviews' || router.pathname === '/contact' ? null : <FixedSocialMedia />}
                                 {/* This div is makes animation show in footer, but not in header */}
                                 <AnimationHelperDiv>
                                     <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>

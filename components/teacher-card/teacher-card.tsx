@@ -3,12 +3,10 @@ import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 import styled from 'styled-components';
+import { FlexCCC } from '../StyledMain';
 
-const StyledContainer = styled.div({
-    display: 'flex',
-    flexDirection: 'column',
+const StyledContainer = styled(FlexCCC)({
     justifyContent: 'flex-start',
-    alignItems: 'center',
     gap: '1rem',
     height: 'auto',
     width: '90%',
@@ -33,35 +31,25 @@ const ImageAndSpanContainer = styled.div((props) => ({
 }));
 
 const ImageContainer = styled.div((props) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: '50%',
     width: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
     height: 'clamp(12.5rem, 8.8362rem + 17.2414vw, 25rem)',
     backgroundColor: props.theme.colors.background,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     overflow: 'hidden',
     position: 'relative',
 }));
-const TextContainer = styled.div((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const TextContainer = styled(FlexCCC)((props) => ({
     width: '100%',
     overflow: 'hidden',
     '& > h2': {
         textAlign: 'center',
         color: props.theme.colors.title,
-        width: '100%',
-        height: '100%',
     },
     '& > p': {
         textAlign: 'center',
-        letterSpacing: '0.06rem',
-        color: props.theme.colors.paragraph,
-        width: '100%',
-        height: '100%',
     },
 }));
 

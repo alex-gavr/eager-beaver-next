@@ -9,24 +9,18 @@ import styled from 'styled-components';
 import { onOpenModalFormSubmitSuccess } from '../../services/modalSlice';
 import { v4 as uuid } from 'uuid';
 import { initMemberCountChange } from '../../services/futureEventSignUpData';
+import { FlexCCC } from '../StyledMain';
 
-const StyledForm = styled.form({
+const StyledForm = styled(FlexCCC)({
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     gap: '2rem',
     width: '90%',
     '@media only screen and (min-width: 50em)': {
         width: '100%',
     },
 });
-const ButtonContainer = styled.div({
-    display: 'flex',
+const ButtonContainer = styled(FlexCCC)({
     flexDirection: 'column-reverse',
-    justifyContent: 'center',
-    alignItems: 'center',
     gap: '1rem',
     '@media only screen and (min-width: 50em)': {
         flexDirection: 'row',
@@ -35,7 +29,6 @@ const ButtonContainer = styled.div({
 const Disclaimer = styled.p((props) => ({
     fontSize: '0.7rem',
     textAlign: 'center',
-    color: props.theme.colors.paragraph,
 }));
 
 type FlexDirection = 'column' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'column-reverse' | 'row' | 'row-reverse' | undefined;
@@ -50,7 +43,6 @@ const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
     const { isModalOpen } = useAppSelector((state) => state.modal);
     const { futureEventDetails } = useAppSelector((state) => state.futureEventDetails);
     const [loading, setLoading] = useState<boolean>(false);
-    const name = Cookies.get('name');
 
     const [values, setValues] = useState({
         name: '',
@@ -235,7 +227,7 @@ const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
 
     return (
         <>
-            <StyledForm onSubmit={(e) => handleSubmit(e)}>
+            <StyledForm onSubmit={(e) => handleSubmit(e)} as='form'>
                 {inputs.map((input) => (
                     <Input
                         key={input.id}

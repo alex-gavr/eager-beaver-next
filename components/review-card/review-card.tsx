@@ -5,24 +5,15 @@ import Skeleton from 'react-loading-skeleton';
 import { useWindowSize } from '../../utils/use-window-size';
 import downArrow from '../../images/icons/downArrow.svg';
 import { AnimatePresence, m } from 'framer-motion';
+import { FlexCCC } from '../StyledMain';
 
-const StyledCard = styled(m.div)((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const StyledCard = styled(FlexCCC)((props) => ({
     gap: '1rem',
     width: '100%',
-    '& p': {
-        textTransform: 'lowercase',
-    },
     '& h2': {
         color: props.theme.colors.title,
     },
 }));
-const ContainerForImgAndDashes = styled.div({
-    position: 'relative',
-});
 
 const ImageContainer = styled.div((props) => ({
     borderRadius: '50%',
@@ -37,13 +28,10 @@ const ImageContainer = styled.div((props) => ({
         width: '100%',
         height: '100%',
         objectFit: 'cover',
+        pointerEvents: 'none',
     },
 }));
-const ParentsInfoContainer = styled.div((props) => ({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const ParentsInfoContainer = styled(FlexCCC)((props) => ({
     gap: '0.2rem',
     color: props.theme.colors.secondaryDark,
 }));
@@ -51,11 +39,7 @@ const ParentName = styled.p((props) => ({
     fontSize: props.theme.fontSize.button,
 }));
 
-const ShowFullIconContainer = styled.span({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+const ShowFullIconContainer = styled(FlexCCC)({
     padding: '0.5rem',
 });
 const Dashed = styled.span`
@@ -66,11 +50,7 @@ const Dashed = styled.span`
     border-radius: 200px;
     transform: translateY(-15px);
 `;
-const StyledReviewCard = styled(m.div)`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+const StyledReviewCard = styled(FlexCCC)`
     gap: 0.5rem;
     padding: 1rem;
     letter-spacing: 0.08rem;
@@ -124,13 +104,13 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
     return (
         <AnimatePresence mode='wait' initial={false}>
             <StyledCard>
-                <ContainerForImgAndDashes>
+                <div style={{position: 'relative'}}>
                     {isImgLoaded && <Dashed />}
                     <ImageContainer>
                         {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
                         <Image src={image} alt='' onLoadingComplete={handleImageLoaded} width={500} height={500} />
                     </ImageContainer>
-                </ContainerForImgAndDashes>
+                </div>
                 <h2>{isImgLoaded ? name : <Skeleton height={25} width={width < 500 ? 100 : 200} />}</h2>
                 <StyledReviewCard onClick={toggleClassName}>
                     <ParentsInfoContainer>

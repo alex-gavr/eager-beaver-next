@@ -5,14 +5,11 @@ import { list, toUp, opacity } from '../../../utils/motion-animations';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { IDeviceType } from '../../../types/data';
+import { FlexCCC } from '../../StyledMain';
 
 
 
-const Wrapper = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const Wrapper = styled(FlexCCC)((props) => ({
     padding: '0.5rem',
     gap: '2rem',
     position: 'relative',
@@ -27,24 +24,20 @@ const Wrapper = styled(m.div)((props) => ({
     },
 }));
 
-const Accent = styled(m.span)((props) => ({
+const Accent = styled.span((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
     color: props.theme.colors.title,
     padding: '0.2rem 1rem',
     borderRadius: '3rem',
 }));
-const EvenColumns = styled(m.div)((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const EvenColumns = styled(FlexCCC)((props) => ({
     gap: '3rem',
     '@media only screen and (min-width: 50em)': {
         flexDirection: 'row',
         width: '90%',
     },
 }));
-const BeaverContainer = styled(m.div)((props) => ({
+const BeaverContainer = styled(FlexCCC)((props) => ({
     width: '50%',
     '@media only screen and (min-width: 50em)': {
         width: '40%',

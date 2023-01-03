@@ -4,17 +4,14 @@ import { useAppSelector } from '../../services/hook';
 import { CloseIcon } from '../icons';
 import { PreloaderSmall } from '../preloader/preloader-small';
 import styled from 'styled-components';
+import { FlexCCC } from '../StyledMain';
 
 interface IModalContainer {
     showX?: boolean;
 }
 
-const StyledModalOverlay = styled.div({
+const StyledModalOverlay = styled(FlexCCC)({
     backgroundColor: 'rgba(0, 0, 0, .6)',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     position: 'fixed',
     overflow: 'hidden',
     zIndex: 1000,
@@ -23,13 +20,9 @@ const StyledModalOverlay = styled.div({
     right: 0,
     bottom: 0,
 });
-const ModalContainer = styled.div<IModalContainer>((props) => ({
+const ModalContainer = styled(FlexCCC)<IModalContainer>((props) => ({
     width: '90%',
     maxWidth: '650px',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: props.theme.colors.componentBackground,
     backgroundImage: props.showX ? props.theme.colors.modalGradient : 'none',
     position: 'relative',

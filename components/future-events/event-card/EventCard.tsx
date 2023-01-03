@@ -3,13 +3,11 @@ import { useAppDispatch, useAppSelector } from '../../../services/hook';
 import { Button } from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
 import { toggleHeight } from '../../../utils/motion-animations';
-import { PreloaderSmall } from '../../preloader/preloader-small';
 import downArrow from '../../../images/icons/downArrow.svg';
 import { onOpenModalFormFutureEvents } from '../../../services/modalSlice';
 import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
 import Image from 'next/image';
 import {
-    FlexColumnCenter,
     InnerContainer,
     InnerContainerDetails,
     MonthAndTimeContainer,
@@ -20,6 +18,7 @@ import {
     TogglerContainer,
 } from './EventCardsStyles';
 import { convertH2M, minutesEachHourInOneDay, TimeDiff } from '../../../utils/timeCalcHelpers';
+import { FlexCCC } from '../../StyledMain';
 
 interface IProps {
     title: string;
@@ -37,7 +36,6 @@ const EventCard = ({ title, description, age, participants: participantsData, to
     const [participants, setParticipants] = useState<number>(participantsData);
     const { shouldChangeMember } = useAppSelector((state) => state.futureEventDetails);
     const [enrolled, setEnrolled] = useState(false);
-    const [buttonLoading, setButtonLoading] = useState(false);
     const dispatch = useAppDispatch();
 
     const day = new Date(start).toLocaleString('ru-RU', { day: 'numeric' });
@@ -119,6 +117,7 @@ const EventCard = ({ title, description, age, participants: participantsData, to
     useEffect(() => {
         if (shouldChangeMember) {
             handleParticipantsChange();
+            setEnrolled(true);
         }
     }, [shouldChangeMember]);
 
@@ -131,7 +130,7 @@ const EventCard = ({ title, description, age, participants: participantsData, to
                 <span>{month}</span>
                 <span>{timeStart}</span>
             </MonthAndTimeContainer>
-            <FlexColumnCenter>
+            <FlexCCC>
                 <TitleAndAgeContainer>
                     <h2>{title}</h2>
                     {open ? null : <p>{age}</p>}
@@ -157,13 +156,13 @@ const EventCard = ({ title, description, age, participants: participantsData, to
                                     fontFamily='var(--ff-body)'
                                     onClick={() => handleClick(title, age, dateFull)}
                                     disabled={enrolled || spotsLeft === 0}>
-                                    {buttonLoading ? <PreloaderSmall /> : enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
+                                    {enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
                                 </Button>
                             </SpaceBetween>
                         </InnerContainer>
                     ) : null}
                 </AnimatePresence>
-            </FlexColumnCenter>
+            </FlexCCC>
             <TogglerContainer onClick={() => setOpen((prev) => !prev)}>
                 <Image
                     src={downArrow}

@@ -1,13 +1,10 @@
 import { FC } from 'react';
 import Cookies from 'js-cookie';
 import styled from 'styled-components';
+import { FlexCCC } from '../../StyledMain';
 
-export const StyledPopUp = styled.div((props) =>({
+export const StyledPopUp = styled(FlexCCC)((props) =>({
     width: '100%',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 2,
     gap: '0.5rem',
     '& > h1': {
@@ -18,7 +15,6 @@ export const StyledPopUp = styled.div((props) =>({
         borderRadius: '2rem',
         marginInline: '1rem',
         textAlign: 'center',
-        zIndex: 2,
     },
     '& > p': {
         fontSize: 'clamp(0.8rem, 0.3918rem + 1.9794vw, 1.5rem)',
@@ -28,8 +24,6 @@ export const StyledPopUp = styled.div((props) =>({
         padding: '0.5rem',
         marginInline: '1rem',
         borderRadius: '2rem',
-        textTransform: 'lowercase',
-        zIndex: 2,
     }
 }))
 

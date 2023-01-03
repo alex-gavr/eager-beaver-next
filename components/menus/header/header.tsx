@@ -10,11 +10,11 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch } from '../../../services/hook';
 import { headerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
+import { FlexCCC } from '../../StyledMain';
 
-const Wrapper = styled.div({
+const Wrapper = styled(FlexCCC)({
     marginBlock: '2rem',
-    display: 'flex',
-    alignItems: 'center',
+    flexFlow: 'row nowrap',
     justifyContent: 'space-between',
 });
 const Navigation = styled.nav({
@@ -33,12 +33,7 @@ const DesktopNavigation = styled(m.ul)((props) => ({
         color: props.theme.colors.paragraph,
         fontSize: props.theme.fontSize.header,
         fontFamily: 'var(--ff-heading)',
-    },
-    '& > li > a': {
-        display: 'block',
-        width: '100%',
-        height: '100%',
-    },
+    }
 }));
 const NavigationButton = styled(Link)((props) => ({
     padding: '1rem',
@@ -50,13 +45,10 @@ const NavigationButton = styled(Link)((props) => ({
     },
 }));
 
-const IconContainer = styled(m.div)((props) => ({
+const IconContainer = styled(FlexCCC)((props) => ({
     backgroundColor: props.theme.colors.primaryLight,
     borderRadius: '50%',
     padding: '1.4rem 1.3rem 1.2rem 1.4rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     zIndex: 999,
     '@media only screen and (min-width: 1000px)': {
         display: 'none',

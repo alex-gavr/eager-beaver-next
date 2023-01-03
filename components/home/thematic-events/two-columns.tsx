@@ -1,4 +1,3 @@
-import { useWindowSize } from '../../../utils/use-window-size';
 import { FC, useRef } from 'react';
 import { ImageWithSkeleton } from '../../image-with-skeleton/img-with-skeleton';
 import { AnimatePresence, m } from 'framer-motion';
@@ -9,6 +8,7 @@ import { usePreventVerticalScroll } from '../../../utils/usePreventVerticalScrol
 import { LeftArrow, RightArrow } from '../../custom-arrows/CustomArrows';
 import styled from 'styled-components';
 import { IDeviceType } from '../../../types/data';
+import { FlexCCC } from '../../StyledMain';
 
 const EvenColumns = styled(m.div)({
     display: 'grid',
@@ -23,16 +23,13 @@ const EvenColumns = styled(m.div)({
         columnGap: '1rem',
     },
 });
-const ImageContainer = styled.div({
+const ImageContainer = styled(FlexCCC)({
     borderRadius: '2rem',
     width: 'clamp(18.75rem, 13.6783rem + 24.5902vw, 37.5rem)',
     height: 'clamp(18.75rem, 13.6783rem + 24.5902vw, 37.5rem)',
     overflow: 'hidden',
     position: 'relative',
     willChange: 'transform',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     boxShadow: '0px -5px 10px rgba(50, 50, 93, 0.25), 0px 5px 10px rgba(50, 50, 93, 0.25)',
     pointerEvents: 'none',
     userSelect: 'none',
@@ -43,18 +40,11 @@ const ImageContainer = styled.div({
     },
 });
 
-const TextContainer = styled(m.div)<any>((props) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+const TextContainer = styled(FlexCCC)<any>((props) => ({
     gap: '2rem',
-    textTransform: 'lowercase',
     order: props.order,
     '& > p': {
         textAlign: 'center',
-        letterSpacing: '0.06rem',
-        color: props.theme.colors.paragraph
     },
 }));
 const SubHeading = styled(m.h2)((props) => ({
@@ -67,10 +57,7 @@ const SubHeading = styled(m.h2)((props) => ({
     textAlign: 'center',
 }));
 
-const CarouselContainer = styled(m.div)<any>(({order}) => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+const CarouselContainer = styled(FlexCCC)<any>(({order}) => ({
     width: '100%',
     position: 'relative',
     overflow: 'hidden',
@@ -112,8 +99,7 @@ interface IProps extends IDeviceType, Omit<IEventsData, 'id'> {
     alt: string;
 }
 
-export const TwoColumns: FC<IProps> = ({ images, alt, imageSide, subHeading, paragraph, isMobileOnly, isTablet, isDesktop }) => {
-    const { width } = useWindowSize();
+export const TwoColumns: FC<IProps> = ({ images, alt, imageSide, subHeading, paragraph, isDesktop }) => {
     const ref = useRef(null);
     const slider = usePreventVerticalScroll(ref);
 

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { m } from 'framer-motion';
 import { ITeacher } from '../../types/data';
 import {  NextPage } from 'next';
-import { StyledMain } from '../../components/StyledMain';
+import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
 import TeacherCard from '../../components/teacher-card/teacher-card';
+
 
 // const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
@@ -16,24 +16,6 @@ const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const StyledWrapper = styled(m.section)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    gap: '2rem',
-    padding: '2rem 0.5rem',
-    position: 'relative',
-    '@media only screen and (min-width: 60em)': {
-        padding: '2rem',
-        gap: '4rem',
-    },
-});
-
-const StyledHeading = styled.h1((props) => ({
-    color: props.theme.colors.title,
-    textAlign: 'center',
-}));
 
 const Accent = styled.span((props) => ({
     backgroundColor: props.theme.colors.secondaryDark,
@@ -78,10 +60,10 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <StyledMain>
-                <StyledWrapper>
-                    <StyledHeading>
+                <StyledSection>
+                    <h1 style={{textAlign: 'center', lineHeight: '1.6'}}>
                         Наши <Accent>преподаватели</Accent>
-                    </StyledHeading>
+                    </h1>
                     <StyledTeachersContainer>
                         {teachers &&
                             teachers.map((teacher) => (
@@ -96,7 +78,7 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
                             ))}
                     </StyledTeachersContainer>
                     <ActionButtons primaryButtonStyle='primary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
-                </StyledWrapper>
+                </StyledSection>
                 <PageAnimation />
                 {isModalOpen && formFromModal && (
                     <Modal onClose={handleCloseModal} showX={true}>
