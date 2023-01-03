@@ -9,8 +9,6 @@ import { onCloseModal } from '../../services/modalSlice';
 import { fetchNotion } from '../../utils/fetchNotion';
 import TeacherCard from '../../components/teacher-card/teacher-card';
 
-
-// const TeacherCard = dynamic(() => import('../../components/teacher-card/teacher-card'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
@@ -29,7 +27,6 @@ const StyledTeachersContainer = styled.div({
     gap: '3rem 2rem',
     justifyItems: 'center',
     alignItems: 'flex-start',
-    minHeight: '70vh',
     '@media only screen and (min-width: 60em)': {
         gridTemplateColumns: 'repeat(2, 1fr)',
     },

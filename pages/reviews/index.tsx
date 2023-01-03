@@ -13,8 +13,8 @@ import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { onCloseModal } from '../../services/modalSlice';
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { fetchNotion } from '../../utils/fetchNotion';
+import Carousel from 'react-multi-carousel-18'
 
-const Carousel = dynamic(() => import('react-multi-carousel-18'));
 const Modal = dynamic(() => import('../../components/modal/modal'));
 const FormPopUp = dynamic(() => import('../../components/submit-form/form-popup/FormPopUp'));
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
@@ -144,7 +144,7 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
                                 ))}
                         </StyledCarousel>
                     </CarouselContainer>
-                    <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} />
+                    { Carousel ? <ActionButtons primaryButtonStyle='secondary' secondaryButtonStyle='emptySecondary' showBackButton={true} /> : null}
                     <YellowBackground />
                 </StyledSection>
                 <PageAnimation />
