@@ -11,16 +11,12 @@ import { useInView } from 'react-intersection-observer';
 import { useAppDispatch } from '../../../services/hook';
 import { headerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
 import { FlexCCC } from '../../StyledMain';
+import { useWindowSize } from '../../../utils/use-window-size';
 
 const Wrapper = styled(FlexCCC)({
     marginBlock: '2rem',
     flexFlow: 'row nowrap',
     justifyContent: 'space-between',
-});
-const Navigation = styled.nav({
-    '@media only screen and (max-width:1000px)': {
-        display: 'none',
-    },
 });
 
 const DesktopNavigation = styled(m.ul)((props) => ({
@@ -33,7 +29,7 @@ const DesktopNavigation = styled(m.ul)((props) => ({
         color: props.theme.colors.paragraph,
         fontSize: props.theme.fontSize.header,
         fontFamily: 'var(--ff-heading)',
-    }
+    },
 }));
 const NavigationButton = styled(Link)((props) => ({
     padding: '1rem',
@@ -50,12 +46,10 @@ const IconContainer = styled(FlexCCC)((props) => ({
     borderRadius: '50%',
     padding: '1.4rem 1.3rem 1.2rem 1.4rem',
     zIndex: 999,
-    '@media only screen and (min-width: 1000px)': {
-        display: 'none',
-    },
 }));
 
 const Header = () => {
+    const { width } = useWindowSize();
     const dispatch = useAppDispatch();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -75,25 +69,29 @@ const Header = () => {
                 {/* Logo */}
                 <Logo />
                 {/* NAVIGATION DESKTOP */}
-                <Navigation>
-                    <DesktopNavigation variants={list} initial='hidden' animate='visible'>
-                        {header.map((link) => (
-                            <m.li
-                                variants={mobileHeaderAni}
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{ type: 'spring', stiffness: 500 }}
-                                key={link.id}>
-                                <NavigationButton href={link.to}>{link.name}</NavigationButton>
-                            </m.li>
-                        ))}
-                    </DesktopNavigation>
-                </Navigation>
-                {/* Mobile Nav */}
-                <MobileMenu header={header} isOpen={isOpen} toggle={handleToggle} />
-                <IconContainer initial={false} animate={isOpen ? 'open' : 'closed'} onClick={handleToggle}>
-                    <MenuToggle toggle={handleToggle} />
-                </IconContainer>
+                {width > 1000 ? (
+                    <nav>
+                        <DesktopNavigation variants={list} initial='hidden' animate='visible'>
+                            {header.map((link) => (
+                                <m.li
+                                    variants={mobileHeaderAni}
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: 'spring', stiffness: 500 }}
+                                    key={link.id}>
+                                    <NavigationButton href={link.to}>{link.name}</NavigationButton>
+                                </m.li>
+                            ))}
+                        </DesktopNavigation>
+                    </nav>
+                ) : (
+                    <>
+                        <MobileMenu header={header} isOpen={isOpen} toggle={handleToggle} />
+                        <IconContainer initial={false} animate={isOpen ? 'open' : 'closed'} onClick={handleToggle}>
+                            <MenuToggle toggle={handleToggle} />
+                        </IconContainer>
+                    </>
+                )}
             </Wrapper>
         </header>
     );

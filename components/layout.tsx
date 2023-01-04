@@ -7,14 +7,28 @@ import { useAppDispatch, useAppSelector } from '../services/hook';
 import { onCloseModal } from '../services/modalSlice';
 import { Analytics } from '@vercel/analytics/react';
 import type { NextRouter } from 'next/router';
+import Skeleton from 'react-loading-skeleton';
 
 const Footer = dynamic(() => import('./menus/footer/footer'));
 const FixedSocialMedia = dynamic(() => import('./social-media-block/FixedSocialMedia'));
 const DayNightToggle = dynamic(() => import('./toggle'));
-const Modal = dynamic(() => import('./modal/modal'));
-const FormPopUp = dynamic(() => import('./submit-form/form-popup/FormPopUp'));
-const FormPopUpSubmitSuccess = dynamic(() => import('./submit-form/form-popup/FormPopUpSubmitSuccess'));
-const FormPopUpSubmitFail = dynamic(() => import('./submit-form/form-popup/FormSubmitFailPopUp'));
+const Modal = dynamic(() => import('./modal/modal'), {
+    ssr: false,
+});
+const FormPopUp = dynamic(() => import('./submit-form/form-popup/FormPopUp'), {
+    ssr: false,
+    loading: () => (
+        <div style={{ position: 'relative', width: '100%', height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Skeleton style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+        </div>
+    ),
+});
+const FormPopUpSubmitSuccess = dynamic(() => import('./submit-form/form-popup/FormPopUpSubmitSuccess'), {
+    ssr: false,
+});
+const FormPopUpSubmitFail = dynamic(() => import('./submit-form/form-popup/FormSubmitFailPopUp'), {
+    ssr: false,
+});
 const YMetrika = dynamic(() => import('./YMetrika'));
 
 const KoskoBold = localFont({
