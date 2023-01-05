@@ -45,6 +45,9 @@ const IconsContainer = styled(FlexCCC)({
     zIndex: 2,
 });
 
+const Heading = styled.h1((props) => ({
+    color: props.theme.colors.title,
+}));
 const SubHeading = styled.h2((props) => ({
     color: props.theme.colors.title,
 }));
@@ -63,7 +66,7 @@ const Contact: NextPage = (): JSX.Element => {
                     <Grid>
                         <SchoolLocationMap style={{ order: 2 }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
                         <ContactDetails>
-                            <SubHeading>Контакты</SubHeading>
+                            <Heading>Контакты</Heading>
                             <p> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807 </p>
                             <p>
                                 Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
