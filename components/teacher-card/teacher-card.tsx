@@ -93,7 +93,7 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) =
                     {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
                     <TeacherPhoto src={image} alt={alt} width={1000} height={1500} onLoadingComplete={handleImageLoaded} priority onError={() => dispatch(initError())} />
                 </ImageContainer>
-                {includePlay && isImgLoaded && <PlayIcon src={play} alt='' />}
+                {includePlay && isImgLoaded && <PlayIcon src={play} alt='' priority />}
             </ImageAndSpanContainer>
             <TextContainer>
                 <h2>{isImgLoaded ? name : <Skeleton height={40} width={200} />}</h2>

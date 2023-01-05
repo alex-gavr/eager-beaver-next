@@ -110,7 +110,7 @@ const SwiperCards = ({ pricesAdjustedArray }: any) => {
                                         const text = point.map((i: any) => i.text).join('');
                                         return (
                                             <ContainerForBulletPoint key={index}>
-                                                <Image src={checkMark} alt='check mark' />
+                                                <Image src={checkMark} alt='check mark' priority />
                                                 <li>{text}</li>
                                             </ContainerForBulletPoint>
                                         );
