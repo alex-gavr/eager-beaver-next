@@ -1,4 +1,4 @@
-import { useEffect, ReactNode, FC, KeyboardEvent } from 'react';
+import { useEffect, FC, KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppSelector } from '../../services/hook';
 import { CloseIcon } from '../icons';
@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { FlexCCC } from '../StyledMain';
 
 interface IModalContainer {
-    showX?: boolean;
+    $closeButton: boolean;
 }
 
 const StyledModalOverlay = styled(FlexCCC)({
@@ -24,12 +24,12 @@ const ModalContainer = styled(FlexCCC)<IModalContainer>((props) => ({
     width: '90%',
     maxWidth: '650px',
     backgroundColor: props.theme.colors.componentBackground,
-    backgroundImage: props.showX ? props.theme.colors.modalGradient : 'none',
+    backgroundImage: props.$closeButton ? props.theme.colors.modalGradient : 'none',
     position: 'relative',
     borderRadius: '2rem',
     zIndex: 1001,
     overflow: 'hidden',
-    padding: props.showX ? '4rem 1rem 1rem 1rem' : '2rem 0.5rem',
+    padding: props.$closeButton ? '4rem 1rem 1rem 1rem' : '2rem 0.5rem',
 }));
 
 const IconContainer = styled.div({
@@ -41,12 +41,12 @@ const IconContainer = styled.div({
 });
 
 interface Props {
-    children: ReactNode;
-    showX: boolean;
+    children: React.ReactNode;
+    closeButton: boolean;
     onClose: () => void;
 }
 
-const Modal: FC<Props> = ({ children, showX, onClose }): JSX.Element | null => {
+const Modal: FC<Props> = ({ children, closeButton, onClose }): JSX.Element | null => {
     const { isModalOpen } = useAppSelector((state) => state.modal);
 
     // CLOSE IF ESCAPE KEY PRESSED
@@ -66,11 +66,11 @@ const Modal: FC<Props> = ({ children, showX, onClose }): JSX.Element | null => {
     return createPortal(
         <StyledModalOverlay onClick={onClose}>
             <ModalContainer
-                showX={showX}
+                $closeButton={closeButton}
                 onClick={(e) => {
                     e.stopPropagation();
                 }}>
-                {showX && (
+                {closeButton && (
                     <IconContainer onClick={onClose}>
                         <CloseIcon type='primary' />
                     </IconContainer>

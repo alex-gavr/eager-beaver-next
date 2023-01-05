@@ -33,3 +33,6 @@ export interface INavigationState{
     footerVisible: boolean;
     headerVisible: boolean;
 }
+export interface IError {
+    error: boolean;
+}

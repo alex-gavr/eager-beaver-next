@@ -65,6 +65,22 @@ const Wrapper = styled.section({
     },
 });
 
+const AdvantagesDiv = styled(FlexCCC)((props) => ({
+    gap: '0.5rem',
+    '@media only screen and (max-width: 500px)': {
+        gap: '0.2rem'
+    },
+    '& > p': {
+        fontSize: '0.8rem',
+        '@media only screen and (max-width: 500px)': {
+            fontSize: '0.6rem'
+        },
+        width: "100%",
+        color: props.theme.colors.black,
+        textAlign: 'left'
+    },
+}));
+
 interface IProps {
     isMobileOnly: boolean;
 }
@@ -81,16 +97,22 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
     return (
         <AnimatePresence>
             <Wrapper>
-                <Image priority fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image'  />
+                <Image priority fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
                 <MainContent variants={list} animate='visible' initial='hidden'>
                     <Columns>
                         <m.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
                             {name && `Привет, ${name}`}
                         </m.p>
                         <m.h1 variants={toRight}>Eager Beaver Language School</m.h1>
-                        <m.p variants={toLeft}>
-                            детская языковая школа инклюзивного вида обучения <br /> сделай свой первый шаг к изучению английского языка
-                        </m.p>
+                        <m.p variants={toLeft}>детская языковая школа инклюзивного вида обучения</m.p>
+                        {/* <AdvantagesDiv variants={list}>
+                            <m.p variants={toRight}>обучение английскому и китайскому в группах или индивидуально </m.p>
+                            <m.p variants={toRight}>100%-ная вовлеченность и инициатива посетить следующий урок</m.p>
+                            <m.p variants={toRight}>постоянная обратная связь с родителем</m.p>
+                            <m.p variants={toRight}>индивидуальный подход</m.p>
+                            <m.p variants={toRight}>отслеживание успеха с фирменном трекером и стикерпаком</m.p>
+                            <m.p variants={toRight}>вовлечение в языковую культуру</m.p>
+                        </AdvantagesDiv> */}
                         <ButtonContainer variants={popUp}>
                             <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
                         </ButtonContainer>

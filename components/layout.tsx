@@ -29,6 +29,9 @@ const FormPopUpSubmitSuccess = dynamic(() => import('./submit-form/form-popup/Fo
 const FormPopUpSubmitFail = dynamic(() => import('./submit-form/form-popup/FormSubmitFailPopUp'), {
     ssr: false,
 });
+const ImageLoadingError = dynamic(() => import('./ImageLoadingError'), {
+    ssr: false,
+});
 const YMetrika = dynamic(() => import('./YMetrika'));
 
 const KoskoBold = localFont({
@@ -66,6 +69,7 @@ interface IProps {
 const Layout = ({ children, toggleTheme, isDarkMode, router }: IProps) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, submitSuccess, formFromModal, formFutureEvents } = useAppSelector((state) => state.modal);
+    const { error } = useAppSelector((state) => state.error);
     const handleCloseModal = () => {
         dispatch(onCloseModal());
     };
@@ -89,16 +93,18 @@ const Layout = ({ children, toggleTheme, isDarkMode, router }: IProps) => {
             {/* Modals */}
             <div id='modal'></div>
             {isModalOpen && (
-                <Modal onClose={handleCloseModal} showX={false}>
+                <Modal onClose={handleCloseModal} closeButton={false}>
                     {submitSuccess && <FormPopUpSubmitSuccess />}
                     {submitSuccess === false && <FormPopUpSubmitFail />}
                 </Modal>
             )}
             {isModalOpen && (
-                <Modal onClose={handleCloseModal} showX={true}>
+                <Modal onClose={handleCloseModal} closeButton={true}>
                     {formFromModal ? <FormPopUp futureEvents={false} /> : formFutureEvents ? <FormPopUp futureEvents={true} /> : null}
                 </Modal>
             )}
+            {/* Image Error Loading */}
+            {error ? <ImageLoadingError /> : null}
         </Wrapper>
     );
 };

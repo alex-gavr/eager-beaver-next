@@ -64,7 +64,7 @@ const Contact: NextPage = (): JSX.Element => {
                         <SchoolLocationMap style={{ order: 2 }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
                         <ContactDetails>
                             <SubHeading>Контакты</SubHeading>
-                            <p> Мы находимся по адресу: г. Волгоград Калинина 13, БЦ “Меркурий” </p>
+                            <p> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807 </p>
                             <p>
                                 Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>
                             </p>

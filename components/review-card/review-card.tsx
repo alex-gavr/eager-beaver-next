@@ -6,6 +6,8 @@ import { useWindowSize } from '../../utils/use-window-size';
 import downArrow from '../../images/icons/downArrow.svg';
 import { AnimatePresence, m } from 'framer-motion';
 import { FlexCCC } from '../StyledMain';
+import { useAppDispatch } from '../../services/hook';
+import { initError } from '../../services/errorSlice';
 
 const StyledCard = styled(FlexCCC)((props) => ({
     gap: '1rem',
@@ -77,6 +79,7 @@ interface IProps {
 }
 
 export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, review }) => {
+    const dispatch = useAppDispatch();
     const { width } = useWindowSize();
     const [isImgLoaded, setIsImgLoaded] = useState(false);
     const [showFullText, setShowFullText] = useState(false);
@@ -108,7 +111,7 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
                     {isImgLoaded && <Dashed />}
                     <ImageContainer>
                         {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
-                        <Image src={image} alt='' onLoadingComplete={handleImageLoaded} width={500} height={500} />
+                        <Image src={image} alt='' onLoadingComplete={handleImageLoaded} width={500} height={500} onError={() => dispatch(initError())} />
                     </ImageContainer>
                 </div>
                 <h2>{isImgLoaded ? name : <Skeleton height={25} width={width < 500 ? 100 : 200} />}</h2>

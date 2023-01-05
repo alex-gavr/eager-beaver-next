@@ -4,6 +4,8 @@ import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { FlexCCC } from '../StyledMain';
+import { useAppDispatch } from '../../services/hook';
+import { initError } from '../../services/errorSlice';
 
 const StyledContainer = styled(FlexCCC)({
     justifyContent: 'flex-start',
@@ -76,6 +78,8 @@ interface Props {
 }
 
 const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) => {
+    const dispatch = useAppDispatch();
+
     const [isImgLoaded, setIsImgLoaded] = useState(false);
 
     const handleImageLoaded = () => {
@@ -87,7 +91,7 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) =
             <ImageAndSpanContainer>
                 <ImageContainer>
                     {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
-                    <TeacherPhoto src={image} alt={alt} width={1000} height={1500} onLoadingComplete={handleImageLoaded} priority />
+                    <TeacherPhoto src={image} alt={alt} width={1000} height={1500} onLoadingComplete={handleImageLoaded} priority onError={() => dispatch(initError())} />
                 </ImageContainer>
                 {includePlay && isImgLoaded && <PlayIcon src={play} alt='' />}
             </ImageAndSpanContainer>

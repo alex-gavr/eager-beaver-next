@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import SocialMediaIcons from '../../social-media-block/SocialMediaIcons';
-import { Button } from '../../buttons/button';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useAppDispatch } from '../../../services/hook';
@@ -183,16 +182,15 @@ const CreditsContainerOmitLera = styled(m.div)((props) => ({
 
 const Footer = () => {
     const [showMap, setShowMap] = useState(false);
-
-    const handleShowMap = () => {
-        setShowMap(!showMap);
-    };
     const dispatch = useAppDispatch();
 
     const { ref, inView } = useInView({});
 
     useEffect(() => {
         dispatch(footerVisibilityStatus(inView));
+        if (!showMap && inView) {
+            setShowMap(true);
+        }
     }, [inView]);
 
     return (
@@ -209,7 +207,7 @@ const Footer = () => {
                         <AddressContainer>
                             <BeaverOnARocket src={beaverRocket} alt='' />
                             <Address>
-                                Мы находимся по адресу: <br /> г. Волгоград ул. Калинина д. 13, БЦ “Меркурий”
+                                Мы находимся по адресу: <br /> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807
                             </Address>
                             <Phone>
                                 Телефон для связи:
@@ -227,9 +225,7 @@ const Footer = () => {
                                 heightMobile={300}
                             />
                         ) : (
-                            <Button typeHTML='button' type='primary' onClick={handleShowMap} width={300} height={300} placeSelf='center'>
-                                Показать на Карте
-                            </Button>
+                            <Skeleton width={300} height={300} />
                         )}
                     </MapAndAddressContainer>
                     <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>

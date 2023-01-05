@@ -43,7 +43,7 @@ const TeachProcess: FC = (): JSX.Element => {
         <AnimatePresence>
             <StyledSection style={{marginTop: '3rem',}} variants={list} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
                 <h1>
-                    <AnimatedTextWords title={true} text='Как проходит обучение' textAnimation='fromBottomLeft' />
+                    <AnimatedTextWords title={true} text='Как проходит обучение?' textAnimation='fromBottomLeft' />
                 </h1>
                 <EvenColumns variants={opacity}>
                     <TeachingSteps />

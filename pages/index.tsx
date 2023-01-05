@@ -18,7 +18,6 @@ interface IProps extends IDeviceType {
     futureEvents: IFutureEvent[];
 }
 const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvents }) => {
-
     return (
         <>
             <Head>

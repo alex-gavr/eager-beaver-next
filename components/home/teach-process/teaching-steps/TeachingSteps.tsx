@@ -68,11 +68,11 @@ const TeachingSteps = () => {
     const handleClick = () => {
         if (step === 1) {
             setStep(2);
-            setButtonText('Логично, продолжай');
+            setButtonText('а затем?');
             // ym('reachGoal','teachingStep2');
         } else if (step === 2) {
             setStep(3);
-            setButtonText('Продолжай');
+            setButtonText('отлично, продолжайте');
             // ym('reachGoal','teachingStep3');
         } else if (step === 3) {
             setStep(4);
@@ -80,10 +80,10 @@ const TeachingSteps = () => {
             // ym('reachGoal','teachingStep4');
         } else if (step === 4) {
             setStep(5);
-            setButtonText('Понятно, на это все?');
+            setButtonText('а что потом?');
             // ym('reachGoal','teachingStep5');
         } else if (step === 5) {
-            setButtonText('Ждем Вас ❤️');
+            setButtonText('все понятно, запишу ребенка на пробный урок');
             // ym('reachGoal','teachingChangeColor');
         }
     };
@@ -183,7 +183,7 @@ const TeachingSteps = () => {
                             onClick={() => handleChangeStep(data.step)}
                             style={{
                                 backgroundColor:
-                                    buttonText === 'Ждем Вас ❤️'
+                                    buttonText === 'все понятно, запишу ребенка на пробный урок'
                                         ? theme.colors.secondaryLight
                                         : step === index + 1
                                         ? theme.colors.secondaryLight

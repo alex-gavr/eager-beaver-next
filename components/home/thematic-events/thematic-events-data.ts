@@ -19,8 +19,6 @@ import easter5 from '../../../images/thematicEvents/easter/optimized/5.webp';
 import easter6 from '../../../images/thematicEvents/easter/optimized/6.webp';
 import easter7 from '../../../images/thematicEvents/easter/optimized/7.webp';
 
-
-
 import sailor from '../../../images/thematicEvents/sailor/optimized/1.webp';
 import sailor2 from '../../../images/thematicEvents/sailor/optimized/2.webp';
 import sailor3 from '../../../images/thematicEvents/sailor/optimized/3.webp';
@@ -32,15 +30,24 @@ import sailor8 from '../../../images/thematicEvents/sailor/optimized/8.webp';
 import sailor9 from '../../../images/thematicEvents/sailor/optimized/9.webp';
 import sailor10 from '../../../images/thematicEvents/sailor/optimized/10.webp';
 
+import elfs from '../../../images/thematicEvents/elfs/optimized/1.webp';
+import elfs2 from '../../../images/thematicEvents/elfs/optimized/2.webp';
+import elfs3 from '../../../images/thematicEvents/elfs/optimized/3.webp';
+import elfs4 from '../../../images/thematicEvents/elfs/optimized/4.webp';
+import elfs5 from '../../../images/thematicEvents/elfs/optimized/5.webp';
+import elfs6 from '../../../images/thematicEvents/elfs/optimized/6.webp';
+import elfs7 from '../../../images/thematicEvents/elfs/optimized/7.webp';
+import elfs8 from '../../../images/thematicEvents/elfs/optimized/8.webp';
 
-
-import christmas from '../../../images/thematicEvents/christmas/optimized/1.webp';
-import christmas2 from '../../../images/thematicEvents/christmas/optimized/2.webp';
-import christmas3 from '../../../images/thematicEvents/christmas/optimized/3.webp';
-import christmas4 from '../../../images/thematicEvents/christmas/optimized/4.webp';
-import christmas5 from '../../../images/thematicEvents/christmas/optimized/5.webp';
-
-
+import christmasParty from '../../../images/thematicEvents/christmasParty/optimized/1.webp';
+import christmasParty2 from '../../../images/thematicEvents/christmasParty/optimized/2.webp';
+import christmasParty3 from '../../../images/thematicEvents/christmasParty/optimized/3.webp';
+import christmasParty4 from '../../../images/thematicEvents/christmasParty/optimized/4.webp';
+import christmasParty5 from '../../../images/thematicEvents/christmasParty/optimized/5.webp';
+import christmasParty6 from '../../../images/thematicEvents/christmasParty/optimized/6.webp';
+import christmasParty7 from '../../../images/thematicEvents/christmasParty/optimized/7.webp';
+import christmasParty8 from '../../../images/thematicEvents/christmasParty/optimized/8.webp';
+import christmasParty9 from '../../../images/thematicEvents/christmasParty/optimized/9.webp';
 
 interface Image {
     image: any;
@@ -172,24 +179,69 @@ export const eventsData: IEventsData[] = [
         id: 4,
         images: [
             {
-                image: christmas,
+                image: elfs,
             },
             {
-                image: christmas2,
+                image: elfs2,
             },
             {
-                image: christmas3,
+                image: elfs3,
             },
             {
-                image: christmas4,
+                image: elfs4,
             },
             {
-                image: christmas5,
+                image: elfs5,
+            },
+            {
+                image: elfs6,
+            },
+            {
+                image: elfs7,
+            },
+            {
+                image: elfs8,
             },
         ],
         imageSide: 'right',
-        subHeading: 'Christmas elves',
+        subHeading: 'Christmas Elves',
         paragraph:
-            'Мастер-класс по упаковке подарков к Рождеству и на Новый Год. Ребята изучают новогоднюю лексику, поют рождественские песни. Все подарки мы отправляем в детские дома и интернаты.',
+            'Благотворительный мастер-класс по упаковке новогодних подарков. Наши ученики приносят свои подарки для детей с ОВЗ, ЗПР, детей-сирот, которые мы вместе упаковываем, а после отправляем в детские дома и интернаты.',
+    },
+    {
+        id: 5,
+        images: [
+            {
+                image: christmasParty,
+            },
+            {
+                image: christmasParty2,
+            },
+            {
+                image: christmasParty3,
+            },
+            {
+                image: christmasParty4,
+            },
+            {
+                image: christmasParty5,
+            },
+            {
+                image: christmasParty6,
+            },
+            {
+                image: christmasParty7,
+            },
+            {
+                image: christmasParty8,
+            },
+            {
+                image: christmasParty9,
+            },
+        ],
+        imageSide: 'left',
+        subHeading: 'Christmas Party',
+        paragraph:
+            'Наши ежегодные рождественские вечеринки для разного возраста. Вместе мы изучаем новогоднюю лексику, проводим мастер-класс Gingerbread House Craft, учим новогодние песни, участвуем в Christmas quiz и обмениваемся подарками.',
     },
 ];
