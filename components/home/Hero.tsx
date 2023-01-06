@@ -105,14 +105,6 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                         </m.p>
                         <m.h1 variants={toRight}>Eager Beaver Language School</m.h1>
                         <m.p variants={toLeft}>детская языковая школа инклюзивного вида обучения</m.p>
-                        {/* <AdvantagesDiv variants={list}>
-                            <m.p variants={toRight}>обучение английскому и китайскому в группах или индивидуально </m.p>
-                            <m.p variants={toRight}>100%-ная вовлеченность и инициатива посетить следующий урок</m.p>
-                            <m.p variants={toRight}>постоянная обратная связь с родителем</m.p>
-                            <m.p variants={toRight}>индивидуальный подход</m.p>
-                            <m.p variants={toRight}>отслеживание успеха с фирменном трекером и стикерпаком</m.p>
-                            <m.p variants={toRight}>вовлечение в языковую культуру</m.p>
-                        </AdvantagesDiv> */}
                         <ButtonContainer variants={popUp}>
                             <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
                         </ButtonContainer>

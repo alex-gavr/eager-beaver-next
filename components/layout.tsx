@@ -35,6 +35,11 @@ const ImageLoadingError = dynamic(() => import('./ImageLoadingError'), {
 
 const PolicyText = dynamic(() => import('./policy/PolicyText'), {
     ssr: false,
+    loading: () => (
+        <div style={{ position: 'relative', width: '100%', height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Skeleton style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+        </div>
+    ),
 });
 const YMetrika = dynamic(() => import('./YMetrika'));
 
