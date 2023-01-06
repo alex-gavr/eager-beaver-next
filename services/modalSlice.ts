@@ -6,6 +6,7 @@ const initialState: IModalState = {
     submitSuccess: null,
     formFromModal: false,
     formFutureEvents: false,
+    showPolicy: false,
 };
 
 export const modalSlice = createSlice({
@@ -20,6 +21,7 @@ export const modalSlice = createSlice({
             state.submitSuccess = null;
             state.formFromModal = false;
             state.formFutureEvents= false;
+            state.showPolicy= false;
         },
         onOpenModalFormSubmitSuccess(state, action) {
             state.isModalOpen = true;
@@ -32,9 +34,13 @@ export const modalSlice = createSlice({
         onOpenModalFormFutureEvents(state) {
             state.isModalOpen = true;
             state.formFutureEvents= true;
+        },
+        onOpenModalPolicy(state) {
+            state.isModalOpen = true;
+            state.showPolicy= true;
         }
     },
 });
 
-export const { onOpenModal, onCloseModal, onOpenModalFormSubmitSuccess, onOpenModalForm, onOpenModalFormFutureEvents } = modalSlice.actions;
+export const { onOpenModal, onCloseModal, onOpenModalFormSubmitSuccess, onOpenModalForm, onOpenModalFormFutureEvents, onOpenModalPolicy } = modalSlice.actions;
 export default modalSlice.reducer;

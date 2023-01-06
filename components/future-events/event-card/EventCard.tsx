@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../services/hook';
-import { Button } from '../../buttons/button';
+import Button from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
 import { toggleHeight } from '../../../utils/motion-animations';
 import downArrow from '../../../images/icons/downArrow.svg';

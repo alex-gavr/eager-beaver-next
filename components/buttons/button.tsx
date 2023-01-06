@@ -70,7 +70,7 @@ const transition = {
     repeatDelay: 5,
 };
 
-export const Button: FC<ICustomButton> = ({
+const Button: FC<ICustomButton> = ({
     typeHTML,
     type,
     children,
@@ -175,3 +175,5 @@ export const Button: FC<ICustomButton> = ({
         </>
     );
 };
+
+export default Button;

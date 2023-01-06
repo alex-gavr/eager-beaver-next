@@ -3,7 +3,7 @@ import SubmitForm from '../submit-form';
 import styled from 'styled-components';
 import FormPopUpSubmitSuccess from './FormPopUpSubmitSuccess';
 import FormPopUpSubmitFail from './FormSubmitFailPopUp';
-import { Button } from '../../buttons/button';
+import Button from '../../buttons/button';
 import { FlexCCC } from '../../StyledMain';
 
 const StyledWrapper = styled(FlexCCC)((props) => ({

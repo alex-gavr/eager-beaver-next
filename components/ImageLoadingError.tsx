@@ -1,4 +1,4 @@
-import { Button } from './buttons/button';
+import Button from './buttons/button';
 import styled from 'styled-components';
 import { FlexCCC } from './StyledMain';
 import { useAppDispatch } from '../services/hook';

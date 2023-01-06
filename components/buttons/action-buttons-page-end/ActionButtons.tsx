@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { Button, ICustomButton } from '../button';
+import { useRouter } from 'next/router';
+import Button, { ICustomButton } from '../button';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../../services/hook';
 import { onOpenModalForm } from '../../../services/modalSlice';
@@ -11,8 +11,8 @@ const ButtonsContainer = styled(FlexCCC)({
     zIndex: 2,
     '@media only screen and (min-width: 500px)': {
         flexFlow: 'row nowrap',
-    }
-})
+    },
+});
 
 interface IProps {
     primaryButtonStyle: ICustomButton['type'];

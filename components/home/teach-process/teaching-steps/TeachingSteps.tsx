@@ -1,4 +1,4 @@
-import { Button } from '../../../buttons/button';
+import Button from '../../../buttons/button';
 import { useState } from 'react';
 import { useWindowSize } from '../../../../utils/use-window-size';
 import styled, { useTheme } from 'styled-components';

@@ -179,6 +179,36 @@ const CreditsContainerOmitLera = styled(m.div)((props) => ({
         justifyItems: 'center',
     },
 }));
+const PolicyContainer = styled(FlexCCC)((props) => ({
+    width: '100%',
+    gap: '0.5rem',
+    padding: '0.5rem',
+    textAlign: 'center',
+    '@media only screen and (max-width: 500px)': {
+        width: '50%',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    '& > a': {
+        fontFamily: 'var(--ff-body)',
+        letterSpacing: '0.1rem',
+        color: props.theme.colors.white,
+        opacity: 0.7,
+        fontSize: '0.7rem',
+        '@media only screen and (max-width: 500px)': {
+            fontSize: '0.6rem',
+        },
+    },
+    '& > p': {
+        letterSpacing: '0.1rem',
+        color: props.theme.colors.white,
+        opacity: 0.7,
+        fontSize: '0.7rem',
+        '@media only screen and (max-width: 500px)': {
+            fontSize: '0.6rem',
+        },
+    }
+}));
 
 const Footer = () => {
     const [showMap, setShowMap] = useState(false);
@@ -245,6 +275,10 @@ const Footer = () => {
                         <m.p variants={popUp}>Illustrations: Елизавета Шведова</m.p>
                     </CreditsContainerOmitLera>
                 </CreditsContainer>
+                <PolicyContainer>
+                    <Link href='/policy'>Политика Обработки Персональных Данных</Link>
+                    <p>Eager Beaver Language School © 2023</p>
+                </PolicyContainer>
             </StyledFooter>
         </AnimatePresence>
     );

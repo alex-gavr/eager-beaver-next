@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button } from '../buttons/button';
+import Button from '../buttons/button';
 import { Input, TInputInterface } from '../input/input';
 import { formatPhoneNumber } from '../../utils/format-phone-number';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import Cookies from 'js-cookie';
 import { PreloaderSmall } from '../preloader/preloader-small';
 import styled from 'styled-components';
-import { onOpenModalFormSubmitSuccess } from '../../services/modalSlice';
+import { onOpenModalFormSubmitSuccess, onOpenModalPolicy } from '../../services/modalSlice';
 import { v4 as uuid } from 'uuid';
 import { initMemberCountChange } from '../../services/futureEventSignUpData';
 import { FlexCCC } from '../StyledMain';
@@ -27,8 +27,14 @@ const ButtonContainer = styled(FlexCCC)({
     },
 });
 const Disclaimer = styled.p((props) => ({
+    width: '50%',
     fontSize: '0.7rem',
     textAlign: 'center',
+    textDecoration: 'underline',
+    '@media only screen and (max-width: 500px)': {
+        fontSize: '0.6rem',
+        width: '70%',
+    }
 }));
 
 type FlexDirection = 'column' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'column-reverse' | 'row' | 'row-reverse' | undefined;
@@ -252,7 +258,10 @@ const SubmitForm = ({ flexDirection, setSubmitSuccess, setError }: IProps) => {
                         isInputFocused={isInputFocused}>
                         {loading ? <PreloaderSmall /> : 'Записаться'}
                     </Button>
-                    <Disclaimer>Нажимая кнопку, вы даёте согласие на обработку своих персональных данных</Disclaimer>
+                    <Disclaimer
+                        onClick={() => dispatch(onOpenModalPolicy())}>
+                        Нажимая кнопку, вы даёте согласие на обработку своих персональных данных
+                    </Disclaimer>
                 </ButtonContainer>
             </StyledForm>
         </>
