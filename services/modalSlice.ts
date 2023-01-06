@@ -7,6 +7,8 @@ const initialState: IModalState = {
     formFromModal: false,
     formFutureEvents: false,
     showPolicy: false,
+    initSubmitFrom: false,
+    initSubmitFutureEvent: false,
 };
 
 export const modalSlice = createSlice({
@@ -20,8 +22,10 @@ export const modalSlice = createSlice({
             state.isModalOpen = false;
             state.submitSuccess = null;
             state.formFromModal = false;
-            state.formFutureEvents= false;
-            state.showPolicy= false;
+            state.formFutureEvents = false;
+            state.showPolicy = false;
+            state.initSubmitFrom = false;
+            state.initSubmitFutureEvent = false;
         },
         onOpenModalFormSubmitSuccess(state, action) {
             state.isModalOpen = true;
@@ -30,17 +34,34 @@ export const modalSlice = createSlice({
         onOpenModalForm(state) {
             state.isModalOpen = true;
             state.formFromModal = true;
+            state.initSubmitFrom = true;
         },
         onOpenModalFormFutureEvents(state) {
             state.isModalOpen = true;
-            state.formFutureEvents= true;
+            state.formFutureEvents = true;
+            state.initSubmitFutureEvent = true;
         },
         onOpenModalPolicy(state) {
             state.isModalOpen = true;
-            state.showPolicy= true;
-        }
+            if (state.initSubmitFrom) {
+                state.formFromModal = false;
+            }  
+            if (state.initSubmitFutureEvent) {
+                state.formFutureEvents = false;
+            }
+            state.showPolicy = true;
+        },
+        showForm(state) {
+            // Тут мы решаем какую форму показать обратно. 
+            if (state.initSubmitFrom) {
+                state.formFromModal = true;
+            } else if (state.initSubmitFutureEvent) {
+                state.formFutureEvents = true;
+            }
+            state.showPolicy = false;
+        },
     },
 });
 
-export const { onOpenModal, onCloseModal, onOpenModalFormSubmitSuccess, onOpenModalForm, onOpenModalFormFutureEvents, onOpenModalPolicy } = modalSlice.actions;
+export const { onOpenModal, onCloseModal, onOpenModalFormSubmitSuccess, onOpenModalForm, onOpenModalFormFutureEvents, onOpenModalPolicy, showForm } = modalSlice.actions;
 export default modalSlice.reducer;

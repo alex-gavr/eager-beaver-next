@@ -1,15 +1,24 @@
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../services/hook';
+import { showForm } from '../../services/modalSlice';
+import Button from '../buttons/button';
 
 const PolicyDiv = styled.div({
     maxHeight: 400,
     overflowY: 'scroll',
+    marginBottom: '1rem',
 });
 const StyledSubHeading = styled.h2((props) => ({
     color: props.theme.colors.title,
-    textAlign: 'center'
+    textAlign: 'center',
 }));
 
 const PolicyText = () => {
+    const dispatch = useAppDispatch();
+    const { isModalOpen, initSubmitFrom, initSubmitFutureEvent } = useAppSelector((state) => state.modal);
+    const handleShowForm = () => {
+        dispatch(showForm());
+    };
     return (
         <>
             <StyledSubHeading> Политика в отношении обработки персональных данных от 06.01.2023</StyledSubHeading>
@@ -227,6 +236,16 @@ const PolicyText = () => {
                     14.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу https://eager-beaver.ru/policy.
                 </p>
             </PolicyDiv>
+            {isModalOpen && initSubmitFrom  && (
+                <Button typeHTML='button' type='emptySecondary' padding='0.7rem' onClick={handleShowForm}>
+                    обратно к форме
+                </Button>
+            )}
+            {isModalOpen && initSubmitFutureEvent  && (
+                <Button typeHTML='button' type='emptySecondary' padding='0.7rem' onClick={handleShowForm}>
+                    обратно к форме
+                </Button>
+            )}
         </>
     );
 };

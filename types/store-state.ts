@@ -20,6 +20,8 @@ export interface IModalState {
     formFromModal: boolean;
     formFutureEvents: boolean,
     showPolicy: boolean;
+    initSubmitFrom: boolean;
+    initSubmitFutureEvent: boolean;
 }
 
 export interface IFutureEventDetailsState {
