@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const PolicyDiv = styled.div({
-    maxHeight: 500,
+    maxHeight: 400,
     overflowY: 'scroll',
 });
 const StyledSubHeading = styled.h2((props) => ({
