@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 const PolicyDiv = styled.div({
-    maxHeight: 400,
+    maxHeight: 500,
     overflowY: 'scroll',
 });
+const StyledSubHeading = styled.h2((props) => ({
+    color: props.theme.colors.title,
+    textAlign: 'center'
+}));
 
 const PolicyText = () => {
     return (
         <>
-            <h2> Политика в отношении обработки персональных данных от 06.01.2023</h2>
+            <StyledSubHeading> Политика в отношении обработки персональных данных от 06.01.2023</StyledSubHeading>
             <PolicyDiv>
                 <p>
                     1. Общие положения <br />

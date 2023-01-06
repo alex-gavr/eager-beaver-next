@@ -1,4 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow: /api
+Disallow: /policy
 Sitemap: https://eager-beaver.ru/sitemap.xml
