@@ -25,7 +25,7 @@ export const Logo = () => {
     return (
         <Link href='/'>
             <Row>
-                <Image src={logo} alt='logo' />
+                <Image priority src={logo} alt='logo' />
                 <p>
                     Eager
                     <br />

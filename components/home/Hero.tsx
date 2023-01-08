@@ -109,7 +109,7 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                     }}
                     layoutId='heroImage'
                     transition={{ duration: 0.6, ease: 'easeOut' }}>
-                    <Image fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
+                    <Image priority fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
                 </m.div>
                 {!showLoader && (
                     <MainContent variants={list} animate='visible' initial='hidden'>

@@ -106,12 +106,12 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
         <AnimatePresence mode='wait'>
             <Wrapper variants={container} initial='hidden' animate='visible' exit='exit' onAnimationComplete={handleDisableHomeAni}>
                 <EagerBeaverContainer variants={toDown}>
-                    <Image src={logo} alt='hero' priority />
+                    <Image src={logo} alt='heroBeaver' />
                 </EagerBeaverContainer>
                 <Title variants={toUp}>Eager Beaver Language School</Title>
                 {router.pathname === '/' ? (
                     <ImageContainer variants={imageAni} layoutId='heroImage'>
-                        <Image src={isMobileOnly ? heroMobile : hero} alt='hero' priority />
+                        <Image src={isMobileOnly ? heroMobile : hero} alt='hero' />
                     </ImageContainer>
                 ) : (
                     <TitlePages variants={imageAni} layoutId={layoutId}>
