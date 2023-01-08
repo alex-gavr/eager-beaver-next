@@ -39,3 +39,6 @@ export interface INavigationState{
 export interface IError {
     error: boolean;
 }
+export interface IHomeLoader {
+    showLoader: boolean;
+}

@@ -5,7 +5,6 @@ import Providers from '../components/Providers';
 import Layout from '../components/layout';
 import GlobalStyle from '../components/GlobalStyles';
 
-
 const light: DefaultTheme = {
     colors: {
         background: 'rgba(255, 255, 255, 1)',
@@ -23,6 +22,7 @@ const light: DefaultTheme = {
         eventsGradient: 'linear-gradient(180deg, #FFC009 0%, #EED07A 100%)',
         mobileMenu: 'radial-gradient(circle, rgba(248,236,155,1) 0%, rgba(255,225,121,1) 100%)',
         modalGradient: 'linear-gradient(60deg, #abecd6 0%, #fbed96 100%)',
+        pageTransitionGradient: 'linear-gradient(45deg, #96fbc4 0%, #f9f586 100%)',
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -52,6 +52,8 @@ const dark: DefaultTheme = {
         eventsGradient: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
         mobileMenu: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
         modalGradient: 'linear-gradient(to top, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
+        pageTransitionGradient:
+            'linear-gradient(to left, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to right, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)',
     },
     fontSize: {
         body: 'clamp(1rem, 0.9295rem + 0.3419vw, 1.25rem)',
@@ -68,10 +70,6 @@ const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const { theme, toggleTheme, componentMounted } = useDarkMode();
     const isDarkMode = theme === 'dark' ? true : false;
     const themeMode = theme === 'light' ? light : dark;
-
-    if (!componentMounted) {
-        return <div style={{ visibility: 'hidden', height: '100vh', width: '100vw' }} />;
-    }
 
     return (
         <Providers themeMode={themeMode}>

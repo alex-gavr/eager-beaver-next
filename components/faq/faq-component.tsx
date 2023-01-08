@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { toggleHeight } from '../../utils/motion-animations';
-import downArrow from '../../images/icons/downArrow.svg';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { FlexCCC } from '../StyledMain';
@@ -20,11 +19,11 @@ const WrapperContainer = styled(FlexCCC)((props) => ({
     ' & > p': {
         letterSpacing: '0.03rem',
         color: props.theme.colors.paragraph,
-        textTransform: 'lowercase'
+        textTransform: 'lowercase',
     },
 }));
 
-const QuestionContainer = styled(FlexCCC)(props => ({
+const QuestionContainer = styled(FlexCCC)((props) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -56,11 +55,13 @@ const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
 
     return (
         <WrapperContainer onClick={handleToggle}>
-            <QuestionContainer >
+            <QuestionContainer>
                 <h3>{question}</h3>
                 <IconContainer>
                     <Image
-                        src={downArrow}
+                        src={'/downArrow.svg'}
+                        width={30}
+                        height={20}
                         alt=''
                         style={{
                             transform: open ? 'rotate(540deg)' : 'rotate(0deg)',
@@ -69,13 +70,9 @@ const FAQComponent: FC<Props> = ({ question, answer }): JSX.Element => {
                     />
                 </IconContainer>
             </QuestionContainer>
-            <AnimatePresence mode='wait' >
+            <AnimatePresence mode='wait'>
                 {open && (
-                    <m.p
-                        variants={toggleHeight}
-                        initial={toggleHeight.hidden}
-                        animate={toggleHeight.visible}
-                        exit={toggleHeight.exit}>
+                    <m.p variants={toggleHeight} initial={toggleHeight.hidden} animate={toggleHeight.visible} exit={toggleHeight.exit}>
                         {answer}
                     </m.p>
                 )}

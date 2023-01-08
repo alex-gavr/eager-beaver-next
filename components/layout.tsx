@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Header from './menus/header/header';
 import localFont from '@next/font/local';
 import dynamic from 'next/dynamic';
 import { AnimatePresence } from 'framer-motion';
@@ -8,9 +7,15 @@ import { onCloseModal } from '../services/modalSlice';
 import { Analytics } from '@vercel/analytics/react';
 import type { NextRouter } from 'next/router';
 import Skeleton from 'react-loading-skeleton';
+import Header from './menus/header/header';
 
-const Footer = dynamic(() => import('./menus/footer/footer'));
-const FixedSocialMedia = dynamic(() => import('./social-media-block/FixedSocialMedia'));
+
+const Footer = dynamic(() => import('./menus/footer/footer'), {
+    ssr: false,
+});
+const FixedSocialMedia = dynamic(() => import('./social-media-block/FixedSocialMedia'), {
+    ssr: false,
+});
 const DayNightToggle = dynamic(() => import('./toggle'));
 const Modal = dynamic(() => import('./modal/modal'), {
     ssr: false,
@@ -63,10 +68,6 @@ const Wrapper = styled.div({
     position: 'relative',
     overflow: 'hidden',
 });
-const AnimationHelperDiv = styled.div({
-    position: 'relative',
-    width: '100%',
-});
 
 interface IProps {
     children: React.ReactNode;
@@ -91,12 +92,11 @@ const Layout = ({ children, toggleTheme, isDarkMode, router }: IProps) => {
             <Header />
             {router.pathname === '/reviews' || router.pathname === '/contact' ? null : <FixedSocialMedia />}
             {/* This div is makes animation show in footer, but not in header */}
-            <AnimationHelperDiv>
-                <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
-                    {children}
-                </AnimatePresence>
-                <Footer />
-            </AnimationHelperDiv>
+            <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
+                
+                {children}
+            </AnimatePresence>
+            <Footer />
             {/* Theme Toggler */}
             <DayNightToggle onChange={toggleTheme} checked={isDarkMode} size={30} />
             {/* Modals */}

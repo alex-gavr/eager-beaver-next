@@ -1,5 +1,4 @@
 import { useSwiper } from 'swiper/react';
-import downArrow from '../../images/icons/downArrow.svg';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -34,11 +33,11 @@ export const SlideButtons = () => {
         <Wrapper>
             <PointerContainer
                 onClick={() => swiper.slidePrev()}>
-                <Image src={downArrow} alt='' style={{rotate: '90deg'}} />
+                <Image src={'/downArrow.svg'} width={25} height={15} alt='' style={{rotate: '90deg'}} />
             </PointerContainer>
             <PointerContainer
                 onClick={() => swiper.slideNext()}>
-                <Image src={downArrow} alt='' style={{rotate: '-90deg'}} />
+                <Image src={'/downArrow.svg'} width={25} height={15} alt='' style={{rotate: '-90deg'}} />
             </PointerContainer>
         </Wrapper>
     );

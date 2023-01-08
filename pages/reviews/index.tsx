@@ -12,12 +12,16 @@ import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain'
 import { getSelectorsByUserAgent } from 'react-device-detect';
 import { fetchNotion } from '../../utils/fetchNotion';
 import Carousel from 'react-multi-carousel-18';
+import { useAppSelector } from '../../services/hook';
+import Loader from '../../components/Loader';
+import { m } from 'framer-motion';
 
-
-const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'), {
+    ssr: false,
+});
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-const StyledHeading = styled.h1((props) => ({
+const StyledHeading = styled(m.h1)((props) => ({
     color: props.theme.colors.secondaryDark,
     width: '80%',
     textAlign: 'center',
@@ -74,6 +78,7 @@ interface IProps extends IDeviceType {
     reviews: IReviews[];
 }
 const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     const ref = useRef(null);
     const slider = usePreventVerticalScroll(ref);
 
@@ -103,9 +108,10 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader title='Наши Ученики' layoutId='kids' />}
             <StyledMain>
                 <StyledSection ref={ref} style={{ minHeight: '100vh' }}>
-                    <StyledHeading>
+                    <StyledHeading layoutId='kids' transition={{ duration: 0.6, ease: 'easeOut' }}>
                         Наши <Accent>ученики</Accent>
                     </StyledHeading>
                     <CarouselContainer>

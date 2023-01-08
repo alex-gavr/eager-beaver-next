@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { FC, useLayoutEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useWindowSize } from '../../utils/use-window-size';
-import downArrow from '../../images/icons/downArrow.svg';
 import { AnimatePresence, m } from 'framer-motion';
 import { FlexCCC } from '../StyledMain';
 import { useAppDispatch } from '../../services/hook';
@@ -107,7 +106,7 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
     return (
         <AnimatePresence mode='wait' initial={false}>
             <StyledCard>
-                <div style={{position: 'relative'}}>
+                <div style={{ position: 'relative' }}>
                     {isImgLoaded && <Dashed />}
                     <ImageContainer>
                         {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
@@ -125,7 +124,7 @@ export const ReviewCard: FC<IProps> = ({ image, name, parent, relationToChild, r
                     </StyledReviewText>
                     {isImgLoaded && isOverflowY && (
                         <ShowFullIconContainer style={showFullText ? { rotate: '180deg' } : {}}>
-                            <Image src={downArrow} alt='' />
+                            <Image src={'/downArrow.svg'} width={30} height={20} alt='' />
                         </ShowFullIconContainer>
                     )}
                 </StyledReviewCard>

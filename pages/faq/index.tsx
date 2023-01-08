@@ -5,9 +5,14 @@ import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFaq } from '../../types/data';
 import { fetchNotion } from '../../utils/fetchNotion';
 import FAQComponent from '../../components/faq/faq-component';
+import { useAppSelector } from '../../services/hook';
+import Loader from '../../components/Loader';
+import {m} from 'framer-motion';
 
 
-const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'), {
+    ssr: false
+});
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 const Wrapper = styled(StyledSection)({
@@ -18,7 +23,7 @@ const Wrapper = styled(StyledSection)({
     },
 });
 
-const StyledHeading = styled.h1((props) => ({
+const StyledHeading = styled(m.h1)((props) => ({
     color: props.theme.colors.title,
     zIndex: 2,
     fontSize: 'clamp(2.4rem, 1.9487rem + 2.1880vw, 4rem)',
@@ -54,7 +59,7 @@ interface IProps {
     faq: IFaq[];
 }
 const FAQ = ({ faq }: IProps) => {
-
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     return (
         <>
             <Head>
@@ -63,9 +68,10 @@ const FAQ = ({ faq }: IProps) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader title='Вопрос / Ответ' layoutId='faq' />}
             <StyledMain>
                 <Wrapper>
-                    <StyledHeading>
+                    <StyledHeading layoutId='faq' transition={{ duration: 0.6, ease: 'easeOut' }}>
                         <Accent> Вопрос </Accent> / Ответ
                     </StyledHeading>
                     <Column>

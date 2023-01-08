@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { CloudContainer } from '../CloudsContainer';
 import dynamic from 'next/dynamic';
 import { FlexCCC } from '../StyledMain';
+import { m } from 'framer-motion';
 
 const BeaverSleeps = dynamic(() => import('./BeaverSleeps'));
 
@@ -31,7 +32,7 @@ const YellowBG = styled.span((props) => ({
     top: 0,
     width: '100vw',
     height: '100%',
-    background: props.theme.colors.eventsGradient
+    background: props.theme.colors.eventsGradient,
 }));
 
 const EventsContainer = styled(FlexCCC)((props) => ({
@@ -59,14 +60,15 @@ const BeaverContainer = styled(FlexCCC)((props) => ({
 
 interface IProps {
     futureEvents: IFutureEvent[];
+    layoutId?: string;
 }
-const FutureEvents = ({ futureEvents }: IProps) => {
+const FutureEvents = ({ futureEvents, layoutId }: IProps) => {
     return (
         <>
             <Wrapper>
-                <h1>
+                <m.h1 layoutId={layoutId} transition={{ duration: 0.6, ease: 'easeOut' }}>
                     <AnimatedTextWords text='Предстоящие мероприятия' title={true} textAnimation='fromBottomLeft' />
-                </h1>
+                </m.h1>
                 <EventsContainer>
                     {futureEvents.length === 0 ? (
                         <h2

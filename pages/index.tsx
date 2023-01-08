@@ -6,11 +6,19 @@ import { IDeviceType, IFutureEvent } from '../types/data';
 import { StyledMain, StyledSection } from '../components/StyledMain';
 import dynamic from 'next/dynamic';
 import { fetchNotion } from '../utils/fetchNotion';
+import Loader from '../components/Loader';
+import { useAppSelector } from '../services/hook';
 
-const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'));
-const FutureEvents = dynamic(() => import('../components/future-events/FutureEvents'));
+const TeachProcess = dynamic(() => import('../components/home/teach-process/teach-process'), {
+    ssr: false,
+});
+const FutureEvents = dynamic(() => import('../components/future-events/FutureEvents'), {
+    ssr: false,
+});
 const Events = dynamic(() => import('../components/home/thematic-events/events'));
-const FreeClass = dynamic(() => import('../components/home/free-class/free-class'));
+const FreeClass = dynamic(() => import('../components/home/free-class/free-class'), {
+    ssr: false,
+});
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
 const FlyingBeaver = dynamic(() => import('../components/flying-beaver/FlyingBeaver'));
 
@@ -18,6 +26,8 @@ interface IProps extends IDeviceType {
     futureEvents: IFutureEvent[];
 }
 const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvents }) => {
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
+
     return (
         <>
             <Head>
@@ -29,6 +39,7 @@ const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvent
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader isMobileOnly={isMobileOnly} title='Eager Beaver Language School' />}
             <StyledMain>
                 <FlyingBeaver isMobileOnly={isMobileOnly} isTablet={isTablet} />
                 <Hero isMobileOnly={isMobileOnly} />

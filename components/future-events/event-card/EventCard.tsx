@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../../services/hook';
 import Button from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
 import { toggleHeight } from '../../../utils/motion-animations';
-import downArrow from '../../../images/icons/downArrow.svg';
 import { onOpenModalFormFutureEvents } from '../../../services/modalSlice';
 import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
 import Image from 'next/image';
@@ -165,7 +164,8 @@ const EventCard = ({ title, description, age, participants: participantsData, to
             </FlexCCC>
             <TogglerContainer onClick={() => setOpen((prev) => !prev)}>
                 <Image
-                    src={downArrow}
+                    src={'/downArrow.svg'}
+                    width={30} height={20}
                     alt=''
                     style={{
                         transform: open ? 'rotate(540deg)' : 'rotate(0deg)',

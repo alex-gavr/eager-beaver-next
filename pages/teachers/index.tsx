@@ -6,8 +6,13 @@ import {  NextPage } from 'next';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { fetchNotion } from '../../utils/fetchNotion';
 import TeacherCard from '../../components/teacher-card/teacher-card';
+import Loader from '../../components/Loader';
+import { useAppSelector } from '../../services/hook';
+import {m} from 'framer-motion';
 
-const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'));
+const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'), {
+    ssr: false
+});
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
 
@@ -33,7 +38,7 @@ interface IProps {
 }
 
 const Teachers: NextPage<IProps> = ({teachers}) => {
-    
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
 
     return (
         <>
@@ -46,11 +51,12 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader title='Наши преподаватели' layoutId='ourTeachers' />}
             <StyledMain>
                 <StyledSection>
-                    <h1 style={{textAlign: 'center', lineHeight: '1.6'}}>
+                    <m.h1 style={{textAlign: 'center', lineHeight: '1.6'}} layoutId='ourTeachers' transition={{ duration: 0.6, ease: 'easeOut' }}>
                         Наши <Accent>преподаватели</Accent>
-                    </h1>
+                    </m.h1>
                     <StyledTeachersContainer>
                         {teachers &&
                             teachers.map((teacher) => (

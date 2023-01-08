@@ -3,7 +3,6 @@ import { useAppSelector } from '../../services/hook';
 import SocialMediaIcons from './SocialMediaIcons';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import whatsapp from '../../images/icons/social-media/whatsapp.svg';
 import { useWindowSize } from '../../utils/use-window-size';
 import { FlexCCC } from '../StyledMain';
 
@@ -40,7 +39,7 @@ const FixedSocialMedia = () => {
                     animate={headerVisible ? { right: '-15%' } : { right: '4%' }}
                     transition={{ ease: 'easeInOut', duration: 1 }}>
                     <a href='https://wa.me/79093809657' aria-label='WhatsApp' target='_blank' rel='noopener noreferrer'>
-                        <Image src={whatsapp} alt='' />
+                        <Image src={'/whatsapp.svg'} width={50} height={50} alt='' />
                     </a>
                 </StyledDivMobile>
             )}

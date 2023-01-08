@@ -192,7 +192,7 @@ export const Input = React.forwardRef<HTMLInputElement, TInputInterface>(
                     <StyledInput
                         minLength={2}
                         required
-                        maxLength={15}
+                        maxLength={30}
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
                         onChange={onChange}

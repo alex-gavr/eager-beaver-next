@@ -1,4 +1,3 @@
-import downArrow from '../../images/icons/downArrow.svg';
 import { useWindowSize } from '../../utils/use-window-size';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -49,7 +48,7 @@ export const LeftArrow = ({ onClick, alwaysBottom, ...rest }: any) => {
             bottom={width < 800 ? '5px' : alwaysBottom ? '5px' : '50%'}
             left={0}
             marginLeft={width < 500 ? '1rem' : '3rem'}>
-            <Image src={downArrow} alt='' style={{rotate: '90deg'}} />
+            <Image src={'/downArrow.svg'} width={30} height={20} alt='' style={{rotate: '90deg'}} />
         </StyledDiv>
     );
 };
@@ -70,7 +69,7 @@ export const RightArrow = ({ onClick, alwaysBottom, ...rest }: any) => {
             bottom={width < 800 ? '5px' : alwaysBottom ? '5px' : '50%'}
             right={0}
             marginRight={width < 500 ? '1rem' : '3rem'}>
-            <Image src={downArrow} alt='' style={{rotate: '-90deg'}} />
+            <Image src={'/downArrow.svg'} width={30} height={20} alt='' style={{rotate: '-90deg'}} />
         </StyledDiv>
     );
 };

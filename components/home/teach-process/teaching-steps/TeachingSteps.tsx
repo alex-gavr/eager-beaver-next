@@ -83,7 +83,7 @@ const TeachingSteps = () => {
             setButtonText('а что потом?');
             // ym('reachGoal','teachingStep5');
         } else if (step === 5) {
-            setButtonText('все понятно, запишу ребенка на пробный урок');
+            setButtonText('Ждем Вас ❤️');
             // ym('reachGoal','teachingChangeColor');
         }
     };
@@ -183,7 +183,7 @@ const TeachingSteps = () => {
                             onClick={() => handleChangeStep(data.step)}
                             style={{
                                 backgroundColor:
-                                    buttonText === 'все понятно, запишу ребенка на пробный урок'
+                                    buttonText === 'Ждем Вас ❤️'
                                         ? theme.colors.secondaryLight
                                         : step === index + 1
                                         ? theme.colors.secondaryLight

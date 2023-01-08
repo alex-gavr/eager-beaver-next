@@ -4,6 +4,8 @@ import { FC } from 'react';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { IFutureEvent } from '../../types/data';
 import { fetchNotion } from '../../utils/fetchNotion';
+import Loader from '../../components/Loader';
+import { useAppSelector } from '../../services/hook';
 
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
@@ -12,7 +14,7 @@ interface IProps {
     futureEvents: IFutureEvent[];
 }
 const Schedule: FC<IProps> = ({ futureEvents }) => {
-
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     return (
         <>
             <Head>
@@ -21,9 +23,10 @@ const Schedule: FC<IProps> = ({ futureEvents }) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader title='Предстоящие мероприятия' layoutId='futureEvents' />}
             <StyledMain>
                 <StyledSection style={{width: '100vw'}}>
-                    <FutureEvents futureEvents={futureEvents} />
+                    <FutureEvents futureEvents={futureEvents} layoutId='futureEvents' />
                 </StyledSection>
                 <PageAnimation />
             </StyledMain>

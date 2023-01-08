@@ -8,6 +8,9 @@ import cloud3 from '../../images/clouds/3.svg';
 import { CloudContainer } from '../../components/CloudsContainer';
 import { FlexCCC, StyledMain, StyledSection } from '../../components/StyledMain';
 import { NextPage } from 'next';
+import { useAppSelector } from '../../services/hook';
+import Loader from '../../components/Loader';
+import { m } from 'framer-motion';
 
 const SchoolLocationMap = dynamic(() => import('../../components/map/map'));
 const SocialMediaIcons = dynamic(() => import('../../components/social-media-block/SocialMediaIcons'));
@@ -45,7 +48,7 @@ const IconsContainer = styled(FlexCCC)({
     zIndex: 2,
 });
 
-const Heading = styled.h1((props) => ({
+const Heading = styled(m.h1)((props) => ({
     color: props.theme.colors.title,
 }));
 const SubHeading = styled.h2((props) => ({
@@ -53,6 +56,7 @@ const SubHeading = styled.h2((props) => ({
 }));
 
 const Contact: NextPage = (): JSX.Element => {
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     return (
         <>
             <Head>
@@ -61,12 +65,15 @@ const Contact: NextPage = (): JSX.Element => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            {showLoader && <Loader title='Контакты' layoutId='contact' />}
             <StyledMain>
                 <StyledSection>
                     <Grid>
                         <SchoolLocationMap style={{ order: 2 }} widthDesktop={550} heightDesktop={550} widthMobile={300} heightMobile={300} />
                         <ContactDetails>
-                            <Heading>Контакты</Heading>
+                            <Heading layoutId='contact' transition={{ duration: 0.6, ease: 'easeOut' }}>
+                                Контакты
+                            </Heading>
                             <p> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807 </p>
                             <p>
                                 Телефон для связи: <a href='tel:+7(909)380-96-57'>+7(909)380-96-57</a>

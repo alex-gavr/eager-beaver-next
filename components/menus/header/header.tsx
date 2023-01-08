@@ -8,7 +8,7 @@ import { list, mobileHeaderAni } from '../../../utils/motion-animations';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { useAppDispatch } from '../../../services/hook';
+import { useAppDispatch, useAppSelector } from '../../../services/hook';
 import { headerVisibilityStatus } from '../../../services/navigationVisibilitySlice';
 import { FlexCCC } from '../../StyledMain';
 import { useWindowSize } from '../../../utils/use-window-size';
@@ -49,6 +49,7 @@ const IconContainer = styled(FlexCCC)((props) => ({
 }));
 
 const Header = () => {
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     const { width } = useWindowSize();
     const dispatch = useAppDispatch();
     const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +70,7 @@ const Header = () => {
                 {/* Logo */}
                 <Logo />
                 {/* NAVIGATION DESKTOP */}
-                {width > 1000 ? (
+                {!showLoader && width > 1000 ? (
                     <nav>
                         <DesktopNavigation variants={list} initial='hidden' animate='visible'>
                             {header.map((link) => (

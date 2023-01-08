@@ -1,7 +1,6 @@
 
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
-import ok from '../../../images/icons/OkHand.svg';
 import { useState } from 'react';
 import Image from 'next/image';
 import { FlexCCC } from '../../StyledMain';
@@ -71,7 +70,7 @@ const SidePopUp = () => {
                         </video>
                     </ColumnDiv>
                     <ColumnDiv onClick={() => setTutorialSeen(true)}>
-                        <StyledOk src={ok} alt='' />
+                        <StyledOk src={'/ok.svg'} width={20} height={20} alt='' />
                     </ColumnDiv>
                 </WrapperDiv>
             )}

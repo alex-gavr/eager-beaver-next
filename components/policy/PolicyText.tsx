@@ -2,18 +2,19 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../services/hook';
 import { showForm } from '../../services/modalSlice';
 import Button from '../buttons/button';
+import {m} from 'framer-motion';
 
 const PolicyDiv = styled.div({
     maxHeight: 400,
     overflowY: 'scroll',
     marginBottom: '1rem',
 });
-const StyledSubHeading = styled.h2((props) => ({
+const StyledSubHeading = styled(m.h2)((props) => ({
     color: props.theme.colors.title,
     textAlign: 'center',
 }));
 
-const PolicyText = () => {
+const PolicyText = ({layoutId}: any) => {
     const dispatch = useAppDispatch();
     const { isModalOpen, initSubmitFrom, initSubmitFutureEvent } = useAppSelector((state) => state.modal);
     const handleShowForm = () => {
@@ -21,7 +22,7 @@ const PolicyText = () => {
     };
     return (
         <>
-            <StyledSubHeading> Политика в отношении обработки персональных данных от 06.01.2023</StyledSubHeading>
+            <StyledSubHeading layoutId={layoutId}> Политика в отношении обработки персональных данных от 06.01.2023</StyledSubHeading>
             <PolicyDiv>
                 <p>
                     1. Общие положения <br />

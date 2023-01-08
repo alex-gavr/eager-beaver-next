@@ -1,6 +1,6 @@
 
 import logo from '../../images/logo.svg';
-import logoChristmas from '../../images/logoChristmas.svg';
+// import logoChristmas from '../../images/logoChristmas.svg';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -25,7 +25,7 @@ export const Logo = () => {
     return (
         <Link href='/'>
             <Row>
-                <Image src={logoChristmas} alt='logo' priority />
+                <Image src={logo} alt='logo' />
                 <p>
                     Eager
                     <br />

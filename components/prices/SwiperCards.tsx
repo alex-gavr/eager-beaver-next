@@ -3,7 +3,6 @@ import { EffectCards } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import Image from 'next/image';
-import checkMark from '../../images/icons/checkMark.svg';
 import styled from 'styled-components';
 import { SlideButtons } from '../custom-arrows/leftAndRightButtons';
 import { FlexCCC } from '../StyledMain';
@@ -110,7 +109,7 @@ const SwiperCards = ({ pricesAdjustedArray }: any) => {
                                         const text = point.map((i: any) => i.text).join('');
                                         return (
                                             <ContainerForBulletPoint key={index}>
-                                                <Image src={checkMark} alt='check mark' priority />
+                                                <Image src={'/checkMark.svg'} width={50} height={50} alt='check mark' priority />
                                                 <li>{text}</li>
                                             </ContainerForBulletPoint>
                                         );

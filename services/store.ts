@@ -2,7 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from './modalSlice';
 import futureEventDetailsReducer from './futureEventSignUpData';
 import navigationVisibilityReducer from './navigationVisibilitySlice';
-import errorReducer from './errorSlice'
+import errorReducer from './errorSlice';
+import homeLoaderReducer from './homeLoaderSlice';
 
 export const store = configureStore({
     reducer:{
@@ -10,6 +11,7 @@ export const store = configureStore({
         futureEventDetails: futureEventDetailsReducer,
         navigationVisibility: navigationVisibilityReducer,
         error: errorReducer,
+        homeLoader: homeLoaderReducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
 });

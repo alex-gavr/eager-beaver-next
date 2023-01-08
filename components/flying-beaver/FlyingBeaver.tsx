@@ -34,7 +34,7 @@ const FlyingBeaver = ({ isMobileOnly, isTablet }: Omit<IDeviceType, 'isDesktop'>
                     y: isMobileOnly ? '-180vh' : '-180vh',
                     transition: {
                         duration: 4.5,
-                        delay: 1,
+                        delay: 3,
                         ease: 'easeIn',
                     },
                 }}>

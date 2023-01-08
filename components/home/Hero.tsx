@@ -2,12 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import hero from '../../images/hero/heroCropped.webp';
 import heroMobile from '../../images/hero/mobileHero.webp';
 import { AnimatePresence, m } from 'framer-motion';
-import { list, toRight, toDown, toLeft, popUp } from '../../utils/motion-animations';
+import { toRight, toDown, toLeft, popUp, list } from '../../utils/motion-animations';
 import styled from 'styled-components';
 import Image from 'next/image';
 import ActionButtons from '../buttons/action-buttons-page-end/ActionButtons';
 import Cookies from 'js-cookie';
 import { FlexCCC } from '../StyledMain';
+import { useAppSelector } from '../../services/hook';
 
 const MainContent = styled(FlexCCC)({
     width: '100%',
@@ -68,16 +69,16 @@ const Wrapper = styled.section({
 const AdvantagesDiv = styled(FlexCCC)((props) => ({
     gap: '0.5rem',
     '@media only screen and (max-width: 500px)': {
-        gap: '0.2rem'
+        gap: '0.2rem',
     },
     '& > p': {
         fontSize: '0.8rem',
         '@media only screen and (max-width: 500px)': {
-            fontSize: '0.6rem'
+            fontSize: '0.6rem',
         },
-        width: "100%",
+        width: '100%',
         color: props.theme.colors.black,
-        textAlign: 'left'
+        textAlign: 'left',
     },
 }));
 
@@ -85,6 +86,7 @@ interface IProps {
     isMobileOnly: boolean;
 }
 const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
+    const { showLoader } = useAppSelector((state) => state.homeLoader);
     const [name, setName] = useState<string | undefined>('');
 
     useEffect(() => {
@@ -97,19 +99,32 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
     return (
         <AnimatePresence>
             <Wrapper>
-                <Image priority fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
-                <MainContent variants={list} animate='visible' initial='hidden'>
-                    <Columns>
-                        <m.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
-                            {name && `Привет, ${name}`}
-                        </m.p>
-                        <m.h1 variants={toRight}>Eager Beaver Language School</m.h1>
-                        <m.p variants={toLeft}>детская языковая школа инклюзивного вида обучения</m.p>
-                        <ButtonContainer variants={popUp}>
-                            <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
-                        </ButtonContainer>
-                    </Columns>
-                </MainContent>
+                <m.div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                    }}
+                    layoutId='heroImage'
+                    transition={{ duration: 0.6, ease: 'easeOut' }}>
+                    <Image fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
+                </m.div>
+                {!showLoader && (
+                    <MainContent variants={list} animate='visible' initial='hidden'>
+                        <Columns>
+                            <m.p variants={toDown} style={{ textTransform: 'lowercase', color: 'white' }}>
+                                {name && `Привет, ${name}`}
+                            </m.p>
+                            <m.h1 variants={toRight}>Eager Beaver Language School</m.h1>
+                            <m.p variants={toLeft}>детская языковая школа инклюзивного вида обучения</m.p>
+                            <ButtonContainer variants={popUp}>
+                                <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
+                            </ButtonContainer>
+                        </Columns>
+                    </MainContent>
+                )}
             </Wrapper>
         </AnimatePresence>
     );

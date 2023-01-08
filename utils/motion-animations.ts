@@ -36,6 +36,7 @@ export const list = {
     },
 };
 
+
 export const revealMenu = {
     visible: {
         y: 0,

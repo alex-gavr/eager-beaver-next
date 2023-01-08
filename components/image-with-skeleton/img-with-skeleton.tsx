@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { initError } from '../../services/errorSlice';
+import { useAppDispatch } from '../../services/hook';
 
 interface IProps {
     src: string;
@@ -10,6 +12,7 @@ interface IProps {
 }
 
 export const ImageWithSkeleton = ({ src, alt, visibleByDefault, className }: IProps) => {
+    const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(true);
     return (
         <>
@@ -24,7 +27,7 @@ export const ImageWithSkeleton = ({ src, alt, visibleByDefault, className }: IPr
                     }}
                 />
             )}
-            <Image src={src}  alt={alt} className={className} onLoadingComplete={() => setIsLoading(false)} />
+            <Image src={src}  alt={alt} className={className} onLoadingComplete={() => setIsLoading(false)} onError={() => dispatch(initError())} />
         </>
     );
 };

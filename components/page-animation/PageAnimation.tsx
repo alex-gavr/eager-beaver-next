@@ -2,15 +2,15 @@ import { m, useIsPresent } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const StyledAnimationDiv = styled(m.div)({
+const StyledAnimationDiv = styled(m.div)( props => ({
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: 'linear-gradient(45deg, #96fbc4 0%, #f9f586 100%)',
+    backgroundImage: props.theme.colors.pageTransitionGradient,
     zIndex: 999,
-});
+}));
 
 const PageAnimation = () => {
     const isPresent = useIsPresent();
