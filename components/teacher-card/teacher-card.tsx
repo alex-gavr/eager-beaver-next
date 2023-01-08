@@ -76,7 +76,7 @@ interface Props {
     includePlay: boolean;
 }
 
-const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) => {
+const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay }) => {
     const dispatch = useAppDispatch();
 
     const [isImgLoaded, setIsImgLoaded] = useState(false);
@@ -90,7 +90,14 @@ const TeacherCard: FC<Props> = ({ image, alt, name, description, includePlay}) =
             <ImageAndSpanContainer>
                 <ImageContainer>
                     {!isImgLoaded && <Skeleton circle style={{ zIndex: '20', position: 'absolute', top: '0', height: '100%' }} />}
-                    <TeacherPhoto src={image} alt={alt} width={1000} height={1500} onLoadingComplete={handleImageLoaded} priority onError={() => dispatch(initError())} />
+                    <TeacherPhoto
+                        src={image}
+                        alt={alt}
+                        width={705}
+                        height={1125}
+                        onLoadingComplete={handleImageLoaded}
+                        onError={() => dispatch(initError())}
+                    />
                 </ImageContainer>
                 {includePlay && isImgLoaded && <PlayIcon src={'/play.svg'} width={50} height={50} alt='' priority />}
             </ImageAndSpanContainer>
