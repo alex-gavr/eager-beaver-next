@@ -7,6 +7,7 @@ import AnimatedTextWords from '../../AnimatedTextWords/AnimatedTextWords';
 import styled from 'styled-components';
 import { IDeviceType } from '../../../types/data';
 import { FlexCCC } from '../../StyledMain';
+import { useInView } from 'react-intersection-observer';
 
 const Wrapper = styled(FlexCCC)({
     gap: '3rem',
@@ -29,32 +30,40 @@ const WelcomeTextContainer = styled(FlexCCC)((props) => ({
 }));
 
 const Events: FC<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }): JSX.Element => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+    });
+    
     return (
         <AnimatePresence>
-            <Wrapper>
-                <WelcomeTextContainer variants={list} whileInView='visible' initial='hidden'>
-                    <h1>
-                        <AnimatedTextWords title={true} text='Тематические мероприятия' textAnimation='fromTopRight' />
-                    </h1>
-                    <m.p variants={toUp} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
-                        Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом.
-                        Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы, что является для нас неотъемлемой частью
-                        образования.
-                    </m.p>
-                </WelcomeTextContainer>
-                {eventsData.map((event) => (
-                    <TwoColumns
-                        key={event.id}
-                        images={event.images}
-                        alt={event.subHeading}
-                        imageSide={event.imageSide}
-                        subHeading={event.subHeading}
-                        paragraph={event.paragraph}
-                        isDesktop={isDesktop}
-                        isTablet={isTablet}
-                        isMobileOnly={isMobileOnly}
-                    />
-                ))}
+            <Wrapper ref={ref}>
+                {inView ? (
+                    <>
+                        <WelcomeTextContainer variants={list} whileInView='visible' initial='hidden'>
+                            <h1>
+                                <AnimatedTextWords title={true} text='Тематические мероприятия' textAnimation='fromTopRight' />
+                            </h1>
+                            <m.p variants={toUp} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-20% 0px -20% 0px' }}>
+                                Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным
+                                процессом. Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы, что является для нас
+                                неотъемлемой частью образования.
+                            </m.p>
+                        </WelcomeTextContainer>
+                        {eventsData.map((event) => (
+                            <TwoColumns
+                                key={event.id}
+                                images={event.images}
+                                alt={event.subHeading}
+                                imageSide={event.imageSide}
+                                subHeading={event.subHeading}
+                                paragraph={event.paragraph}
+                                isDesktop={isDesktop}
+                                isTablet={isTablet}
+                                isMobileOnly={isMobileOnly}
+                            />
+                        ))}
+                    </>
+                ) : null}
             </Wrapper>
         </AnimatePresence>
     );

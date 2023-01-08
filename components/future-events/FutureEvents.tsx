@@ -11,6 +11,7 @@ import { CloudContainer } from '../CloudsContainer';
 import dynamic from 'next/dynamic';
 import { FlexCCC } from '../StyledMain';
 import { m } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const BeaverSleeps = dynamic(() => import('./BeaverSleeps'));
 
@@ -63,41 +64,49 @@ interface IProps {
     layoutId?: string;
 }
 const FutureEvents = ({ futureEvents, layoutId }: IProps) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+    });
+
     return (
         <>
-            <Wrapper>
-                <m.h1 layoutId={layoutId} transition={{ duration: 0.6, ease: 'easeOut' }}>
-                    <AnimatedTextWords text='Предстоящие мероприятия' title={true} textAnimation='fromBottomLeft' />
-                </m.h1>
-                <EventsContainer>
-                    {futureEvents.length === 0 ? (
-                        <h2
-                            style={{
-                                textAlign: 'center',
-                            }}>
-                            Планируем будущие мероприятия для ваших деток...
-                        </h2>
-                    ) : (
-                        futureEvents &&
-                        futureEvents.map((event, index) => (
-                            <EventCard
-                                title={event.properties.title.rich_text[0].plain_text}
-                                description={event.properties.description.rich_text[0].plain_text}
-                                age={event.properties.age.rich_text[0].plain_text}
-                                participants={event.properties.participants.number}
-                                total_spots={event.properties.total_spots.number}
-                                price={event.properties.price.rich_text[0].plain_text}
-                                start={event.properties.date.date.start}
-                                end={event.properties.date.date.end}
-                                page_id={event.page_id}
-                                key={index}
-                            />
-                        ))
-                    )}
-                </EventsContainer>
-                <BeaverContainer>
-                    <BeaverSleeps />
-                </BeaverContainer>
+            <Wrapper ref={ref}>
+                {inView ? (
+                    <>
+                        <m.h1 layoutId={layoutId} transition={{ duration: 0.6, ease: 'easeOut' }}>
+                            <AnimatedTextWords text='Предстоящие мероприятия' title={true} textAnimation='fromBottomLeft' />
+                        </m.h1>
+                        <EventsContainer>
+                            {futureEvents.length === 0 ? (
+                                <h2
+                                    style={{
+                                        textAlign: 'center',
+                                    }}>
+                                    Планируем будущие мероприятия для ваших деток...
+                                </h2>
+                            ) : (
+                                futureEvents &&
+                                futureEvents.map((event, index) => (
+                                    <EventCard
+                                        title={event.properties.title.rich_text[0].plain_text}
+                                        description={event.properties.description.rich_text[0].plain_text}
+                                        age={event.properties.age.rich_text[0].plain_text}
+                                        participants={event.properties.participants.number}
+                                        total_spots={event.properties.total_spots.number}
+                                        price={event.properties.price.rich_text[0].plain_text}
+                                        start={event.properties.date.date.start}
+                                        end={event.properties.date.date.end}
+                                        page_id={event.page_id}
+                                        key={index}
+                                    />
+                                ))
+                            )}
+                        </EventsContainer>
+                        <BeaverContainer>
+                            <BeaverSleeps />
+                        </BeaverContainer>
+                    </>
+                ) : null}
             </Wrapper>
             <CloudContainer top={'2%'} left={0}>
                 <Image src={cloud} alt='' />

@@ -27,6 +27,7 @@ const StyledFooter = styled(FlexCCC)({
     width: '100vw',
     backgroundColor: '#1d1e25',
     position: 'relative',
+    minHeight: '5px'
 });
 const SocialMediaContainer = styled(FlexCCC)((props) => ({
     padding: '2rem',
@@ -207,7 +208,7 @@ const PolicyContainer = styled(FlexCCC)((props) => ({
         '@media only screen and (max-width: 500px)': {
             fontSize: '0.6rem',
         },
-    }
+    },
 }));
 
 const Footer = () => {
@@ -226,59 +227,63 @@ const Footer = () => {
     return (
         <AnimatePresence>
             <StyledFooter ref={ref} as='footer'>
-                <SocialMediaContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-10% 0px -10% -0px' }}>
-                    <m.p variants={opacity}>присоединяйся к нам и здесь</m.p>
-                    <IconsContainer variants={toUp}>
-                        <SocialMediaIcons />
-                    </IconsContainer>
-                </SocialMediaContainer>
-                <FooterMainPart>
-                    <MapAndAddressContainer>
-                        <AddressContainer>
-                            <BeaverOnARocket src={beaverRocket} alt='' />
-                            <Address>
-                                Мы находимся по адресу: <br /> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807
-                            </Address>
-                            <Phone>
-                                Телефон для связи:
-                                <m.a href='tel:+7(909)380-96-57' style={{ color: 'inherit' }}>
-                                    +7(909)380-96-57
-                                </m.a>
-                            </Phone>
-                        </AddressContainer>
-                        {showMap ? (
-                            <SchoolLocationMap
-                                style={{ placeSelf: 'center', width: 300, height: 300 }}
-                                widthDesktop={300}
-                                heightDesktop={300}
-                                widthMobile={300}
-                                heightMobile={300}
-                            />
-                        ) : (
-                            <Skeleton width={300} height={300} />
-                        )}
-                    </MapAndAddressContainer>
-                    <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
-                        {footer.map((link) => (
-                            <m.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
-                                <StyledLink href={link.to}>{link.name}</StyledLink>
-                            </m.li>
-                        ))}
-                    </LinksList>
-                </FooterMainPart>
-                <CreditsContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
-                    <m.p variants={popUp}>Product Owner: Валерия Евстратова</m.p>
-                    <CreditsContainerOmitLera variants={list}>
-                        <m.p variants={popUp}>Design: Мария Рязанова</m.p>
-                        <m.p variants={popUp}>Development: Александр Гавриленко</m.p>
-                        <m.p variants={popUp}>Photography: Диана Удаева</m.p>
-                        <m.p variants={popUp}>Illustrations: Елизавета Шведова</m.p>
-                    </CreditsContainerOmitLera>
-                </CreditsContainer>
-                <PolicyContainer>
-                    <Link href='/policy'>Политика Обработки Персональных Данных</Link>
-                    <p>Eager Beaver Language School © 2023</p>
-                </PolicyContainer>
+                {inView ? (
+                    <>
+                        <SocialMediaContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-10% 0px -10% -0px' }}>
+                            <m.p variants={opacity}>присоединяйся к нам и здесь</m.p>
+                            <IconsContainer variants={toUp}>
+                                <SocialMediaIcons />
+                            </IconsContainer>
+                        </SocialMediaContainer>
+                        <FooterMainPart>
+                            <MapAndAddressContainer>
+                                <AddressContainer>
+                                    <BeaverOnARocket src={beaverRocket} alt='' />
+                                    <Address>
+                                        Мы находимся по адресу: <br /> г. Волгоград, БЦ &quot;Меркурий&quot;, ул. Калинина, д. 13, 8-й этаж, офис 807
+                                    </Address>
+                                    <Phone>
+                                        Телефон для связи:
+                                        <m.a href='tel:+7(909)380-96-57' style={{ color: 'inherit' }}>
+                                            +7(909)380-96-57
+                                        </m.a>
+                                    </Phone>
+                                </AddressContainer>
+                                {showMap ? (
+                                    <SchoolLocationMap
+                                        style={{ placeSelf: 'center', width: 300, height: 300 }}
+                                        widthDesktop={300}
+                                        heightDesktop={300}
+                                        widthMobile={300}
+                                        heightMobile={300}
+                                    />
+                                ) : (
+                                    <Skeleton width={300} height={300} />
+                                )}
+                            </MapAndAddressContainer>
+                            <LinksList variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
+                                {footer.map((link) => (
+                                    <m.li variants={toDown} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={link.id}>
+                                        <StyledLink href={link.to}>{link.name}</StyledLink>
+                                    </m.li>
+                                ))}
+                            </LinksList>
+                        </FooterMainPart>
+                        <CreditsContainer variants={list} initial='hidden' whileInView='visible' viewport={{ once: true, margin: '-5% 0px -5% -0px' }}>
+                            <m.p variants={popUp}>Product Owner: Валерия Евстратова</m.p>
+                            <CreditsContainerOmitLera variants={list}>
+                                <m.p variants={popUp}>Design: Мария Рязанова</m.p>
+                                <m.p variants={popUp}>Development: Александр Гавриленко</m.p>
+                                <m.p variants={popUp}>Photography: Диана Удаева</m.p>
+                                <m.p variants={popUp}>Illustrations: Елизавета Шведова</m.p>
+                            </CreditsContainerOmitLera>
+                        </CreditsContainer>
+                        <PolicyContainer>
+                            <Link href='/policy'>Политика Обработки Персональных Данных</Link>
+                            <p>Eager Beaver Language School © 2023</p>
+                        </PolicyContainer>
+                    </>
+                ) : null}
             </StyledFooter>
         </AnimatePresence>
     );
