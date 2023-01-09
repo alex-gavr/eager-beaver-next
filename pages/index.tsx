@@ -15,9 +15,7 @@ const TeachProcess = dynamic(() => import('../components/home/teach-process/teac
 const FutureEvents = dynamic(() => import('../components/future-events/FutureEvents'), {
     ssr: false,
 });
-const Events = dynamic(() => import('../components/home/thematic-events/events'), {
-    ssr: false,
-});
+const Events = dynamic(() => import('../components/home/thematic-events/events'));
 const FreeClass = dynamic(() => import('../components/home/free-class/free-class'), {
     ssr: false,
 });
@@ -34,7 +32,10 @@ const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvent
         <>
             <Head>
                 <title>Eager Beaver Language School</title>
-                <meta name='description' content='Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом. Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы. Проведение таких мероприятий для нас является неотъемлемой частью образования.' />
+                <meta
+                    name='description'
+                    content='Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом. Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы. Проведение таких мероприятий для нас является неотъемлемой частью образования.'
+                />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
