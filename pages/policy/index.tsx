@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Loader from '../../components/Loader';
-import PolicyText from '../../components/policy/PolicyText';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { useAppSelector } from '../../services/hook';
 
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 const Button = dynamic(() => import('../../components/buttons/button'));
+const PolicyText = dynamic(() => import('../../components/policy/PolicyText'));
 
 const Policy = () => {
     const router = useRouter();

@@ -120,7 +120,7 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                             <m.h1 variants={toDown}>Eager Beaver Language School</m.h1>
                             <ParagraphContainer>
                                 <m.p variants={toRight}>детская языковая школа инклюзивного вида обучения</m.p>
-                                <m.p variants={toUp}>помогаем вашему ребенку полюбить иностранные языки с детства</m.p>
+                                <m.p variants={toUp}>помогаем вашему ребенку любить иностранные языки с детства</m.p>
                             </ParagraphContainer>
                             <ButtonContainer variants={popUp}>
                                 <ActionButtons primaryButtonStyle='emptySecondary' secondaryButtonStyle='primary' showBackButton={false} padding={'1rem'} />
