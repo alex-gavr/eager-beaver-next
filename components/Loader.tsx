@@ -28,10 +28,17 @@ const ImageContainer = styled(m.div)({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '50%',
-    height: '50%',
+    width: '40%',
+    height: 'auto',
     overflow: 'hidden',
     boxShadow: '1px 0px 20px 2px rgba(0,0,0,0.2)',
+    '@media only screen and (max-width: 500px)': {
+        width: '50%',
+    },
+    '& > img': {
+        width: '100%',
+        height: '100%',
+    },
 });
 const EagerBeaverContainer = styled(m.div)({
     display: 'flex',
@@ -78,7 +85,7 @@ const imageAni = {
         opacity: 1,
         transition: {
             opacity: {
-                duration: 0.5
+                duration: 0.5,
             },
             duration: 1.5,
         },
@@ -88,7 +95,6 @@ const imageAni = {
         opacity: 0,
     },
 };
-
 
 interface IProps {
     isMobileOnly?: boolean;
@@ -105,10 +111,6 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
     return (
         <AnimatePresence mode='wait'>
             <Wrapper variants={container} initial='hidden' animate='visible' exit='exit' onAnimationComplete={handleDisableHomeAni}>
-                <EagerBeaverContainer variants={toDown}>
-                    <Image src={logo} alt='heroBeaver' />
-                </EagerBeaverContainer>
-                <Title variants={toUp}>Eager Beaver Language School</Title>
                 {router.pathname === '/' ? (
                     <ImageContainer variants={imageAni} layoutId='heroImage'>
                         <Image src={isMobileOnly ? heroMobile : hero} alt='hero' />
@@ -118,6 +120,10 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
                         {title}
                     </TitlePages>
                 )}
+                <EagerBeaverContainer variants={toDown}>
+                    <Image src={logo} alt='heroBeaver' />
+                </EagerBeaverContainer>
+                <Title variants={toUp}>Eager Beaver Language School</Title>
             </Wrapper>
         </AnimatePresence>
     );
