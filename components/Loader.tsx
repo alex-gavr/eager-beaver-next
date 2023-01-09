@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import hero from '../images/hero/heroCropped.webp';
+import hero from '../images/hero/heroDesktop.webp';
 import heroMobile from '../images/hero/mobileHero.webp';
 import logo from '../images/logo.svg';
 import { AnimatePresence, m } from 'framer-motion';
@@ -113,7 +113,7 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
             <Wrapper variants={container} initial='hidden' animate='visible' exit='exit' onAnimationComplete={handleDisableHomeAni}>
                 {router.pathname === '/' ? (
                     <ImageContainer variants={imageAni} layoutId='heroImage'>
-                        <Image src={isMobileOnly ? heroMobile : hero} alt='hero' />
+                        <Image priority src={isMobileOnly ? heroMobile : hero} alt='hero' />
                     </ImageContainer>
                 ) : (
                     <TitlePages variants={imageAni} layoutId={layoutId}>

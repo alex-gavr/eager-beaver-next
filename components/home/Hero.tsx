@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import hero from '../../images/hero/heroCropped.webp';
+import hero from '../../images/hero/heroDesktop.webp';
 import heroMobile from '../../images/hero/mobileHero.webp';
 import { AnimatePresence, m } from 'framer-motion';
 import { toRight, toDown, popUp, list, toUp, opacity } from '../../utils/motion-animations';
@@ -109,7 +109,7 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                     }}
                     layoutId='heroImage'
                     transition={{ duration: 0.6, ease: 'easeOut' }}>
-                    <Image priority fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
+                    <Image fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
                 </m.div>
                 {!showLoader && (
                     <MainContent variants={list} animate='visible' initial='hidden'>

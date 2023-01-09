@@ -15,7 +15,9 @@ const TeachProcess = dynamic(() => import('../components/home/teach-process/teac
 const FutureEvents = dynamic(() => import('../components/future-events/FutureEvents'), {
     ssr: false,
 });
-const Events = dynamic(() => import('../components/home/thematic-events/events'));
+const Events = dynamic(() => import('../components/home/thematic-events/events'), {
+    ssr: false,
+});
 const FreeClass = dynamic(() => import('../components/home/free-class/free-class'), {
     ssr: false,
 });

@@ -10,9 +10,9 @@ import Image from 'next/image';
 import { CloudContainer } from '../../CloudsContainer';
 import dynamic from 'next/dynamic';
 import { FlexCCC, StyledSection } from '../../StyledMain';
+import { useInView } from 'react-intersection-observer';
 
 const BeaverHiOptimized = dynamic(() => import('./BeaverHi'));
-
 
 const EvenColumns = styled(m.div)({
     zIndex: 100,
@@ -39,9 +39,18 @@ const Background = styled.span((props) => ({
 }));
 
 const TeachProcess: FC = (): JSX.Element => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+    });
     return (
         <AnimatePresence>
-            <StyledSection style={{marginTop: '3rem',}} variants={list} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
+            <StyledSection
+                ref={ref}
+                style={{ marginTop: '3rem' }}
+                variants={list}
+                whileInView='visible'
+                initial='hidden'
+                viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
                 <h1>
                     <AnimatedTextWords title={true} text='Как проходит обучение?' textAnimation='fromBottomLeft' />
                 </h1>
@@ -51,19 +60,29 @@ const TeachProcess: FC = (): JSX.Element => {
                         <BeaverHiOptimized />
                     </FlexCCC>
                 </EvenColumns>
-                <Background />
-                <CloudContainer top={'10%'} left={0} variants={toRight} whileInView='visible' initial='hidden' viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
-                    <Image src={cloud} alt='' />
-                </CloudContainer>
-                <CloudContainer
-                    bottom={'1%'}
-                    left={'30%'}
-                    variants={toLeft}
-                    whileInView='visible'
-                    initial='hidden'
-                    viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
-                    <Image src={cloud2} alt='cloud2' />
-                </CloudContainer>
+                {inView ? (
+                    <>
+                        <Background />
+                        <CloudContainer
+                            top={'10%'}
+                            left={0}
+                            variants={toRight}
+                            whileInView='visible'
+                            initial='hidden'
+                            viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
+                            <Image src={cloud} alt='' />
+                        </CloudContainer>
+                        <CloudContainer
+                            bottom={'1%'}
+                            left={'30%'}
+                            variants={toLeft}
+                            whileInView='visible'
+                            initial='hidden'
+                            viewport={{ once: true, margin: '-10% 0px -10% 0px' }}>
+                            <Image src={cloud2} alt='cloud2' />
+                        </CloudContainer>
+                    </>
+                ) : null}
             </StyledSection>
         </AnimatePresence>
     );
