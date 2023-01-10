@@ -1,19 +1,14 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { FC } from 'react';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
-import { IFutureEvent } from '../../types/data';
-import { fetchNotion } from '../../utils/fetchNotion';
 import Loader from '../../components/Loader';
 import { useAppSelector } from '../../services/hook';
 
 const FutureEvents = dynamic(() => import('../../components/future-events/FutureEvents'));
 const PageAnimation = dynamic(() => import('../../components/page-animation/PageAnimation'));
 
-interface IProps {
-    futureEvents: IFutureEvent[];
-}
-const Schedule: FC<IProps> = ({ futureEvents }) => {
+
+const Schedule = () => {
     const { showLoader } = useAppSelector((state) => state.homeLoader);
     return (
         <>
@@ -26,7 +21,7 @@ const Schedule: FC<IProps> = ({ futureEvents }) => {
             {showLoader && <Loader title='Предстоящие мероприятия' layoutId='futureEvents' />}
             <StyledMain>
                 <StyledSection style={{width: '100vw'}}>
-                    <FutureEvents futureEvents={futureEvents} layoutId='futureEvents' />
+                    <FutureEvents layoutId='futureEvents' />
                 </StyledSection>
                 <PageAnimation />
             </StyledMain>
@@ -34,18 +29,5 @@ const Schedule: FC<IProps> = ({ futureEvents }) => {
     );
 };
 
-export async function getStaticProps() {
-    try {
-        const futureEvents = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_FUTURE_EVENTS_DB);
-        return {
-            props: {
-                futureEvents,
-            },
-            revalidate: 15,
-        };
-    } catch (err) {
-        console.log(err);
-    }
-}
 
 export default Schedule;

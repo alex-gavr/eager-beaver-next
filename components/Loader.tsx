@@ -51,7 +51,7 @@ const EagerBeaverContainer = styled(m.div)({
     position: 'absolute',
     top: '2%',
 });
-const Title = styled(m.h1)({
+const Title = styled(m.h2)({
     fontSize: '1rem',
     textAlign: 'center',
     color: '#000',
@@ -60,7 +60,7 @@ const Title = styled(m.h1)({
     bottom: '5%',
     width: '95%',
 });
-const TitlePages = styled(m.h1)({
+const TitlePages = styled(m.h2)({
     fontSize: '2rem',
     textAlign: 'center',
     color: '#000',
@@ -112,7 +112,7 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
         <AnimatePresence mode='wait'>
             <Wrapper variants={container} initial='hidden' animate='visible' exit='exit' onAnimationComplete={handleDisableHomeAni}>
                 {router.pathname === '/' ? (
-                    <ImageContainer variants={imageAni} layoutId='heroImage'>
+                    <ImageContainer variants={imageAni} layoutId='hero'>
                         <Image priority src={isMobileOnly ? heroMobile : hero} alt='hero' />
                     </ImageContainer>
                 ) : (

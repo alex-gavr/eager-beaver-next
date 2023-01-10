@@ -2,10 +2,9 @@ import { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import Hero from '../components/home/Hero';
 import { getSelectorsByUserAgent } from 'react-device-detect';
-import { IDeviceType, IFutureEvent } from '../types/data';
+import { IDeviceType } from '../types/data';
 import { StyledMain, StyledSection } from '../components/StyledMain';
 import dynamic from 'next/dynamic';
-import { fetchNotion } from '../utils/fetchNotion';
 import Loader from '../components/Loader';
 import { useAppSelector } from '../services/hook';
 
@@ -22,10 +21,7 @@ const FreeClass = dynamic(() => import('../components/home/free-class/free-class
 const PageAnimation = dynamic(() => import('../components/page-animation/PageAnimation'));
 const FlyingBeaver = dynamic(() => import('../components/flying-beaver/FlyingBeaver'));
 
-interface IProps extends IDeviceType {
-    futureEvents: IFutureEvent[];
-}
-const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvents }) => {
+const Home: NextPage<IDeviceType> = ({ isMobileOnly, isTablet, isDesktop }) => {
     const { showLoader } = useAppSelector((state) => state.homeLoader);
 
     return (
@@ -39,14 +35,14 @@ const Home: NextPage<IProps> = ({ isMobileOnly, isTablet, isDesktop, futureEvent
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            {showLoader && <Loader isMobileOnly={isMobileOnly} title='Eager Beaver Language School' />}
+            {showLoader ? <Loader isMobileOnly={isMobileOnly} title='Eager Beaver Language School' /> : null}
             <StyledMain>
                 <FlyingBeaver isMobileOnly={isMobileOnly} isTablet={isTablet} />
                 <Hero isMobileOnly={isMobileOnly} />
                 <TeachProcess />
                 <Events isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <StyledSection style={{ width: '100vw' }}>
-                    <FutureEvents futureEvents={futureEvents} />
+                    <FutureEvents />
                 </StyledSection>
                 <FreeClass isMobileOnly={isMobileOnly} isTablet={isTablet} isDesktop={isDesktop} />
                 <PageAnimation />
@@ -60,10 +56,8 @@ export async function getServerSideProps({ req, res }: GetServerSidePropsContext
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
     try {
-        const futureEvents = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_FUTURE_EVENTS_DB);
         return {
             props: {
-                futureEvents,
                 isMobileOnly,
                 isTablet,
                 isDesktop,

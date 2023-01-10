@@ -107,14 +107,14 @@ const Hero: FC<IProps> = ({ isMobileOnly }): JSX.Element => {
                         right: 0,
                         bottom: 0,
                     }}
-                    layoutId='heroImage'
-                    transition={{ duration: 0.6, ease: 'easeOut' }}>
-                    <Image loading='eager' fill style={{ objectFit: 'cover' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
+                    layoutId='hero'
+                    transition={{ duration: 0.7, ease: 'easeInOut' }}>
+                    <Image loading='eager' style={{ objectFit: 'cover', width: '100%', height: '100%' }} src={isMobileOnly ? heroMobile : hero} alt='hero image' />
                 </m.div>
                 {!showLoader && (
                     <MainContent variants={list} animate='visible' initial='hidden'>
                         <Columns>
-                            <m.p variants={opacity} style={{ textTransform: 'capitalize', color: 'rgba(255, 255, 255,0.7)'  }}>
+                            <m.p variants={opacity} style={{ textTransform: 'capitalize', color: 'rgba(255, 255, 255,0.7)' }}>
                                 {name && `с возвращением, ${name}`}
                             </m.p>
                             <m.h1 variants={toDown}>Eager Beaver Language School</m.h1>

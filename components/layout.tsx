@@ -16,7 +16,9 @@ const Footer = dynamic(() => import('./menus/footer/footer'), {
 const FixedSocialMedia = dynamic(() => import('./social-media-block/FixedSocialMedia'), {
     ssr: false,
 });
-const DayNightToggle = dynamic(() => import('./toggle'));
+const DayNightToggle = dynamic(() => import('./toggle'), {
+    ssr: false,
+});
 const Modal = dynamic(() => import('./modal/modal'), {
     ssr: false,
 });
@@ -93,7 +95,6 @@ const Layout = ({ children, toggleTheme, isDarkMode, router }: IProps) => {
             {router.pathname === '/reviews' || router.pathname === '/contact' ? null : <FixedSocialMedia />}
             {/* This div is makes animation show in footer, but not in header */}
             <AnimatePresence mode='wait' initial={false} onExitComplete={() => document.querySelector('body')?.scrollTo(0, 0)}>
-                
                 {children}
             </AnimatePresence>
             <Footer />

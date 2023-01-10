@@ -12,6 +12,7 @@ import dynamic from 'next/dynamic';
 import { FlexCCC } from '../StyledMain';
 import { m } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import useSWR from 'swr';
 
 const BeaverSleeps = dynamic(() => import('./BeaverSleeps'));
 
@@ -60,10 +61,30 @@ const BeaverContainer = styled(FlexCCC)((props) => ({
 }));
 
 interface IProps {
-    futureEvents: IFutureEvent[];
+    futureEvents?: IFutureEvent[];
     layoutId?: string;
 }
-const FutureEvents = ({ futureEvents, layoutId }: IProps) => {
+
+const fetcher = async () => {
+    const data = {
+        dbKey: process.env.NEXT_PUBLIC_NOTION_FUTURE_EVENTS_DB,
+    };
+    const JSONdata = JSON.stringify(data);
+    const endpoint = '/api/fetch-notion';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSONdata,
+    };
+    const response = await fetch(endpoint, options);
+    const result = await response.json();
+    return result;
+};
+const FutureEvents = ({ layoutId }: IProps) => {
+    const { data, error, isLoading } = useSWR('futureEvents', fetcher);
+    const futureEvents: IFutureEvent[] = data?.futureEvents;
     const { ref, inView } = useInView({
         triggerOnce: true,
     });
@@ -77,7 +98,7 @@ const FutureEvents = ({ futureEvents, layoutId }: IProps) => {
                             <AnimatedTextWords text='Предстоящие мероприятия' title={true} textAnimation='fromBottomLeft' />
                         </m.h1>
                         <EventsContainer>
-                            {futureEvents.length === 0 ? (
+                            {futureEvents && futureEvents?.length === 0 ? (
                                 <h2
                                     style={{
                                         textAlign: 'center',
