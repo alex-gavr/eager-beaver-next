@@ -4,7 +4,7 @@ import Button from '../../buttons/button';
 import { AnimatePresence } from 'framer-motion';
 import { toggleHeight } from '../../../utils/motion-animations';
 import { onOpenModalFormFutureEvents } from '../../../services/modalSlice';
-import { resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
+import { resetDetails, resetMemberCountChange, setDetails } from '../../../services/futureEventSignUpData';
 import Image from 'next/image';
 import {
     InnerContainer,
@@ -33,8 +33,9 @@ interface IProps {
 
 const EventCard = ({ title, description, age, participants: participantsData, total_spots, price, start, end, page_id }: IProps) => {
     const [participants, setParticipants] = useState<number>(participantsData);
-    const { shouldChangeMember } = useAppSelector((state) => state.futureEventDetails);
+    const { shouldChangeMember, futureEventDetails } = useAppSelector((state) => state.futureEventDetails);
     const [enrolled, setEnrolled] = useState(false);
+    const [interested, setInterested] = useState(false);
     const dispatch = useAppDispatch();
 
     const day = new Date(start).toLocaleString('ru-RU', { day: 'numeric' });
@@ -74,22 +75,31 @@ const EventCard = ({ title, description, age, participants: participantsData, to
 
     const [open, setOpen] = useState(false);
 
-    const handleClick = async (title: string, age: string, dateFull: string) => {
+    // OPENS FORM AND PREPARES DATA
+    const handleClick = async (title: string, age: string, dateFull: string, participants: number, page_id: string) => {
         const values = {
             title,
             age,
             dateFull,
+            participants,
+            page_id
         };
         dispatch(onOpenModalFormFutureEvents());
         dispatch(setDetails(values));
+        setInterested(true);
     };
 
+    // PUSH NEW MEMBER TO NOTION AND GET UPDATED NUMBER
     const handleParticipantsChange = async () => {
-        const members = participants + 1;
+        const participantsFromRedux = futureEventDetails?.participants;
+        const page_id = futureEventDetails?.page_id;
+        
+        const members = participantsFromRedux! + 1;
         const data = {
             members,
             page_id,
         };
+        console.log(data);
         const JSONdata = JSON.stringify(data);
         const endpoint = '/api/update-events-members';
         const options = {
@@ -113,12 +123,15 @@ const EventCard = ({ title, description, age, participants: participantsData, to
         dispatch(resetMemberCountChange());
     };
 
+    // INIT PARTICIPANTS CHANGE IF USER FILLED FORM. INTERESTED IS USED TO IDENTIFY EXACT CARD THAT WAS CHOSEN.
     useEffect(() => {
-        if (shouldChangeMember) {
+        if (shouldChangeMember && interested) {
             handleParticipantsChange();
+            dispatch(resetDetails());
             setEnrolled(true);
+            setInterested(false);
         }
-    }, [shouldChangeMember]);
+    }, [shouldChangeMember, interested]);
 
     return (
         <StyledCard>
@@ -153,7 +166,7 @@ const EventCard = ({ title, description, age, participants: participantsData, to
                                     typeHTML='submit'
                                     padding='0.5rem 0.9rem'
                                     fontFamily='var(--ff-body)'
-                                    onClick={() => handleClick(title, age, dateFull)}
+                                    onClick={() => handleClick(title, age, dateFull, participants, page_id)}
                                     disabled={enrolled || spotsLeft === 0}>
                                     {enrolled ? 'Ждем вас!' : spotsLeft === 0 ? 'Мест больше нет' : 'Приведу ребенка'}
                                 </Button>

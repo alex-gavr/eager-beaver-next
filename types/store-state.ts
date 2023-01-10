@@ -29,6 +29,8 @@ export interface IFutureEventDetailsState {
         title: string;
         age: string;
         dateFull: string;
+        participants: string;
+        page_id: number;
     } | null;
     shouldChangeMember: boolean;
 }
