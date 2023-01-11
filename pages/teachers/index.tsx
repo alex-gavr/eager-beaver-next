@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { ITeacher } from '../../types/data';
-import {  NextPage } from 'next';
+import {  GetServerSidePropsContext, NextPage } from 'next';
 import { StyledMain, StyledSection } from '../../components/StyledMain';
 import { fetchNotion } from '../../utils/fetchNotion';
 import TeacherCard from '../../components/teacher-card/teacher-card';
@@ -75,8 +75,7 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
     );
 };
 
-export async function getStaticProps() {
-
+export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     try{
         const teachers = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_TEACHER_DB);
         return {
@@ -88,5 +87,6 @@ export async function getStaticProps() {
         console.log(err);
     }
 }
+
 
 export default Teachers;

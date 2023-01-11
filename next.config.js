@@ -5,7 +5,7 @@ const nextConfig = {
         styledComponents: true,
     },
     images: {
-        domains: ['s3.us-west-2.amazonaws.com', 'secure.notion-static.com'],
+        domains: ['s3.us-west-2.amazonaws.com'],
     },
     productionBrowserSourceMaps: true,
 };
