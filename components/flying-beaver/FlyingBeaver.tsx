@@ -16,6 +16,7 @@ const StyledDiv = styled(FlexCCC)<IProps>(({ width, rotate }) => ({
     top: '110vh',
     right: '-2rem',
     width: width,
+    willChange: 'transform',
     '& > img': {
         width: '100%',
         height: '100%',
