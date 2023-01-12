@@ -7,11 +7,10 @@ import { fetchNotion } from '../../utils/fetchNotion';
 import SwiperCards from '../../components/prices/SwiperCards';
 import { useAppSelector } from '../../services/hook';
 import Loader from '../../components/Loader';
-import {m} from 'framer-motion';
-
+import { m } from 'framer-motion';
 
 const SidePopUp = dynamic(() => import('../../components/prices/side-popup/SidePopUp'), {
-    ssr: false
+    ssr: false,
 });
 const ActionButtons = dynamic(() => import('../../components/buttons/action-buttons-page-end/ActionButtons'), {
     ssr: false,
@@ -101,7 +100,9 @@ const Pricing = ({ prices }: IProps) => {
             <StyledMain>
                 <StyledSection>
                     <HeadingContainer>
-                        <m.h1 layoutId='prices' transition={{ duration: 0.6, ease: 'easeOut' }}>Тарифы</m.h1>
+                        <m.h1 layoutId='prices' transition={{ duration: 0.6, ease: 'easeOut' }}>
+                            Тарифы
+                        </m.h1>
                         <h2>выбирай подходящий и приходи учиться</h2>
                     </HeadingContainer>
                     <SwiperContainer>
@@ -117,7 +118,8 @@ const Pricing = ({ prices }: IProps) => {
     );
 };
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
+
     try {
         const prices = await fetchNotion(process.env.NEXT_PUBLIC_NOTION_PRICES_DB);
         return {
@@ -128,6 +130,6 @@ export async function getStaticProps() {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 export default Pricing;

@@ -55,6 +55,7 @@ export default Home;
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
     const userAgent = req.headers['user-agent'] || '';
     const { isMobileOnly, isTablet, isDesktop } = getSelectorsByUserAgent(userAgent);
+
     try {
         return {
             props: {
