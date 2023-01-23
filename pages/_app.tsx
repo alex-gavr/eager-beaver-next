@@ -4,6 +4,7 @@ import { useDarkMode } from '../utils/useDarkMode';
 import Providers from '../components/Providers';
 import Layout from '../components/layout';
 import GlobalStyle from '../components/GlobalStyles';
+import Head from 'next/head';
 
 const light: DefaultTheme = {
     colors: {
@@ -72,12 +73,23 @@ const EagerBeaverApp = ({ Component, pageProps, router }: AppProps) => {
     const themeMode = theme === 'light' ? light : dark;
 
     return (
-        <Providers themeMode={themeMode}>
-            <GlobalStyle />
-            <Layout toggleTheme={toggleTheme} isDarkMode={isDarkMode} router={router}>
-                <Component {...pageProps} key={router.pathname} />
-            </Layout>
-        </Providers>
+        <>
+            <Head>
+                <title>Eager Beaver Language School | Волгоград</title>
+                <meta
+                    name='description'
+                    content='Одной из основных целей языковой школы Eager Beaver является обучение языкам таким образом, чтобы ребенок был увлечен образовательным процессом. Поэтому помимо основного обучения мы регулярно проводим тематические праздники и мастер-классы. Проведение таких мероприятий для нас является неотъемлемой частью образования.'
+                />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <Providers themeMode={themeMode}>
+                <GlobalStyle />
+                <Layout toggleTheme={toggleTheme} isDarkMode={isDarkMode} router={router}>
+                    <Component {...pageProps} key={router.pathname} />
+                </Layout>
+            </Providers>
+        </>
     );
 };
 

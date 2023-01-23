@@ -62,8 +62,6 @@ const Contact: NextPage = (): JSX.Element => {
             <Head>
                 <title>Контакты</title>
                 <meta name='description' content='Как связаться? Где находитесь? И как добраться? Ответы есть здесь!' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Контакты' layoutId='contact' />}
             <StyledMain>

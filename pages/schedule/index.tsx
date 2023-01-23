@@ -15,8 +15,6 @@ const Schedule = () => {
             <Head>
                 <title>Мероприятия</title>
                 <meta name='description' content='Предстоящие мероприятия в Eager Beaver!' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Предстоящие мероприятия' layoutId='futureEvents' />}
             <StyledMain>

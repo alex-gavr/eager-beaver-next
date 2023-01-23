@@ -93,8 +93,6 @@ const Pricing = ({ prices }: IProps) => {
             <Head>
                 <title>Тарифы</title>
                 <meta name='description' content='Возможные варианты занятий с нами' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Тарифы' layoutId='prices' />}
             <StyledMain>

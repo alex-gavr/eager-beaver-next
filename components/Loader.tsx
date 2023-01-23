@@ -63,16 +63,18 @@ const Title = styled(m.h2)({
 const TitlePages = styled(m.h2)({
     fontSize: '2rem',
     textAlign: 'center',
-    color: '#000',
+    color: 'rgb(248, 236, 155)',
     letterSpacing: '2px',
     backgroundColor: 'rgb(101, 164, 111)',
-    padding: '2rem',
+    padding: '1rem',
     borderRadius: '0.5rem',
     marginInline: '1rem',
 });
 
 const container = {
     visible: {
+        opacity: 1,
+        zIndex: 999,
         transition: {
             staggerChildren: 0.5,
         },
@@ -87,7 +89,7 @@ const imageAni = {
             opacity: {
                 duration: 0.5,
             },
-            duration: 1.5,
+            duration: 2,
         },
     }),
     hidden: {
@@ -108,22 +110,17 @@ const Loader = ({ isMobileOnly, title, layoutId }: IProps) => {
     const handleDisableHomeAni = () => {
         dispatch(resetHomeLoader());
     };
+    
     return (
-        <AnimatePresence mode='wait'>
+        <AnimatePresence mode='popLayout'>
             <Wrapper variants={container} initial='hidden' animate='visible' exit='exit' onAnimationComplete={handleDisableHomeAni}>
-                {router.pathname === '/' ? (
-                    <ImageContainer variants={imageAni} layoutId='hero'>
-                        <Image priority src={isMobileOnly ? heroMobile : hero} alt='hero' />
-                    </ImageContainer>
-                ) : (
-                    <TitlePages variants={imageAni} layoutId={layoutId}>
-                        {title}
-                    </TitlePages>
-                )}
+                <TitlePages variants={imageAni} layoutId={layoutId}>
+                    {title}
+                </TitlePages>
                 <EagerBeaverContainer variants={toDown}>
                     <Image src={logo} alt='heroBeaver' />
                 </EagerBeaverContainer>
-                <Title variants={toUp}>Eager Beaver Language School</Title>
+                {router.pathname !== '/' && <Title variants={toUp}>Eager Beaver Language School</Title>}
             </Wrapper>
         </AnimatePresence>
     );

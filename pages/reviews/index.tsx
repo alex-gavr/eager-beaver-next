@@ -105,8 +105,6 @@ const Reviews: NextPage<IProps> = ({ reviews, isDesktop }) => {
             <Head>
                 <title>Отзывы</title>
                 <meta name='description' content='Вот что думают о нас родители! Мы ценим каждый ваш отзыв, вы помогаете нам становится лучше.' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Наши Ученики' layoutId='kids' />}
             <StyledMain>

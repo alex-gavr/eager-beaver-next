@@ -65,8 +65,6 @@ const FAQ = ({ faq }: IProps) => {
             <Head>
                 <title>Ответы на Вопросы</title>
                 <meta name='description' content='Мы собрали здесь самые популярные вопросы и ответы на них ' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Вопрос / Ответ' layoutId='faq' />}
             <StyledMain>

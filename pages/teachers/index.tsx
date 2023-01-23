@@ -45,8 +45,6 @@ const Teachers: NextPage<IProps> = ({teachers}) => {
             <Head>
                 <title>Преподаватели</title>
                 <meta name='description' content='Наши прекрасные учителя знают как найти подход к каждому ученику и сделать обучение увлекательным путешествием. Поэтому результаты не заставят себя ждать!' />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/favicon.ico' />
             </Head>
             {showLoader && <Loader title='Наши преподаватели' layoutId='ourTeachers' />}
             <StyledMain>
